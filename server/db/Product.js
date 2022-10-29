@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4 } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, FLOAT } = conn.Sequelize;
 
 const Product = conn.define('product', {
   id: {
@@ -14,6 +14,42 @@ const Product = conn.define('product', {
       notEmpty: true
     }
   },
+  title: {
+    type: STRING,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
+  },
+  author: {
+    type: STRING,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
+  },
+  genre: {
+    type: STRING,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
+  },
+  description: {
+    type: STRING,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
+  },
+  price: {
+    type: FLOAT,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
+  }
+
 });
 
 module.exports = Product;
