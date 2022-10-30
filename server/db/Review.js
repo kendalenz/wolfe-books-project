@@ -11,7 +11,7 @@ const Review = conn.define('review', {
         type: UUID,
         allowNull: false,
     },
-    productId: {
+    bookId: {
         type: UUID,
         allowNull: false,
     },

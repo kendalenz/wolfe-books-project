@@ -1,6 +1,6 @@
 const conn = require('./conn')
 const User = require('./User')
-const Product = require('./Product')
+const Book = require('./Book')
 const Order = require('./Order')
 const LineItem = require('./LineItem')
 const Review = require('./Review')
@@ -8,9 +8,9 @@ const Review = require('./Review')
 Order.belongsTo(User)
 LineItem.belongsTo(Order)
 Order.hasMany(LineItem)
-LineItem.belongsTo(Product)
-Review.belongsTo(Product)
-Product.hasMany(Review)
+LineItem.belongsTo(Book)
+Review.belongsTo(Book)
+Book.hasMany(Review)
 
 const syncAndSeed = async () => {
     await conn.sync({ force: true })
@@ -18,39 +18,39 @@ const syncAndSeed = async () => {
         User.create({ username: 'moe', password: '123' }),
         User.create({ username: 'lucy', password: '123' }),
         User.create({ username: 'larry', password: '123' }),
-        Product.create({ name: 'foo' }),
-        Product.create({ name: 'bar' }),
-        Product.create({ name: 'bazz' }),
+        Book.create({ name: 'foo' }),
+        Book.create({ name: 'bar' }),
+        Book.create({ name: 'bazz' }),
         User.create({ username: 'ethyl', password: '123' }),
     ])
     const testReview = await Review.create({
-        productId: foo.id,
+        bookId: foo.id,
         userId: lucy.id,
         rating: '5',
         text: 'what an awesome read! highly recommend :D',
     })
     const testReview2 = await Review.create({
-        productId: foo.id,
+        bookId: foo.id,
         userId: lucy.id,
         rating: '3',
         text: 'kinda meh...',
     })
     const testReview3 = await Review.create({
-        productId: bar.id,
+        bookId: bar.id,
         userId: lucy.id,
         rating: '4',
         text: 'pretty good!',
     })
     const cart = await ethyl.getCart()
-    await ethyl.addToCart({ product: bazz, quantity: 3 })
-    await ethyl.addToCart({ product: foo, quantity: 2 })
+    await ethyl.addToCart({ book: bazz, quantity: 3 })
+    await ethyl.addToCart({ book: foo, quantity: 2 })
     return {
         users: {
             moe,
             lucy,
             larry,
         },
-        products: {
+        books: {
             foo,
             bar,
             bazz,
@@ -61,6 +61,6 @@ const syncAndSeed = async () => {
 module.exports = {
     syncAndSeed,
     User,
-    Product,
+    Book,
     Review,
 }
