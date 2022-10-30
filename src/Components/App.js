@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
+import Books from './Books';
 import Cart from './Cart';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken, fetchCart } from '../store';
@@ -27,11 +28,14 @@ const App = ()=> {
       {
         !!auth.id  && (
           <div>
-            <nav>
+            <nav> 
               <Link to='/'>Home</Link>
+              <Link to='/books'>Books</Link>
               <Link to='/cart'>Cart</Link>
+
             </nav>
             <Routes>
+              <Route path='/books' element={<Books />} />
               <Route path='/cart' element={ <Cart /> } />
             </Routes>
           </div>
