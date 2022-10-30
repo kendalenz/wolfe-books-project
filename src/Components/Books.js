@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const Books = ()=> {
     const { books } = useSelector(state => state);
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [price, setPrice] = useState(0);
@@ -10,7 +11,7 @@ const Books = ()=> {
     return (
         <ul>
             <h4>Fiction</h4>
-            {
+            {/* {
                 books.map(book => {
                     return (
                         <li key = {book.id}>
@@ -18,7 +19,7 @@ const Books = ()=> {
                         </li>
                     )
                 })
-            }
+            } */}
         </ul>
     )
 };
