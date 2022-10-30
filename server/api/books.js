@@ -2,9 +2,8 @@ const express = require('express');
 const app = express.Router();
 const { Book } = require('../db');
 
-module.exports = app;
 
-app.get('/books', async(req, res, next)=> {
+app.get('/', async(req, res, next)=> {
     try {
         const books = await Book.findAll();
         res.send(books);
@@ -13,4 +12,6 @@ app.get('/books', async(req, res, next)=> {
         next(err);
     }
 });
+
+module.exports = app;
 

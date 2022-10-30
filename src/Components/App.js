@@ -39,6 +39,7 @@ const App = ()=> {
               <Link to='/cart'>Cart</Link>
             </nav>
             <Routes>
+              {/* <Route path='/' element={<Home />} /> */}
               <Route path='/books' element={<Books />} />
               <Route path='/cart' element={ <Cart /> } />
             </Routes>
