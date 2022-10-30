@@ -5,11 +5,20 @@ const Books = ()=> {
     const { books } = useSelector(state => state);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [price, setPrice] = useState('');
+    const [price, setPrice] = useState(0);
 
     return (
         <ul>
-            <li>Hello world!</li>
+            <h4>Fiction</h4>
+            {
+                books.map(book => {
+                    return (
+                        <li key = {book.id}>
+                            {book.title}
+                        </li>
+                    )
+                })
+            }
         </ul>
     )
 };
