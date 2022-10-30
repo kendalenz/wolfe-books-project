@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, FLOAT, TEXT } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, DECIMAL, TEXT } = conn.Sequelize;
 
 const Book = conn.define('book', {
   id: {
@@ -9,40 +9,39 @@ const Book = conn.define('book', {
   },
   title: {
     type: STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   author: {
     type: STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   genre: {
     type: STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   description: {
     type: TEXT,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
-    type: FLOAT,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    type: DECIMAL,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 });
 
-// module.exports = Product;
 module.exports = Book;
