@@ -20,7 +20,7 @@ describe('The Shopping Routes', ()=> {
     it('it returns the cart with the item', async()=> {
       const response = await app.post('/api/orders/cart')
         .set('authorization', seed.users.moe.generateToken())
-        .send({ product: seed.products.foo, quantity: 7});
+        .send({ book: seed.books.wayward, quantity: 7});
       expect(response.status).to.equal(200);
       expect(response.body.lineItems[0].quantity).to.equal(7);
     });
@@ -29,10 +29,10 @@ describe('The Shopping Routes', ()=> {
     it('it returns the updated cart', async()=> {
       let response = await app.post('/api/orders/cart')
         .set('authorization', seed.users.moe.generateToken())
-        .send({ product: seed.products.foo, quantity: 7});
+        .send({ book: seed.books.wayward, quantity: 7});
       response = await app.put('/api/orders/cart')
         .set('authorization', seed.users.moe.generateToken())
-        .send({ product: seed.products.foo, quantityToRemove: 2});
+        .send({ book: seed.books.wayward, quantityToRemove: 2});
       expect(response.status).to.equal(200);
       expect(response.body.lineItems[0].quantity).to.equal(5);
     });
@@ -41,7 +41,7 @@ describe('The Shopping Routes', ()=> {
     it('it returns the order', async()=> {
       let response = await app.post('/api/orders/cart')
         .set('authorization', seed.users.moe.generateToken())
-        .send({ product: seed.products.foo, quantity: 7});
+        .send({ book: seed.books.wayward, quantity: 7});
       response = await app.post('/api/orders')
         .set('authorization', seed.users.moe.generateToken())
       expect(response.status).to.equal(200);

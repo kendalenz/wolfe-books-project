@@ -1,39 +1,37 @@
 const conn = require('./conn');
 const User = require('./User');
-const Product = require('./Product');
+const Book = require('./Book');
 const Order = require('./Order');
 const LineItem  = require('./LineItem');
 
 Order.belongsTo(User);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
-LineItem.belongsTo(Product);
+LineItem.belongsTo(Book);
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
-  const [moe, lucy, larry, foo, bar, bazz, ethyl] = await Promise.all([
+  const [moe, lucy, larry, wayward, girlInLandscape, ethyl] = await Promise.all([
     User.create({ username: 'moe', password: '123' }),
     User.create({ username: 'lucy', password: '123' }),
     User.create({ username: 'larry', password: '123' }),
-    Product.create({ name: 'foo' }),
-    Product.create({ name: 'bar' }),
-    Product.create({ name: 'bazz' }),
+    Book.create({ title: 'Wayward', author: 'Chris Burkhard', genre: 'Non-fiction', description: 'Wayward is a collection of strking photographs and the revealing personal stories behind them by one of the leading surf, nature, and adventure photographers of our time.', price: '35.00'}),
+    Book.create({ title: 'Girl in Landscape', author: 'Jonathan Lethem', genre: 'Literary Fiction', description: 'Girl in Landscape finds Lethem once again twisting forms and literary conventions to create a dazzling, completely unconventional tale that manages simultaneously to amaze and move the reader. The heronine is a fourteen-year-old Pella Marsh, whose mother dies just as her family flees a postapocalyptic Brooklyn for the frontier of a recently discovered planet.', price: '22.95'}),
     User.create({ username: 'ethyl', password: '123' }),
   ]);
 
   const cart = await ethyl.getCart();
-  await ethyl.addToCart({ product: bazz, quantity: 3});
-  await ethyl.addToCart({ product: foo, quantity: 2});
+  await ethyl.addToCart({ book: wayward, quantity: 3});
+  await ethyl.addToCart({ book: girlInLandscape, quantity: 2});
   return {
     users: {
       moe,
       lucy,
       larry
     },
-    products: {
-      foo,
-      bar,
-      bazz
+    books: {
+      wayward,
+      girlInLandscape
     }
   };
 };
@@ -42,5 +40,5 @@ const syncAndSeed = async()=> {
 module.exports = {
   syncAndSeed,
   User,
-  Product
+  Book
 };
