@@ -12,7 +12,7 @@ const LineItem = conn.define('lineItem', {
     defaultValue: 1,
     allowNull: false
   },
-  productId: {
+  bookId: {
     type: UUID,
     allowNull: false
   },

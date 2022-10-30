@@ -55,7 +55,7 @@ User.prototype.getCart = async function(){
         {
           model: conn.models.lineItem,
           include: [
-            conn.models.product
+            conn.models.book
           ]
         }
       ]
@@ -64,25 +64,25 @@ User.prototype.getCart = async function(){
   return cart;
 }
 
-User.prototype.addToCart = async function({ product, quantity}){
+User.prototype.addToCart = async function({ book, quantity}){
   const cart = await this.getCart();
   let lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
+    return lineItem.bookId === book.id; 
   });
   if(lineItem){
     lineItem.quantity += quantity;
     await lineItem.save();
   }
   else {
-    await conn.models.lineItem.create({ orderId: cart.id, productId: product.id, quantity });
+    await conn.models.lineItem.create({ orderId: cart.id, bookId: book.id, quantity });
   }
   return this.getCart();
 };
 
-User.prototype.removeFromCart = async function({ product, quantityToRemove}){
+User.prototype.removeFromCart = async function({ book, quantityToRemove}){
   const cart = await this.getCart();
   const lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
+    return lineItem.bookId === book.id; 
   });
   lineItem.quantity = lineItem.quantity - quantityToRemove;
   if(lineItem.quantity > 0){
