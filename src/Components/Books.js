@@ -11,7 +11,7 @@ const Books = ()=> {
     return (
         <ul>
             <h4>Fiction</h4>
-            {/* {
+            {
                 books.map(book => {
                     return (
                         <li key = {book.id}>
@@ -19,7 +19,7 @@ const Books = ()=> {
                         </li>
                     )
                 })
-            } */}
+            }
         </ul>
     )
 };
