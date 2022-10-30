@@ -7,13 +7,6 @@ const books = (state = [], action)=> {
   return state;
 };
 
-// const setBooks = books => {
-//     return {
-//         type: 'SET_BOOKS',
-//         books
-//     };
-// };
-
 export const fetchBooks = ()=> {
     return async(dispatch)=> {
         const response = await axios.get('/api/books');
