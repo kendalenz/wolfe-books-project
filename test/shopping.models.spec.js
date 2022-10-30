@@ -24,21 +24,21 @@ describe('The Shopping Process', ()=> {
       });
     });
   });
-  describe('adding a product to a cart', ()=> {
-    describe('product is not in a lineItem', ()=> {
+  describe('adding a book to a cart', ()=> {
+    describe('book is not in a lineItem', ()=> {
       it('lineItem gets created', async()=> {
-        const foo = seed.products.foo; 
+        const wayward = seed.books.wayward; 
         const larry = seed.users.larry;
-        const cart = await larry.addToCart({ product: foo, quantity: 2 });
+        const cart = await larry.addToCart({ book: wayward, quantity: 2 });
         expect(cart.lineItems.length).to.equal(1);
       });
     });
-    describe('product is a lineItem', ()=> {
+    describe('book is a lineItem', ()=> {
       it('lineItem gets updated', async()=> {
-        const foo = seed.products.foo; 
+        const wayward = seed.books.wayward; 
         const larry = seed.users.larry;
-        await larry.addToCart({ product: foo, quantity: 2 });
-        const cart = await larry.addToCart({ product: foo, quantity: 3 });
+        await larry.addToCart({ book: wayward, quantity: 2 });
+        const cart = await larry.addToCart({ book: wayward, quantity: 3 });
         expect(cart.lineItems.length).to.equal(1);
         expect(cart.lineItems[0].quantity).to.equal(5);
       });
@@ -46,9 +46,9 @@ describe('The Shopping Process', ()=> {
   });
   describe('creating an order', ()=> {
     it('returns an order', async()=> {
-      const foo = seed.products.foo; 
+      const wayward = seed.books.wayward; 
       const larry = seed.users.larry;
-      const cart = await larry.addToCart({ product: foo, quantity: 2 });
+      const cart = await larry.addToCart({ book: wayward, quantity: 2 });
       const order = await larry.createOrder();
       expect(order.isCart).to.equal(false);
     });
@@ -56,15 +56,15 @@ describe('The Shopping Process', ()=> {
   describe('decrementing a quantity in a cart', ()=> {
     describe('new quantity is still greater than zero', ()=> {
       it('lineItem gets updated', async()=> {
-        const foo = seed.products.foo; 
-        const bar = seed.products.bar; 
+        const wayward = seed.books.wayward; 
+        const girlInLandscape = seed.books.girlInLandscape; 
         const larry = seed.users.larry;
-        await larry.addToCart({ product: foo, quantity: 2 });
-        let cart = await larry.addToCart({ product: bar, quantity: 3 });
+        await larry.addToCart({ book: wayward, quantity: 2 });
+        let cart = await larry.addToCart({ book: girlInLandscape, quantity: 3 });
         expect(cart.lineItems.length).to.equal(2);
-        cart = await larry.removeFromCart({ product: bar, quantityToRemove: 2 });
+        cart = await larry.removeFromCart({ book: girlInLandscape, quantityToRemove: 2 });
         const lineItem = cart.lineItems.find(lineItem => {
-          return lineItem.product.name === 'bar';
+          return lineItem.book.title === 'Girl in Landscape';
         });
         expect(lineItem).to.be.ok;
         expect(lineItem.quantity).to.equal(1);
@@ -72,15 +72,15 @@ describe('The Shopping Process', ()=> {
     });
     describe('new quantity is zero', ()=> {
       it('lineItem gets updated', async()=> {
-        const foo = seed.products.foo; 
-        const bar = seed.products.bar; 
+        const wayward = seed.books.wayward; 
+        const girlInLandscape = seed.books.girlInLandscape; 
         const larry = seed.users.larry;
-        await larry.addToCart({ product: foo, quantity: 2 });
-        let cart = await larry.addToCart({ product: bar, quantity: 3 });
+        await larry.addToCart({ book: wayward, quantity: 2 });
+        let cart = await larry.addToCart({ book: girlInLandscape, quantity: 3 });
         expect(cart.lineItems.length).to.equal(2);
-        cart = await larry.removeFromCart({ product: bar, quantityToRemove: 3 });
+        cart = await larry.removeFromCart({ book: girlInLandscape, quantityToRemove: 3 });
         const lineItem = cart.lineItems.find(lineItem => {
-          return lineItem.product.name === 'bar';
+          return lineItem.book.title === 'Girl in Landscape';
         });
         expect(lineItem).to.not.be.ok;
       });
