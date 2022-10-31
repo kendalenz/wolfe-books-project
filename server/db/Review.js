@@ -21,6 +21,10 @@ const Review = conn.define('review', {
     rating: {
         type: INTEGER,
         allowNull: false,
+        validate: {
+            max: 5,
+            min: 0,
+        },
     },
 })
 
