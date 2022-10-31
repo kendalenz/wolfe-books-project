@@ -14,3 +14,12 @@ app.get('/:id', async (req, res, next) => {
         next(ex)
     }
 })
+
+app.post('/:id', async (req, res, next) => {
+    try {
+        const review = await Review.create(req.body)
+        res.send(review)
+    } catch (ex) {
+        next(ex)
+    }
+})
