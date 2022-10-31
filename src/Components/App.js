@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
 import Books from './Books';
+import Book from './Book';
 import Cart from './Cart';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken, fetchCart, fetchBooks } from '../store';
@@ -39,8 +40,8 @@ const App = ()=> {
               <Link to='/cart'>Cart</Link>
             </nav>
             <Routes>
-              {/* <Route path='/' element={<Home />} /> */}
               <Route path='/books' element={<Books />} />
+              <Route path='/books/:id' element={<Book />} />
               <Route path='/cart' element={ <Cart /> } />
             </Routes>
           </div>
