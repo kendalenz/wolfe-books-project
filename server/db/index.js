@@ -3,6 +3,7 @@ const User = require('./User')
 const Book = require('./Book')
 const Order = require('./Order')
 const LineItem = require('./LineItem')
+const Review = require('./Review')
 
 Order.belongsTo(User)
 LineItem.belongsTo(Order)
