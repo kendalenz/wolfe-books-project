@@ -21,17 +21,17 @@ export const fetchCart = () => {
   };
 };
 
-export const putInCart = ({item}) => {
+export const putInCart = (item) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
     const response = await axios.post(
       '/api/orders/cart',
+      item,
       {
         headers: {
           authorization: token,
         },
       },
-      item
     );
     dispatch({ type: 'ADD_TO_CART', item: response.data });
   };
