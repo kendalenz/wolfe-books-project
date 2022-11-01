@@ -1,17 +1,17 @@
-const conn = require('./conn')
-const User = require('./User')
-const Book = require('./Book')
-const Order = require('./Order')
-const LineItem = require('./LineItem')
-const Review = require('./Review')
+const conn = require('./conn');
+const User = require('./User');
+const Book = require('./Book');
+const Order = require('./Order');
+const LineItem = require('./LineItem');
+const Review = require('./Review');
 
-Order.belongsTo(User)
-LineItem.belongsTo(Order)
-Order.hasMany(LineItem)
-LineItem.belongsTo(Book)
+Order.belongsTo(User);
+LineItem.belongsTo(Order);
+Order.hasMany(LineItem);
+LineItem.belongsTo(Book);
 
 const syncAndSeed = async () => {
-    await conn.sync({ force: true })
+    await conn.sync({ force: true });
     const [moe, lucy, larry, wayward, girlInLandscape, ethyl] =
         await Promise.all([
             User.create({
@@ -58,11 +58,36 @@ const syncAndSeed = async () => {
                 lastName: 'grace',
                 email: 'ethyl@fullstack.edu',
             }),
-        ])
-
-    const cart = await ethyl.getCart()
-    await ethyl.addToCart({ book: wayward, quantity: 3 })
-    await ethyl.addToCart({ book: girlInLandscape, quantity: 2 })
+        ]);
+    await Review.create({
+        userId: moe.id,
+        bookId: wayward.id,
+        rating: 4,
+        text: 'wow, what an awesome book! a must read!',
+    });
+    await Review.create({
+        userId: lucy.id,
+        bookId: wayward.id,
+        rating: 5,
+        text: 'two thumbs up!',
+    });
+    await Review.create({
+        userId: ethyl.id,
+        bookId: girlInLandscape.id,
+        rating: 5,
+        text: 'beautiful!',
+    });
+    await Review.create({
+        userId: larry.id,
+        bookId: girlInLandscape.id,
+        rating: 5,
+        text: 'a must have!',
+    });
+    const cart = await ethyl.getCart();
+    await ethyl.addToCart({ book: wayward, quantity: 3 });
+    await ethyl.addToCart({ book: girlInLandscape, quantity: 2 });
+    console.log(girlInLandscape);
+    console.log(wayward);
     return {
         users: {
             moe,
@@ -73,12 +98,12 @@ const syncAndSeed = async () => {
             wayward,
             girlInLandscape,
         },
-    }
-}
+    };
+};
 
 module.exports = {
     syncAndSeed,
     User,
     Book,
     Review,
-}
+};

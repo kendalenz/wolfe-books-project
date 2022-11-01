@@ -1,5 +1,5 @@
-const conn = require('./conn')
-const { INTEGER, UUID, UUIDV4, TEXT } = conn.Sequelize
+const conn = require('./conn');
+const { INTEGER, UUID, UUIDV4, TEXT } = conn.Sequelize;
 
 const Review = conn.define('review', {
     id: {
@@ -26,6 +26,6 @@ const Review = conn.define('review', {
             min: 0,
         },
     },
-})
+});
 
-module.exports = Review
+module.exports = Review;

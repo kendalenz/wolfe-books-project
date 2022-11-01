@@ -7,7 +7,7 @@ module.exports = app
 app.get('/:id', async (req, res, next) => {
     try {
         const reviews = await Review.findAll({
-            where: { productId: req.params.id },
+            where: { bookId: req.params.id },
         })
         res.send(reviews)
     } catch (ex) {
