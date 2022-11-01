@@ -8,7 +8,7 @@ import cart from './cart';
 const reducer = combineReducers({
   auth,
   cart,
-  books
+  books,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
