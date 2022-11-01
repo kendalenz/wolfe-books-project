@@ -10,8 +10,10 @@ app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '../static/index.html'))
 )
 
-app.use('/api/auth', require('./api/auth'))
-app.use('/api/orders', require('./api/orders'))
-app.use('/api/reviews', require('./api/reviews'))
+app.use('/api/auth', require('./api/auth'));
+app.use('/api/orders', require('./api/orders'));
+app.use('/api/books', require('./api/books'));
+app.use('/api/reviews', require('./api/reviews'));
+
 
 module.exports = app
