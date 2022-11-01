@@ -6,7 +6,6 @@ const cart = (state = { lineItems: [] }, action)=> {
   return state;
 };
 
-
 export const fetchCart = ()=> {
   return async(dispatch)=> {
     const token = window.localStorage.getItem('token');
@@ -18,6 +17,5 @@ export const fetchCart = ()=> {
     dispatch({ type: 'SET_CART', cart: response.data });
   };
 };
-
 
 export default cart;
