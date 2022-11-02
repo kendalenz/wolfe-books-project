@@ -10,11 +10,12 @@ const Books = () => {
         <div style={{padding: '2rem', margin: '1rem'}}>
             <img src={props.imageUrl} className='books_page_img' alt='Book cover'/>
             <br></br>
-            <strong>{props.title}</strong>
+            <Link to={`/books/${props.id}`}><strong>{props.title}</strong></Link>
             <br></br>
             <strong>{props.author}</strong>
             <br></br>
-            {props.price}
+            <br></br>
+            ${props.price}
         </div>
     );
 };
@@ -23,7 +24,7 @@ const Books = () => {
     <div className='books_div'>
 
       {
-        books.map((book) => <Bookcard imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
+        books.map((book) => <Bookcard id={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
         // {
         // const fictionGenre = books.filter(book => book.genre === 'Fiction');
 
