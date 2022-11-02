@@ -25,29 +25,7 @@ const Review = conn.define('review', {
       max: 5,
       min: 0,
     },
-<<<<<<< HEAD
-    userId: {
-        type: UUID,
-        allowNull: false,
-    },
-    bookId: {
-        type: UUID,
-        allowNull: false,
-    },
-    text: {
-        type: TEXT,
-    },
-    rating: {
-        type: INTEGER,
-        allowNull: false,
-        validate: {
-            max: 5,
-            min: 0,
-        },
-    },
-=======
   },
->>>>>>> main
 });
 
 module.exports = Review;
