@@ -1,19 +1,24 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../store';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Cart = ()=> {
-  const { cart } = useSelector(state => state);
-  const dispatch = useDispatch();
+const Cart = () => {
+  const { cart, books } = useSelector((state) => state);
+
   return (
     <div>
       <h1>Cart</h1>
-      <pre>
-        {
-          JSON.stringify(cart, null, 2)
-        }
-      </pre>
+      <ul>
+        {cart.lineItems.length > 0
+          ? cart.lineItems.map((lineItem) => {
+              const book = books.find((book) => book.id === lineItem.bookId);
+              return (
+                <li>
+                  {book.title} by {book.author}
+                </li>
+              );
+            })
+          : 'Oops, your cart is empty!'}
+      </ul>
     </div>
   );
 };
