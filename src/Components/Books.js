@@ -23,31 +23,9 @@ const Books = () => {
   return (
     <div className='books_div'>
 
-      {
-        books.map((book) => <Bookcard id={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
-        // {
-        // const fictionGenre = books.filter(book => book.genre === 'Fiction');
-
-        // const nonFictionGenre = books.filter(book => book.genre === 'Non-fiction');
-            // return (
-            //     <>
-            //         <bookCard />
-            //     </>
-        //   <div className='books_div'key={book.id}>
-        //     <img src={book.imageUrl} className='books_page_img' alt='Book cover'/>
-        //     <br></br>
-        //     <Link to={`/books/${book.id}`}><strong>{book.title}</strong></Link>
-        //     <br></br>
-        //     <strong>{book.author}</strong>
-        //     <br></br>
-        //     <br></br>
-        //     ${book.price}
-        //     <br></br>
-        //     <br></br>
-        //   </div>
-            // );
-    //   })
-    }
+        {
+            books.map((book) => <Bookcard id={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
+        }
     </div>
   );
 };

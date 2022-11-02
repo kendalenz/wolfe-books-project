@@ -29,11 +29,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Wolfe Books</h1>
       {!!auth.id && (
         <div>
           <nav>
-            <Link to="/">Home</Link>
+            <Link to="/"><h2 className='wolfe_books'>Wolfe Books</h2></Link>
             <Link to="/books">Books</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/users/:id">Account</Link>
