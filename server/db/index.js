@@ -42,7 +42,8 @@ const syncAndSeed = async () => {
         description:
           'Wayward is a collection of strking photographs and the revealing personal stories behind them by one of the leading surf, nature, and adventure photographers of our time.',
         price: '35.00',
-        imageUrl: 'https://d2p7wwv96gt4xt.cloudfront.net/G/B8C2C643/EAN-9781419732768'
+        imageUrl:
+          'https://d2p7wwv96gt4xt.cloudfront.net/G/B8C2C643/EAN-9781419732768',
       }),
       Book.create({
         title: 'Girl in Landscape',
@@ -51,7 +52,8 @@ const syncAndSeed = async () => {
         description:
           'Girl in Landscape finds Lethem once again twisting forms and literary conventions to create a dazzling, completely unconventional tale that manages simultaneously to amaze and move the reader. The heronine is a fourteen-year-old Pella Marsh, whose mother dies just as her family flees a postapocalyptic Brooklyn for the frontier of a recently discovered planet.',
         price: '22.95',
-        imageUrl: 'https://d2p7wwv96gt4xt.cloudfront.net/G/972A945D/EAN-9780385485180'
+        imageUrl:
+          'https://d2p7wwv96gt4xt.cloudfront.net/G/972A945D/EAN-9780385485180',
       }),
       User.create({
         username: 'ethyl',
@@ -62,7 +64,30 @@ const syncAndSeed = async () => {
       }),
     ]
   );
-
+  await Review.create({
+    userId: moe.id,
+    bookId: wayward.id,
+    rating: 5,
+    text: 'amaaaazing!!',
+  });
+  await Review.create({
+    userId: lucy.id,
+    bookId: wayward.id,
+    rating: 4,
+    text: 'must buy!!',
+  });
+  await Review.create({
+    userId: larry.id,
+    bookId: girlInLandscape.id,
+    rating: 5,
+    text: '2 thumbs up!!',
+  });
+  await Review.create({
+    userId: ethyl.id,
+    bookId: girlInLandscape.id,
+    rating: 5,
+    text: 'greeaaaat!!',
+  });
   const cart = await ethyl.getCart();
   await ethyl.addToCart({ book: wayward, quantity: 3 });
   await ethyl.addToCart({ book: girlInLandscape, quantity: 2 });
