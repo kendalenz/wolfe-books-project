@@ -70,10 +70,10 @@ const syncAndSeed = async () => {
                 email: 'ethyl@fullstack.edu',
             }),
         ])
-    await Review.create({userId: moe.id, bookId: wayward.id, rating: 5, text: 'amaaaazing!!'})
-    await Review.create({userId: lucy.id, bookId: wayward.id, rating: 5, text: 'must buy!!'})
-    await Review.create({userId: larry.id, bookId: girlInLandscape.id, rating: 5, text: '2 thumbs up!!'})
-    await Review.create({userId: ethyl.id, bookId: girlInLandscape.id, rating: 5, text: 'greeaaaat!!'})
+    await Review.create({userId: moe.id, bookId: wayward.id, rating: 5, text: 'amaaaazing!!'});
+    await Review.create({userId: lucy.id, bookId: wayward.id, rating: 4, text: 'must buy!!'});
+    await Review.create({userId: larry.id, bookId: girlInLandscape.id, rating: 5, text: '2 thumbs up!!'});
+    await Review.create({userId: ethyl.id, bookId: girlInLandscape.id, rating: 5, text: 'greeaaaat!!'});
     const cart = await ethyl.getCart()
     await ethyl.addToCart({ book: wayward, quantity: 3 })
     await ethyl.addToCart({ book: girlInLandscape, quantity: 2 })
@@ -87,12 +87,12 @@ const syncAndSeed = async () => {
             wayward,
             girlInLandscape,
         },
-    }
-}
+    };
+};
 
 module.exports = {
     syncAndSeed,
     User,
     Book,
-    Review,
-}
+    Review
+  }
