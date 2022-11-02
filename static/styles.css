@@ -1,6 +1,7 @@
 body {
   font-family: optima;
   background-color: white;
+  margin: 1rem
 }
 
 form {
@@ -15,7 +16,12 @@ form > * {
 nav {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
+
+/* .wolfe_books {
+  flex-grow: 20;
+} */
 
 a {
   color: black;
