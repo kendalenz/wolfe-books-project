@@ -42,6 +42,9 @@ const Book = conn.define('book', {
       notEmpty: true,
     },
   },
+  imageUrl: {
+    type: STRING
+  }
 });
 
 module.exports = Book;
