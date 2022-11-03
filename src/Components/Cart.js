@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, books } = useSelector((state) => state);
@@ -12,13 +13,14 @@ const Cart = () => {
           ? cart.lineItems.map((lineItem) => {
               const book = books.find((book) => book.id === lineItem.bookId);
               return (
-                <li>
-                  {book.title} by {book.author}
+                <li key={book.id}>
+                  {book.title} by {book.author} (You have {lineItem.quantity} in your cart)
                 </li>
               );
             })
           : 'Oops, your cart is empty!'}
       </ul>
+      <Link to='/books'>Buy Some Books!</Link>
     </div>
   );
 };

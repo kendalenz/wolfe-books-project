@@ -24,7 +24,7 @@ const Books = () => {
     <div className='books_div'>
 
         {
-            books.map((book) => <Bookcard id={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
+            books.map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
         }
     </div>
   );

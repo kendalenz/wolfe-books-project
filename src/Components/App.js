@@ -6,12 +6,13 @@ import Book from './Book';
 import Cart from './Cart';
 import Users from './Users';
 import Review from './Review';
+import EditUser from './EditUser';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken, fetchCart, fetchBooks } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
 const App = () => {
-  const { auth, books } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loginWithToken());
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/books/:id" element={<Book />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/users/:id" element={<Users />} />
+            <Route path="/users/:id/edit" element={<EditUser />} />
           </Routes>
         </div>
       )}
