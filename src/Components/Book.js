@@ -13,9 +13,13 @@ const Book = () => {
 
   if (!book) return <h1>...loading</h1>;
 
-  const addItem = (e) => {
+  const addItem = async (e) => {
     e.preventDefault();
-    dispatch(putInCart({ book, quantity }));
+    try {
+      await dispatch(putInCart({ book, quantity }));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -25,9 +29,8 @@ const Book = () => {
       <form onSubmit={addItem}>
         <input
           placeholder="How many?"
-          type="number"
           value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={(e) => setQuantity(Number(e.target.value))}
         ></input>
         <button>Add to Cart</button>
       </form>
