@@ -15,7 +15,7 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-app.post('/:id', async (req, res, next) => {
+app.post('/', async (req, res, next) => {
   try {
     const review = await Review.create(req.body);
     res.send(review);

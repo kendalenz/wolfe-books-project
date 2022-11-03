@@ -9,7 +9,7 @@ const Review = (props) => {
   return (
     <div>
       <hr />
-      <p>Reviews for {book}</p>
+      <h2>Reviews for {book}</h2>
       <div>
         {getReviews.map((review) => {
           return (
