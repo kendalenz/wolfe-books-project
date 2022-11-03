@@ -4,11 +4,9 @@ const { Review } = require('../db');
 
 module.exports = app;
 
-app.get('/:id', async (req, res, next) => {
+app.get('/', async (req, res, next) => {
   try {
-    const reviews = await Review.findAll({
-      where: { bookId: req.params.id },
-    });
+    const reviews = await Review.findAll();
     res.send(reviews);
   } catch (ex) {
     next(ex);

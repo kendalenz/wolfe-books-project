@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { putInCart } from '../store';
+import Review from './Review';
 
 const Book = () => {
   const { books } = useSelector((state) => state);
@@ -31,6 +32,7 @@ const Book = () => {
         ></input>
         <button>Add to Cart</button>
       </form>
+      <Review />
     </div>
   );
 };

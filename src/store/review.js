@@ -7,7 +7,6 @@ const reviews = (state = [], action) => {
   }
   return state;
 };
-console.log(reviews);
 
 //action creators
 const getReviews = (reviews) => {
@@ -20,8 +19,13 @@ const getReviews = (reviews) => {
 //thunks
 export const fetchReviews = (book) => {
   return async (dispatch) => {
-    const response = await axios.get(`/api/reviews/${book.id}`);
-    dispatch(getReviews(response.data));
+    const response = await axios.get('/api/reviews');
+    console.log(response.data);
+    try {
+      dispatch(getReviews(response.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
