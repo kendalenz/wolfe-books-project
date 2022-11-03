@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express.Router();
-const { Review } = require('../db');
+const { Review, User } = require('../db');
 
 module.exports = app;
 
 app.get('/', async (req, res, next) => {
   try {
-    const reviews = await Review.findAll();
+    const reviews = await Review.findAll({ include: [{ model: User }] });
     res.send(reviews);
   } catch (ex) {
     next(ex);

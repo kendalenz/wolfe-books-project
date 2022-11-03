@@ -3,6 +3,9 @@ const auth = (state = {}, action) => {
   if (action.type === 'SET_AUTH') {
     return action.auth;
   }
+  if (action.type === 'UPDATE_AUTH') {
+    state = action.auth;
+  }
   return state;
 };
 
@@ -30,6 +33,18 @@ export const attemptLogin = (credentials) => {
     const response = await axios.post('/api/auth', credentials);
     window.localStorage.setItem('token', response.data);
     dispatch(loginWithToken());
+  };
+};
+
+export const editUser = (user, navigate) => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem('token');
+    const response = await axios.put('/api/users', {
+      user,
+      headers: { authorization: token },
+    });
+    dispatch({ type: 'UPDATE_AUTH', auth: response.data });
+    navigate(`/users/${response.data.id}`);
   };
 };
 

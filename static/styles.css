@@ -1,6 +1,7 @@
 body {
   font-family: optima;
   background-color: white;
+  margin: 1rem;
 }
 
 form {
@@ -9,13 +10,33 @@ form {
 }
 
 form > * {
-  margin: 1rem;
+  margin-top: 1rem;
+}
+
+input {
+  width:8rem;
+  border-radius: 2px;
+}
+
+button {
+  width: 12rem;
+  padding: .5rem;
+  border-radius: 2px;
+  background-color: white;
+  font-family: optima;
 }
 
 nav {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
+  flex-grow: 1;
 }
+
+/* .wolfe_books {
+  flex-grow: 50%;
+} */
 
 a {
   color: black;
@@ -34,5 +55,23 @@ a:hover {
 .books_div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.book_page {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.book_page_img {
+  width:400px; 
+  height: auto;
+  margin-right: 4rem;
+}
+
+.book_text {
+  text-align: justify;
+  font-size: 20px;
 }

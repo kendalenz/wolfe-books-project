@@ -17,15 +17,10 @@ const getReviews = (reviews) => {
 };
 
 //thunks
-export const fetchReviews = (book) => {
+export const fetchReviews = () => {
   return async (dispatch) => {
     const response = await axios.get('/api/reviews');
-    console.log(response.data);
-    try {
-      dispatch(getReviews(response.data));
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(getReviews(response.data));
   };
 };
 
