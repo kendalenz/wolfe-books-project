@@ -32,8 +32,8 @@ const App = () => {
       {!!auth.id && (
         <div>
           <nav>
-            <Link to="/"><h2 className='wolfe_books'>Wolfe Books</h2></Link>
-            <Link to="/books">Books</Link>
+            <Link to="/" className='wolfe_books'><h2>Wolfe Books</h2></Link>
+            <Link to="/books">Store</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/users/:id">Account</Link>
           </nav>
