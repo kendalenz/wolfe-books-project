@@ -1,21 +1,28 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchReviews } from '../store';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-//sample code for testing
-const book = {
-    id: '765eff4a-41f6-47a1-b4b2-b7152c9ce5fc',
-    title: 'Wayward',
-    author: 'Chris Burkhard',
-};
-
-const Review = () => {
-    const { reviews } = useSelector((state) => state);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchReviews(book));
-    }, []);
-    return <hr />;
+const Review = (props) => {
+  const { reviews } = useSelector((state) => state);
+  const bookID = props.id;
+  const getReviews = reviews.filter((review) => review.bookId === bookID);
+  const book = props.book;
+  return (
+    <div>
+      <hr />
+      <p>Reviews for {book}</p>
+      <div>
+        {getReviews.map((review) => {
+          return (
+            <div>
+              <h3>{review.user.username}</h3>
+              Rating: {review.rating} stars
+              <p>{review.text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Review;

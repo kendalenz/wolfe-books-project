@@ -8,7 +8,7 @@ import Users from './Users';
 import Review from './Review';
 import EditUser from './EditUser';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginWithToken, fetchCart, fetchBooks } from '../store';
+import { loginWithToken, fetchCart, fetchBooks, fetchReviews } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -28,12 +28,18 @@ const App = () => {
     dispatch(fetchBooks());
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, []);
+
   return (
     <div>
       {!!auth.id && (
         <div>
           <nav>
-            <Link to="/" className='wolfe_books'><h2>Wolfe Books</h2></Link>
+            <Link to="/" className="wolfe_books">
+              <h2>Wolfe Books</h2>
+            </Link>
             <Link to="/books">Store</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/users/:id">Account</Link>

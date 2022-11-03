@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { INTEGER, UUID, UUIDV4, TEXT } = conn.Sequelize;
+const { INTEGER, UUID, UUIDV4, TEXT, DATE } = conn.Sequelize;
 
 const Review = conn.define('review', {
   id: {
