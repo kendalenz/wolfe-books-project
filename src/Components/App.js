@@ -11,7 +11,7 @@ import { loginWithToken, fetchCart, fetchBooks } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
 const App = () => {
-  const { auth, books } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loginWithToken());
