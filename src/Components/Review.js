@@ -1,15 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const Review = () => {
+const Review = (props) => {
   const { reviews } = useSelector((state) => state);
-  console.log(reviews);
+  const bookID = props.id;
+  const getReviews = reviews.filter((review) => review.bookId === bookID);
+  const book = props.book;
   return (
     <div>
-      <p>See reviews...</p>
+      <hr />
+      <p>Reviews for {book}</p>
       <div>
-        {reviews.map((review) => {
-          return <div>{review.userId}</div>;
+        {getReviews.map((review) => {
+          return (
+            <div>
+              <h3>{review.user.username}</h3>
+              Rating: {review.rating} stars
+              <p>{review.text}</p>
+            </div>
+          );
         })}
       </div>
     </div>

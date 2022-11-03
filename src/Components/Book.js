@@ -38,7 +38,7 @@ const Book = () => {
           ></input>
           <button>Add to Cart</button>
         </form>
-        <Review />
+        <Review id={book.id} book={book.title} />
       </div>
     </div>
   );
