@@ -16,7 +16,9 @@ app.post('/', async (req, res, next) => {
 
 app.put('/', async (req, res, next) => {
   try {
-    res.send(await User.update(req.body));
+    console.log(req.body);
+    const user = await User.findByToken(req.headers.authorization);
+    res.send(await user.update(req.body));
   } catch (err) {
     next(err);
   }
