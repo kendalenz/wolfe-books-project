@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div>
-      {!!auth.id && (
+      {!!auth.id ? (
         <div>
           <nav>
             <Link to="/" className="wolfe_books">
@@ -45,6 +45,7 @@ const App = () => {
             <Link to="/users/:id">Account</Link>
           </nav>
           <Routes>
+            <Route path='/' element={<Home />} />
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<Book />} />
             <Route path="/cart" element={<Cart />} />
@@ -52,8 +53,25 @@ const App = () => {
             <Route path="/users/:id/edit" element={<EditUser />} />
           </Routes>
         </div>
-      )}
-      {auth.id ? <Home /> : <Login />}
+      ) : 
+      (
+      <div>
+          <nav>
+            <Link to="/" className="wolfe_books">
+              <h2>Wolfe Books</h2>
+            </Link>
+            <Link to="/books">Store</Link>
+            <Link to="/login">Log in</Link>
+          </nav>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/books/:id" element={<Book />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+        </div>
+        )
+      }
     </div>
   );
 };
