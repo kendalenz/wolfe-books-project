@@ -13,7 +13,7 @@ const Review = (props) => {
       <div>
         {getReviews.map((review) => {
           return (
-            <div>
+            <div key={review.id}>
               <h3>{review.user.username}</h3>
               Rating: {review.rating} stars
               <p>{review.text}</p>
