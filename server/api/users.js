@@ -40,3 +40,14 @@ app.get('/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+app.delete('/', async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const user = await User.findByToken(req.headers.authorization);
+    await user.destory();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
