@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import RemoveFromCart from './RemoveFromCart';
 
 const Cart = () => {
   const { cart, books } = useSelector((state) => state);
@@ -15,6 +16,7 @@ const Cart = () => {
               return (
                 <li key={book.id}>
                   {book.title} by {book.author} (You have {lineItem.quantity} in your cart)
+                  <RemoveFromCart id={book.id} />
                 </li>
               );
             })
