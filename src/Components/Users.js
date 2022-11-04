@@ -1,12 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { deleteUser } from '../store';
 
 const Users = () => {
   const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const edit = () => {
-    return <hr />;
+  const deleteAccount = () => {
+    if (confirm('Are you sure you want to delete your account?')) {
+      dispatch(deleteUser(auth, navigate));
+    }
   };
 
   return (
@@ -18,6 +23,7 @@ const Users = () => {
       </p>
       <p>Email: {auth.email}</p>
       <Link to={`/users/:id/edit`}>Edit Account Info</Link>
+      <button onClick={() => deleteAccount()}>Delete Account</button>
     </div>
   );
 };
