@@ -15,9 +15,8 @@ const Home = () => {
         <img src='../static/assets/BOOOKS.jpg' alt='Logo' width='80%' height='100%' />
         </div>
       </div>
-      
-
-      {/* <p>
+      <div className='home-page-text'>
+      <p>
           Established in 2022 by Kendal Enz, C. Felix Lee, Anisah L. Moise and
           Jill Thomas, Wolfe Books is a bookstore and gallery space located in
           New York City’s East Village.
@@ -31,19 +30,18 @@ const Home = () => {
         {
           auth.username ? (
             <div>
-            <div>
-              Welcome {auth.username}! You are logged in.
-            </div>
-            <button onClick={()=> dispatch(logout())}>Logout</button>
+              <div>
+                Welcome {auth.username}! You are logged in.
+              </div>
+              <button onClick={()=> dispatch(logout())}>Logout</button>
             </div>
           ) : 
-        (
-          <div>
-            
-          </div>
-        )
-        }  */}
-     
+          (
+            <div>
+            </div>
+          )
+        } 
+      </div>
       </div>
   );
 };
