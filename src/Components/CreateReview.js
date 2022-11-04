@@ -6,18 +6,31 @@ import { useSelector, useDispatch } from 'react-redux';
 const createReview = (props) => {
   //plan to pass in the bookId via props
   const dispatch = useDispatch();
-  const { reviews } = useSelector((state) => state);
+  const { reviews, users } = useSelector((state) => state);
+  console.log(users);
+  //auth obj gives me access to the user's id???
   const { auth } = useSelector((state) => state);
-  console.log(auth);
-  const bookID = props.id;
-  const [bookId, setBookId] = useState(bookID);
+
+  const userId = auth.id;
+  const [bookId, setBookId] = useState(props.id);
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
+
+  const submit = async (ev) => {
+    ev.preventDefault();
+    const review = { userId, bookId, rating, text };
+    console.log(review);
+    try {
+      await dispatch(createReview(review));
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
   return (
     <div>
       <hr />
       <h2>Leave a Review</h2>
-      <form>
+      <form onSubmit={submit}>
         <label>Rating</label>
         <select
           value={rating}
@@ -25,7 +38,9 @@ const createReview = (props) => {
             setRating(ev.target.value);
           }}
         >
-          <option value={undefined}>-- select a rating --</option>
+          <option default value={undefined}>
+            -- select a rating --
+          </option>
           <option value={0}>0</option>
           <option value={1}>1</option>
           <option value={2}>2</option>
@@ -35,7 +50,12 @@ const createReview = (props) => {
         </select>
 
         <label>Tell Us What You Thought About {props.book}</label>
-        <textarea rows="5" cols="33"></textarea>
+        <textarea
+          rows="5"
+          cols="33"
+          onChange={(ev) => setText(ev.target.value)}
+        ></textarea>
+        <button>Submit</button>
       </form>
     </div>
   );
