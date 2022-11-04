@@ -6,22 +6,34 @@ import { logout } from '../store';
 const blah = window.location.href.slice(-2, -1);
 
 const Home = () => {
-  // const { id } = useParams();
   
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
-   
-  // useEffect(()=> {
-  //   const blah = window.location.href.slice(-2, -1);
-  //   console.log(blah)
-  //  }, []);
-
+  
   return (
     <div>
-      <h1>{blah === '#' ? 'Home' : ''}</h1>
+      <h1>Home</h1>
       <div>
-        Welcome {auth.username}!!
-        <button onClick={() => dispatch(logout())}>Logout</button>
+        
+       
+  {
+  auth.username ? (
+    <div>
+    Welcome {auth.username}!!
+    <button onClick={()=> dispatch(logout())}>Logout</button>
+    </div>
+  ) : 
+  (
+    <div>
+      Welcome to Wolfe Books!!
+    </div>
+  )
+ 
+
+  } 
+       
+        
+       
         <p>
           Established in 2022 by Kendal Enz, C. Felix Lee, Anisah L. Moise and
           Jill Thomas, Wolfe Books is a bookstore and gallery space located in
