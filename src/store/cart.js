@@ -1,10 +1,11 @@
 import axios from 'axios';
+
 const cart = (state = { lineItems: [] }, action) => {
   if (action.type === 'SET_CART') {
     return action.cart;
   }
   if (action.type === 'ADD_TO_CART') {
-    return { ...state, lineItems: [...state.cart.lineItems, action.cart.lineItems] };
+    return {...state, ...action.cart}
   }
   return state;
 };
@@ -21,7 +22,7 @@ export const fetchCart = () => {
   };
 };
 
-export const putInCart = ({ book, quantity }) => {
+export const putInCart = ({ book, quantity }, navigate) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
     const response = await axios.post('/api/orders/cart', { book, quantity }, {
@@ -29,8 +30,8 @@ export const putInCart = ({ book, quantity }) => {
         authorization: token,
       },
     });
-    console.log('putInCart response: ', response.data);
-    dispatch({ type: 'ADD_TO_CART', item: response.data });
+    dispatch({ type: 'ADD_TO_CART', cart: response.data });
+    navigate('/cart');
   };
 };
 

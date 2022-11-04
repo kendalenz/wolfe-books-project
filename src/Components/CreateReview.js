@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 //question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
 
-const createReview = (props) => {
+const CreateReview = (props) => {
   //plan to pass in the bookId via props
   const dispatch = useDispatch();
   const { reviews } = useSelector((state) => state);
@@ -41,4 +41,4 @@ const createReview = (props) => {
   );
 };
 
-export default createReview;
+export default CreateReview;
