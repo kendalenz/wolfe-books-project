@@ -47,10 +47,10 @@ const User = conn.define('user', {
       isEmail: true,
     },
   },
-  // isAdmin: {
-  //     type: BOOLEAN,
-  //     defaultValue: false,
-  // },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 User.prototype.createOrder = async function () {

@@ -39,8 +39,7 @@ export const attemptLogin = (credentials) => {
 export const editUser = (user, navigate) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
-    const response = await axios.put('/api/users', {
-      user,
+    const response = await axios.put('/api/users', user, {
       headers: { authorization: token },
     });
     dispatch({ type: 'UPDATE_AUTH', auth: response.data });

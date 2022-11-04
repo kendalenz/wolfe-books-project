@@ -24,6 +24,7 @@ const syncAndSeed = async () => {
         firstName: 'monique',
         lastName: 'harvey',
         email: 'moe@fullstack.edu',
+        isAdmin: true,
       }),
       User.create({
         username: 'lucy',
