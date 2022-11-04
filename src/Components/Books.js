@@ -21,11 +21,25 @@ const Books = () => {
 };
 
   return (
-    <div className='books_div'>
-
+    <div>
+      <form className='genre_form'>
+      <label form="genre">View by genre:</label>
+        <select>
+          <option value=''></option>
+          {books.map((book)=> {
+            return (
+              <option key={book.id} value={book.genre}>
+                {book.genre}
+              </option>
+            )
+          })}
+        </select>
+      </form>
+    <div className='books_div'>      
         {
             books.map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
         }
+    </div>
     </div>
   );
 };

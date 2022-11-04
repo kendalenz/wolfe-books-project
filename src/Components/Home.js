@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { logout } from '../store';
 
-const blah = window.location.href.slice(-2, -1);
-
 const Home = () => {
   
   const { auth } = useSelector((state) => state);
@@ -12,35 +10,41 @@ const Home = () => {
   
   return (
     <div>
-      <h1>Home</h1>
-      <div>
-        
-       
-  {
-  auth.username ? (
-    <div>
-    Welcome {auth.username}!!
-    <button onClick={()=> dispatch(logout())}>Logout</button>
-    </div>
-  ) : 
-  (
-    <div>
-      Welcome to Wolfe Books!!
-    </div>
-  )
- 
+      <div className='hero-background'>
+        <div className='hero-image'>
+        <img src='../static/assets/BOOOKS.jpg' alt='Logo' width='80%' height='100%' />
+        </div>
+      </div>
+      
 
-  } 
-       
-        
-       
-        <p>
+      {/* <p>
           Established in 2022 by Kendal Enz, C. Felix Lee, Anisah L. Moise and
           Jill Thomas, Wolfe Books is a bookstore and gallery space located in
           New York City’s East Village.
-        </p>
+      </p>
+      <p>
+          Wolfe Books curates a rotating selection of rare and out-of-print titles presented alongside contemporary publications from small press publishers worldwide.
+      </p>
+      <p>
+          From its inception Wolfe Books has developed exhibitions, cultural programming and events, including readings, performances, and public talks. Past collaborators have included such luminaries as Bilbo Baggins, Elio Perlman and Miami Man, among others. 
+      </p>
+        {
+          auth.username ? (
+            <div>
+            <div>
+              Welcome {auth.username}! You are logged in.
+            </div>
+            <button onClick={()=> dispatch(logout())}>Logout</button>
+            </div>
+          ) : 
+        (
+          <div>
+            
+          </div>
+        )
+        }  */}
+     
       </div>
-    </div>
   );
 };
 

@@ -4,6 +4,17 @@ body {
   margin: 1rem;
 }
 
+.hero-background {
+  background-color: #F8F8F8;
+  display: flex;
+}
+
+.hero-image {
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -13,6 +24,9 @@ form > * {
   margin-top: 1rem;
 }
 
+genre_form {
+  margin-left: 3rem;
+}
 input {
   width:8rem;
   border-radius: 2px;
