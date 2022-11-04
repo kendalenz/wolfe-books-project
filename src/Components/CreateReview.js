@@ -7,6 +7,8 @@ const createReview = (props) => {
   //plan to pass in the bookId via props
   const dispatch = useDispatch();
   const { reviews } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
+  console.log(auth);
   const bookID = props.id;
   const [bookId, setBookId] = useState(bookID);
   const [text, setText] = useState('');
@@ -33,7 +35,7 @@ const createReview = (props) => {
         </select>
 
         <label>Tell Us What You Thought About {props.book}</label>
-        <input type="text" />
+        <textarea rows="5" cols="33"></textarea>
       </form>
     </div>
   );
