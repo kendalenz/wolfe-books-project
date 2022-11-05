@@ -23,6 +23,8 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loginWithToken());
+    dispatch(fetchBooks());
+    dispatch(fetchReviews());
   }, []);
 
   useEffect(() => {
@@ -32,18 +34,10 @@ const App = () => {
   }, [auth]);
 
   useEffect(() => {
-    dispatch(fetchBooks());
-  }, []);
-
-  useEffect(() => {
-    dispatch(fetchReviews());
-  }, []);
-
-  useEffect(() => {
     if (auth.isAdmin) {
       dispatch(fetchUsers());
     }
-  }, []);
+  }, [auth]);
 
   return (
     <div>
