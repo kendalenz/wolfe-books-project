@@ -16,7 +16,7 @@ User.hasMany(Review);
 
 const syncAndSeed = async () => {
   await conn.sync({ force: true });
-  const [moe, lucy, larry, wayward, girlInLandscape, ethyl] = await Promise.all(
+  const [moe, lucy, larry, wayward, girlInLandscape, physics, runner, ethyl] = await Promise.all(
     [
       User.create({
         username: 'moe',
@@ -59,6 +59,22 @@ const syncAndSeed = async () => {
         price: '22.95',
         imageUrl:
           'https://d2p7wwv96gt4xt.cloudfront.net/G/972A945D/EAN-9780385485180',
+      }),
+      Book.create({
+        title: 'Seven Brief Lessons on Physcis',
+        author: 'Carlo Rovelli',
+        genre: 'Non-fiction',
+        description: `This playful, entertaining, and mind-bending introduction to modern physics briskly explains Einstein's general relativity, quantum mechanics, elementary particles, gravity, black holes, the complex architecture of the universe, and the role humans play in this weird and wonderful world. Carlo Rovelli, a renowned theoretical physicist, is a delightfully poetic and philosophical scientific guide. He takes us to the frontiers of our knowledge: to the most minute reaches of the fabric of space, back to the origins of the cosmos, and into the workings of our minds. The book celebrates the joy of discovery. "Here, on the edge of what we know, in contact with the ocean of the unknown, shines the mystery and the beauty of the world," Rovelli writes. "And it's breathtaking.`,
+        price: '18.00',
+        imageUrl: 'https://d2p7wwv96gt4xt.cloudfront.net/G/7F8A6166/EAN-9780399184413'
+      }),
+      Book.create({
+        title: 'Once a Runner',
+        author: 'John L. Parker, Jr.',
+        genre: 'Fiction',
+        description: `Originally self-published in 1978 and sold at road races out of the trunk of the author's car, ONCE A RUNNER, an inspiring, funny and spot-on tale of one man's quest to become a champion, eventually found its way into the hands of highschool, college, and postgraduate athletes all over the country. The book captures what it means to be a competitive runner, to devote one's entire existence to a single-minded pursuit of excellence. In doing so, it has become one of the most beloved posrts novels ever published. 272p. /n Perhaps the best novel ever written about running. There are parts of "Once a Runner" that are pure poetry. I have never read descriptions of what it is to run and race as accurate and compelling as Parker's.--Tom Jordan, "Track & Field News.`,
+        price: '17.00',
+        imageUrl: 'https://d2p7wwv96gt4xt.cloudfront.net/G/100ADAB7/EAN-9781416597896'
       }),
       User.create({
         username: 'ethyl',
@@ -105,6 +121,8 @@ const syncAndSeed = async () => {
     books: {
       wayward,
       girlInLandscape,
+      physics,
+      runner
     },
   };
 };

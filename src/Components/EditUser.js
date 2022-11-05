@@ -29,6 +29,7 @@ const EditUser = () => {
   };
 
   return (
+    <div style={ {height:'80vh' } }>
     <form onSubmit={update}>
       <h1>Edit Account Info</h1>
       <div>
@@ -49,6 +50,7 @@ const EditUser = () => {
       </div>
       <button>Save Changes</button>
     </form>
+    </div>
   );
 };
 
