@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Books = () => {
   const { books } = useSelector((state) => state);
+  const [genre, setGenre] = useState('');
 
   const Bookcard = (props) => {
     return (
@@ -21,11 +22,14 @@ const Books = () => {
     );
   };
 
+  console.log(genre)
+
+
   return (
-    <div>
+    <div className='content'>
       <form className='genre_form'>
       <label form="genre">View by genre:</label>
-        <select>
+        <select value={ genre } onChange={ ev => setGenre(ev.target.value)}>
           <option value=''></option>
           {books.map((book)=> {
             return (
@@ -39,6 +43,7 @@ const Books = () => {
       
     <div className='books_div'>      
         {
+            genre ? books.filter(book => book.genre === genre).map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>) :
             books.map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
         }
   
