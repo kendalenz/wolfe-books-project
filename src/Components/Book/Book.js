@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Review from './Review';
-import CreateReview from './CreateReview';
-import AddToCart from './AddToCart';
+import Review from '../Review/Review'
+import CreateReview from '../Review/CreateReview';
+import AddToCart from '../Cart/AddToCart';
 
 const Book = () => {
   const { books } = useSelector((state) => state);

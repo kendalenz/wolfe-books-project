@@ -7,6 +7,14 @@ import cart from './cart';
 import reviews from './reviews';
 import users from './users';
 
+export const getToken = () => {
+  return window.localStorage.getItem('token');
+};
+
+export const setToken = (data) => {
+  return window.localStorage.setItem('token', data);
+};
+
 const reducer = combineReducers({
   auth,
   cart,

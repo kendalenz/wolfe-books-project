@@ -7,7 +7,7 @@ const AllUsers = () => {
   return (
     <div>
       {users.map((user) => (
-        <h3>{user.username}</h3>
+        <h3 key={user.id}>{user.username}</h3>
       ))}
     </div>
   );
