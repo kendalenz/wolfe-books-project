@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//import { fetchReviews } from '../../store';
+import { deleteReview } from '../../store';
 
 const Review = (props) => {
   const dispatch = useDispatch();
@@ -9,21 +9,26 @@ const Review = (props) => {
   const getReviews = reviews.filter((review) => review.bookId === bookID);
   const book = props.book;
 
-  console.log(auth);
   return (
     <div>
       <hr />
       <h2>Reviews for {book}</h2>
       <div>
         {getReviews.map((review) => {
-          console.log(review);
+          console.log(review.id);
           return (
             <div key={review.id}>
               <h3>{review.user.username}</h3>
               Rating: {review.rating} stars
               <p>{review.text}</p>
               {auth.id === review.userId ? (
-                <button>Delete Review</button>
+                <button
+                  onClick={() => {
+                    dispatch(deleteReview(review));
+                  }}
+                >
+                  Delete Review
+                </button>
               ) : null}
             </div>
           );

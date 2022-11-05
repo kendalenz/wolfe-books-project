@@ -8,6 +8,10 @@ const reviews = (state = [], action) => {
   if (action.type === 'ADD_REVIEW') {
     return [...state, action.review];
   }
+  if (action.type === 'DELETE_REVIEW') {
+    console.log(state);
+    return state.filter((review) => review.id !== action.review.id);
+  }
   return state;
 };
 
@@ -26,6 +30,13 @@ const addReview = (review) => {
   };
 };
 
+const removeReview = (review) => {
+  return {
+    type: 'DELETE_REVIEW',
+    review,
+  };
+};
+
 //thunks
 export const fetchReviews = () => {
   return async (dispatch) => {
@@ -37,8 +48,15 @@ export const fetchReviews = () => {
 export const createReview = (review) => {
   return async (dispatch) => {
     const response = await axios.post('/api/reviews', review);
-    console.log(response.data);
     dispatch(addReview(response.data));
+  };
+};
+
+export const deleteReview = (review) => {
+  return async (dispatch) => {
+    console.log(review.id);
+    await axios.delete(`/api/reviews/${review.id}`);
+    dispatch(removeReview(review));
   };
 };
 
