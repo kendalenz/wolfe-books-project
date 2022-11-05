@@ -41,7 +41,9 @@ export const attemptLogin = (credentials) => {
 
 export const editUser = (user, navigate) => {
   return async (dispatch) => {
+    console.log(user);
     const token = window.localStorage.getItem('token');
+    console.log(token);
     const response = await axios.put('/api/users', user, {
       headers: { authorization: token },
     });
@@ -52,12 +54,10 @@ export const editUser = (user, navigate) => {
 
 export const deleteUser = (user, navigate) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
-    await axios.delete('/api/users', user, {
-      headers: { authorization: token },
-    });
-    logout();
+    console.log(user);
+    await axios.delete(`/api/users/${user.id}`);
     dispatch({ type: 'DELETE_AUTH', auth: user });
+    logout();
     navigate('/');
   };
 };
