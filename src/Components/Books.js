@@ -24,6 +24,18 @@ const Books = () => {
 
   console.log(genre)
 
+  const genres = [];
+
+  const getUniqueGenres = ()=> {
+    books.forEach(book => {
+      if(!genres.includes(book.genre)) {
+        genres.push(book.genre)
+      }
+    })
+  }
+
+  getUniqueGenres();
+  console.log(genres)
 
   return (
     <div className='content' style={ {height:'80vh' } }>
@@ -31,11 +43,10 @@ const Books = () => {
       <label form="genre">View by genre:</label>
         <select value={ genre } onChange={ ev => setGenre(ev.target.value)}>
           <option value=''></option>
-          {books.map((book)=> {
+          {genres.map((genre)=> {
             return (
-              // book.genre ? what goes here? : 
-              <option key={book.id} value={book.genre}>
-                {book.genre}
+              <option key={genre} value={genre}>
+                {genre}
               </option>
             )
           })}
