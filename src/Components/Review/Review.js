@@ -4,22 +4,27 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Review = (props) => {
   const dispatch = useDispatch();
-  const { reviews } = useSelector((state) => state);
+  const { reviews, auth } = useSelector((state) => state);
   const bookID = props.id;
   const getReviews = reviews.filter((review) => review.bookId === bookID);
   const book = props.book;
 
+  console.log(auth);
   return (
     <div>
       <hr />
       <h2>Reviews for {book}</h2>
       <div>
         {getReviews.map((review) => {
+          console.log(review);
           return (
             <div key={review.id}>
               <h3>{review.user.username}</h3>
               Rating: {review.rating} stars
               <p>{review.text}</p>
+              {auth.id === review.userId ? (
+                <button>Delete Review</button>
+              ) : null}
             </div>
           );
         })}

@@ -1,16 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Review from '../Review/Review'
+import Review from '../Review/Review';
 import CreateReview from '../Review/CreateReview';
 import AddToCart from '../Cart/AddToCart';
 
 const Book = () => {
-  const { books } = useSelector((state) => state);
+  const { books, auth } = useSelector((state) => state);
   const { id } = useParams();
-  const { auth } = useSelector((state) => state);
-
-  console.log(auth);
 
   const book = books.find((book) => book.id === id);
 
