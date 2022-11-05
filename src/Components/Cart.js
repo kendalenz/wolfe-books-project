@@ -7,7 +7,7 @@ const Cart = () => {
   const { cart, books } = useSelector((state) => state);
 
   return (
-    <div>
+    <div style={ {height:'80vh' } }>
       <h1>Cart</h1>
       <ul>
         {cart.lineItems.length > 0

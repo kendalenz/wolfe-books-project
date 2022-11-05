@@ -15,7 +15,7 @@ const Users = () => {
   };
 
   return (
-    <div>
+    <div style={ {height:'80vh' } }>
       <h1>Account Information</h1>
       <p>Username: {auth.username}</p>
       <p>

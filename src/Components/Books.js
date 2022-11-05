@@ -26,13 +26,14 @@ const Books = () => {
 
 
   return (
-    <div className='content'>
+    <div className='content' style={ {height:'80vh' } }>
       <form className='genre_form'>
       <label form="genre">View by genre:</label>
         <select value={ genre } onChange={ ev => setGenre(ev.target.value)}>
           <option value=''></option>
           {books.map((book)=> {
             return (
+              // book.genre ? what goes here? : 
               <option key={book.id} value={book.genre}>
                 {book.genre}
               </option>
