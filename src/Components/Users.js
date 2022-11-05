@@ -22,7 +22,7 @@ const Users = () => {
         Name: {auth.firstName} {auth.lastName}
       </p>
       <p>Email: {auth.email}</p>
-      <Link to={`/users/:id/edit`}>Edit Account Info</Link>
+      <Link to={`/users/${auth.id}/edit`}>Edit Account Info</Link>
       <button onClick={() => deleteAccount()}>Delete Account</button>
     </div>
   );

@@ -22,7 +22,7 @@ const Login = () => {
     navigate('/');
   };
   return (
-    <div>
+    <div style={ {height:'80vh' } }>
       <h2>Login</h2>
       <form onSubmit={login}>
         <input
