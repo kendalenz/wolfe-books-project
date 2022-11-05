@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate} from 'react-router-dom';
-import {editUser} from '../store'
+import { useNavigate } from 'react-router-dom';
+import { editUser } from '../store';
 
 const EditUser = () => {
   const { auth } = useSelector((state) => state);
@@ -21,10 +21,11 @@ const EditUser = () => {
       [ev.target.name]: ev.target.value,
     });
   };
-  
+
   const update = (ev) => {
+    console.log(ev);
     ev.preventDefault();
-    dispatch(editUser({id: auth.id, ...inputs}, navigate));
+    dispatch(editUser({ id: auth.id, ...inputs }, navigate));
   };
 
   return (

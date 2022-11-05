@@ -41,11 +41,11 @@ app.get('/:id', async (req, res, next) => {
   }
 });
 
-app.delete('/', async (req, res, next) => {
+app.delete('/:id', async (req, res, next) => {
   try {
-    console.log(req.body);
-    const user = await User.findByToken(req.headers.authorization);
-    await user.destory();
+    console.log(req.params.id);
+    const user = await User.findByPk(req.params.id);
+    await user.destroy();
     res.sendStatus(204);
   } catch (err) {
     next(err);
