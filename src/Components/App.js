@@ -61,7 +61,23 @@ const App = () => {
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/users" element={<AllUsers />} />
           </Routes>
+          <footer className='footer'>
+        <p>
+          HOURS: 12-8PM DAILY
+        </p>
+        <p>
+          Wolfe BOOKS
+        <br></br>
+          99 AVENUE A
+        <br></br>
+          NEW YORK, NY 10009
+        <br></br>
+          (646) 370-1666
+        <br></br>
+          INFO@WOLFEBOOKS.COM</p>
+      </footer>
         </div>
+        
       ) : (
         <div>
           <nav>
@@ -77,6 +93,21 @@ const App = () => {
             <Route path="/books/:id" element={<Book />} />
             <Route path="/login" element={<Login />} />
           </Routes>
+          <footer className='footer'>
+        <p>
+          HOURS: 12-8PM DAILY
+        </p>
+        <p>
+          Wolfe BOOKS
+        <br></br>
+          99 AVENUE A
+        <br></br>
+          NEW YORK, NY 10009
+        <br></br>
+          (646) 370-1666
+        <br></br>
+          INFO@WOLFEBOOKS.COM</p>
+      </footer>
         </div>
       )}
     </div>
