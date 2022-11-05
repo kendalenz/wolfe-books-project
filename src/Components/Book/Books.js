@@ -22,44 +22,62 @@ const Books = () => {
     );
   };
 
-  console.log(genre)
+  console.log(genre);
 
   const genres = [];
 
-  const getUniqueGenres = ()=> {
-    books.forEach(book => {
-      if(!genres.includes(book.genre)) {
-        genres.push(book.genre)
+  const getUniqueGenres = () => {
+    books.forEach((book) => {
+      if (!genres.includes(book.genre)) {
+        genres.push(book.genre);
       }
-    })
-  }
+    });
+  };
 
   getUniqueGenres();
-  console.log(genres)
+  console.log(genres);
 
   return (
-    <div className='content' style={ {height:'80vh' } }>
-      <form className='genre_form'>
-      <label form="genre">View by genre:</label>
-        <select value={ genre } onChange={ ev => setGenre(ev.target.value)}>
-          <option value=''></option>
-          {genres.map((genre)=> {
+    <div className="content" style={{ height: '80vh' }}>
+      <form className="genre_form">
+        <label form="genre">View by genre:</label>
+        <select value={genre} onChange={(ev) => setGenre(ev.target.value)}>
+          <option value="">All</option>
+          {genres.map((genre) => {
             return (
               <option key={genre} value={genre}>
                 {genre}
               </option>
-            )
+            );
           })}
         </select>
       </form>
-      
-    <div className='books_div'>      
-        {
-            genre ? books.filter(book => book.genre === genre).map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>) :
-            books.map((book) => <Bookcard id={book.id} key={book.id} imageUrl={book.imageUrl} title={book.title} author={book.author} price={book.price}/>)
-        }
-  
-    </div>
+
+      <div className="books_div">
+        {genre
+          ? books
+              .filter((book) => book.genre === genre)
+              .map((book) => (
+                <Bookcard
+                  id={book.id}
+                  key={book.id}
+                  imageUrl={book.imageUrl}
+                  title={book.title}
+                  author={book.author}
+                  price={book.price}
+                />
+              ))
+          : books.map((book) => (
+              <Bookcard
+                id={book.id}
+                key={book.id}
+                imageUrl={book.imageUrl}
+                title={book.title}
+                author={book.author}
+                price={book.price}
+              />
+            ))}
+      </div>
     </div>
   );
 };

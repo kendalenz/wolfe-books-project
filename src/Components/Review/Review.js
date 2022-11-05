@@ -24,11 +24,22 @@ const Review = (props) => {
               {auth.id === review.userId ? (
                 <button
                   onClick={() => {
-                    dispatch(deleteReview(review));
+                    dispatch(updateReview(review));
                   }}
                 >
-                  Delete Review
+                  Edit Review
                 </button>
+              ) : null}
+              {auth.id === review.userId || auth.isAdmin === true ? (
+                <div>
+                  <button
+                    onClick={() => {
+                      dispatch(deleteReview(review));
+                    }}
+                  >
+                    Delete Review
+                  </button>
+                </div>
               ) : null}
             </div>
           );
