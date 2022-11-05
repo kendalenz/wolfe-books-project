@@ -24,6 +24,8 @@ const CreateReview = (props) => {
       console.log(review);
       try {
         await dispatch(createReview(review));
+        setText('');
+        setRating(0);
       } catch (ex) {
         console.log(ex);
       }
@@ -58,6 +60,7 @@ const CreateReview = (props) => {
           rows="5"
           cols="33"
           onChange={(ev) => setText(ev.target.value)}
+          value={text}
         ></textarea>
         <button>Submit</button>
       </form>
