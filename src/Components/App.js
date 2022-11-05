@@ -49,7 +49,7 @@ const App = () => {
             </Link>
             <Link to="/books">Store</Link>
             <Link to="/cart">Cart</Link>
-            <Link to="/users/:id">Account</Link>
+            <Link to={`/users/${auth.id}`}>Account</Link>
             {auth.isAdmin ? <Link to="/users">All Users</Link> : null}
           </nav>
           <Routes>
@@ -91,7 +91,7 @@ const App = () => {
 //       </Link>
 //       <Link to="/books">Store</Link>
 //       {auth.id ? (
-//         <Link to="/users/:id">Account</Link>
+//         <Link to={`/users/${auth.id}`}>Account</Link>
 //       ) : (
 //         <Link to="/login">Log in</Link>
 //       )}
