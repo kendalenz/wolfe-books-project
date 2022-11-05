@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReview, fetchReviews } from '../store';
+import { createReview } from '../store';
 
 //question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
 
@@ -29,6 +29,7 @@ const CreateReview = (props) => {
       } catch (ex) {
         console.log(ex);
       }
+    } else {
     }
   };
 
