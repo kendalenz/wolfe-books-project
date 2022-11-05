@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const { User } = require('../db');
+const { isLoggedIn } = require('./middleware');
 
 module.exports = app;
 
@@ -14,11 +15,9 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-app.put('/', async (req, res, next) => {
+app.put('/', isLoggedIn, async (req, res, next) => {
   try {
-    console.log(req.body);
-    const user = await User.findByToken(req.headers.authorization);
-    res.send(await user.update(req.body));
+    res.send(await req.user.update(req.body));
   } catch (err) {
     next(err);
   }
@@ -32,10 +31,9 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-app.get('/:id', async (req, res, next) => {
+app.get('/:id', isLoggedIn, async (req, res, next) => {
   try {
-    const user = await User.findByToken(req.headers.authorization);
-    res.send(user);
+    res.send(req.user);
   } catch (err) {
     next(err);
   }
@@ -43,10 +41,8 @@ app.get('/:id', async (req, res, next) => {
 
 app.delete('/:id', async (req, res, next) => {
   try {
-    console.log(req.params.id);
     const user = await User.findByPk(req.params.id);
     user.destroy();
-    console.log(user);
     res.sendStatus(204);
   } catch (err) {
     next(err);

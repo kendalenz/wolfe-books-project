@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { putInCart } from '../store';
+import { putInCart } from '../../store';
 
 const AddToCart = () => {
   const { books } = useSelector((state) => state);

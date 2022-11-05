@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getToken } from '.';
 
 const cart = (state = { lineItems: [] }, action) => {
   if (action.type === 'SET_CART') {
@@ -12,7 +13,7 @@ const cart = (state = { lineItems: [] }, action) => {
 
 export const fetchCart = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     const response = await axios.get('/api/orders/cart', {
       headers: {
         authorization: token,
@@ -24,7 +25,7 @@ export const fetchCart = () => {
 
 export const putInCart = ({ book, quantity }, navigate) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     const response = await axios.post(
       '/api/orders/cart',
       { book, quantity },
@@ -41,7 +42,7 @@ export const putInCart = ({ book, quantity }, navigate) => {
 
 export const deleteFromCart = ({ book, quantityToRemove }) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     const response = await axios.put(
       '/api/orders/cart',
       { book, quantityToRemove },

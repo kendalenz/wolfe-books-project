@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { getToken, setToken } from '.';
+
 const auth = (state = {}, action) => {
   if (action.type === 'SET_AUTH') {
     return action.auth;
@@ -16,7 +18,7 @@ export const logout = () => {
 
 export const loginWithToken = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     if (token) {
       const response = await axios.get('/api/auth', {
         headers: {
@@ -31,7 +33,7 @@ export const loginWithToken = () => {
 export const attemptLogin = (credentials) => {
   return async (dispatch) => {
     const response = await axios.post('/api/auth', credentials);
-    window.localStorage.setItem('token', response.data);
+    setToken(response.data);
     dispatch(loginWithToken());
   };
 };
@@ -39,7 +41,7 @@ export const attemptLogin = (credentials) => {
 export const editUser = (user, navigate) => {
   return async (dispatch) => {
     console.log(user);
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     console.log(token);
     const response = await axios.put('/api/users', user, {
       headers: { authorization: token },

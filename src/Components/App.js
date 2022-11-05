@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
-import Books from './Books';
-import Book from './Book';
-import Cart from './Cart';
-import Users from './Users';
-import Review from './Review';
-import EditUser from './EditUser';
-import AllUsers from './AllUsers';
+import Books from './Book/Books';
+import Book from './Book/Book';
+import Cart from './Cart/Cart';
+import Users from './User/Users';
+import Review from './Review/Review';
+import EditUser from './User/EditUser';
+import AllUsers from './User/AllUsers';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
