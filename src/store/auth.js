@@ -4,10 +4,7 @@ const auth = (state = {}, action) => {
     return action.auth;
   }
   if (action.type === 'UPDATE_AUTH') {
-    state = action.auth;
-  }
-  if (action.type === 'DELTE_AUTH') {
-    state = {};
+    state = { ...state, auth: action.auth };
   }
   return state;
 };
@@ -56,8 +53,7 @@ export const deleteUser = (user, navigate) => {
   return async (dispatch) => {
     console.log(user);
     await axios.delete(`/api/users/${user.id}`);
-    dispatch({ type: 'DELETE_AUTH', auth: user });
-    logout();
+    dispatch(logout());
     navigate('/');
   };
 };

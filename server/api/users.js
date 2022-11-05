@@ -45,7 +45,8 @@ app.delete('/:id', async (req, res, next) => {
   try {
     console.log(req.params.id);
     const user = await User.findByPk(req.params.id);
-    await user.destroy();
+    user.destroy();
+    console.log(user);
     res.sendStatus(204);
   } catch (err) {
     next(err);
