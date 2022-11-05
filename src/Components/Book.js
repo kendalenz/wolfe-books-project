@@ -8,6 +8,9 @@ import AddToCart from './AddToCart';
 const Book = () => {
   const { books } = useSelector((state) => state);
   const { id } = useParams();
+  const { auth } = useSelector((state) => state);
+
+  console.log(auth);
 
   const book = books.find((book) => book.id === id);
 
@@ -26,7 +29,7 @@ const Book = () => {
       </div>
       <div>
         <Review id={book.id} book={book.title} />
-        <CreateReview id={book.id} book={book.title} />
+        {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
       </div>
     </div>
   );

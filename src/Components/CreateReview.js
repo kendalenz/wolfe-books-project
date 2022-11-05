@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReview, fetchReviews } from '../store';
+import { createReview } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 //question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
 
 const CreateReview = (props) => {
   //plan to pass in the bookId via props
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { reviews } = useSelector((state) => state);
 
   //auth obj gives me access to the user's id???
@@ -29,6 +31,9 @@ const CreateReview = (props) => {
       } catch (ex) {
         console.log(ex);
       }
+    }
+    if (!auth) {
+      navigate('/login');
     }
   };
 

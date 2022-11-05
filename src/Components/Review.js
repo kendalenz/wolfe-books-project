@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchReviews } from '../store';
+//import { fetchReviews } from '../store';
 
 const Review = (props) => {
   const dispatch = useDispatch();
