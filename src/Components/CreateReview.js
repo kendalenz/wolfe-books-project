@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { createReview, fetchReviews } from '../store';
 
 //question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
 
-const createReview = (props) => {
+const CreateReview = (props) => {
   //plan to pass in the bookId via props
   const dispatch = useDispatch();
-  const { reviews, users } = useSelector((state) => state);
-  console.log(users);
+  const { reviews } = useSelector((state) => state);
+
   //auth obj gives me access to the user's id???
   const { auth } = useSelector((state) => state);
 
   const userId = auth.id;
-  const [bookId, setBookId] = useState(props.id);
+  const bookId = props.id;
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
 
   const submit = async (ev) => {
     ev.preventDefault();
-    const review = { userId, bookId, rating, text };
-    console.log(review);
-    try {
-      await dispatch(createReview(review));
-    } catch (ex) {
-      console.log(ex);
+    if (userId) {
+      const review = { userId, bookId, rating, text };
+      console.log(review);
+      try {
+        await dispatch(createReview(review));
+      } catch (ex) {
+        console.log(ex);
+      }
     }
   };
   return (
@@ -61,4 +64,4 @@ const createReview = (props) => {
   );
 };
 
-export default createReview;
+export default CreateReview;

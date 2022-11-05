@@ -43,7 +43,7 @@ const App = () => {
     if (auth.isAdmin) {
       dispatch(fetchUsers());
     }
-  });
+  }, []);
 
   return (
     <div>
