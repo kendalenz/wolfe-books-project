@@ -18,7 +18,10 @@ app.get('/', async (req, res, next) => {
 app.post('/', async (req, res, next) => {
   try {
     const review = await Review.create(req.body);
-    res.send(review);
+    const reviewPlus = await Review.findByPk(review.id, {
+      include: [{ model: User }, { model: Book }],
+    });
+    res.send(reviewPlus);
   } catch (ex) {
     next(ex);
   }
