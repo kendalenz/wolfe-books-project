@@ -15,14 +15,15 @@ const Cart = () => {
               const book = books.find((book) => book.id === lineItem.bookId);
               return (
                 <li key={book.id}>
-                  {book.title} by {book.author} (You have {lineItem.quantity} in your cart)
+                  {book.title} by {book.author} (You have {lineItem.quantity} in
+                  your cart)
                   <RemoveFromCart id={book.id} />
                 </li>
               );
             })
           : 'Oops, your cart is empty!'}
       </ul>
-      <Link to='/books'>Buy Some Books!</Link>
+      <Link to="/books">Buy Some Books!</Link>
     </div>
   );
 };
