@@ -89,7 +89,7 @@ const syncAndSeed = async () => {
     }),
     Book.create({
       title: "Clay's Ark",
-      author: 'Octavia Bulter',
+      author: 'Octavia E. Bulter',
       genre: 'Science Fiction',
       description:
         'A gripping tale of survival as an alien pandemic irrevocably changes humanity, from the critically acclaimed author of Parable of the Sower.\n In a violent near-future, Asa Elias Doyle and her companions encounter an alien life form so heinous and destructive, they exile themselves in the desert so as not to contaminate other humans. Resisting the compulsion to infect others is mental agony, but succumbing would mean relinquishing their humanity and free will. Desperate, they kidnap a doctor and his two daughters as they cross the wasteland -- and, in doing so, endanger the world.',

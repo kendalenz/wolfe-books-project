@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
+import StarRatingComponent from 'react-star-rating-component';
+import { FaStar } from 'react-icons/fa';
+
+const colors = {
+  orange: '#FFBA5A',
+  grey: '#a9a9a9',
+};
 
 const Review = (props) => {
   const dispatch = useDispatch();
@@ -9,17 +16,29 @@ const Review = (props) => {
   const getReviews = reviews.filter((review) => review.bookId === bookID);
   const book = props.book;
 
+  const [starRating, setStarRating] = useState(0);
+  const [hoverVal, setHoverVal] = useState(undefined);
+
   return (
     <div>
       <hr />
-      <h2>Reviews for {book}</h2>
       <div>
+        <h2>Reviews for {book}</h2>
         {getReviews.map((review) => {
-          console.log(review.id);
+          console.log(review.rating);
           return (
             <div key={review.id}>
               <h3>{review.user.username}</h3>
-              Rating: {review.rating} stars
+              {[...Array(5)].map((_, index) => {
+                return (
+                  <FaStar
+                    key={index}
+                    size={25}
+                    color={review.rating >= index + 1 ? '#FFBA5A' : '#a9a9a9'}
+                  />
+                );
+              })}{' '}
+              ({review.rating} stars)
               <p>{review.text}</p>
               {auth.id === review.userId ? (
                 <button
