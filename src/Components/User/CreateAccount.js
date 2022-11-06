@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../../store';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -19,6 +22,7 @@ const CreateAccount = () => {
   const register = (e) => {
     e.preventDefault();
     dispatch(addUser(credentials));
+    navigate('/');
   };
 
   return (

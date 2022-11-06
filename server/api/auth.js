@@ -15,9 +15,7 @@ app.post('/', async (req, res, next) => {
 
 app.post('/register', async (req, res, next) => {
   try {
-    console.log('/register - req body: ', req.body);
     const user = await User.create(req.body);
-    console.log('user created: ', user);
     res.send(user.generateToken());
   } catch (ex) {
     next(ex);
