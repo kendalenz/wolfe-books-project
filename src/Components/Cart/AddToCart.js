@@ -14,7 +14,8 @@ const AddToCart = () => {
   const addItem = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(putInCart({ book, quantity }, navigate));
+      await dispatch(putInCart({ book }, quantity));
+      navigate('/cart');
     } catch (err) {
       console.log(err);
     }

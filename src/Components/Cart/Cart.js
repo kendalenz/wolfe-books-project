@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import RemoveFromCart from './RemoveFromCart';
+import RemoveFromCart from './UpdateItemQuantity';
+import Orders from './Orders';
 
 const Cart = () => {
   const { cart, books } = useSelector((state) => state);
 
   return (
-    <div style={ {height:'80vh' } }>
+    <div style={{ height: '80vh' }}>
       <h1>Cart</h1>
       <ul>
         {cart.lineItems.length > 0
@@ -17,13 +18,28 @@ const Cart = () => {
                 <li key={book.id}>
                   {book.title} by {book.author} (You have {lineItem.quantity} in
                   your cart)
-                  <RemoveFromCart id={book.id} />
+                  <RemoveFromCart
+                    key={lineItem.id}
+                    id={lineItem.id}
+                    quantity={lineItem.quantity}
+                    bookId={book.id}
+                  />
                 </li>
               );
             })
           : 'Oops, your cart is empty!'}
       </ul>
-      <Link to="/books">Buy Some Books!</Link>
+      <div>
+        <Link to="/books">
+          <button>Buy Some Books!</button>
+        </Link>
+      </div>
+      <br />
+      <div>
+        <Link to="/orders">
+          <button>Checkout!</button>
+        </Link>
+      </div>
     </div>
   );
 };
