@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReview } from '../../store';
 import { useNavigate } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
 
 //question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
 
@@ -17,7 +18,8 @@ const CreateReview = (props) => {
   const userId = auth.id;
   const bookId = props.id;
   const [text, setText] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(undefined);
+  const [hover, setHover] = useState(undefined);
 
   const submit = async (ev) => {
     ev.preventDefault();
@@ -26,6 +28,7 @@ const CreateReview = (props) => {
       console.log(review);
       try {
         await dispatch(createReview(review));
+        console.log(rating);
         setText('');
         setRating(0);
       } catch (ex) {
@@ -52,13 +55,39 @@ const CreateReview = (props) => {
           <option default value={undefined}>
             -- select a rating --
           </option>
-          <option value={0}>0</option>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
+        <div className="stars">
+          {[...Array(5)].map((_, index) => {
+            const ratingValue = index + 1;
+            return (
+              <label key={index}>
+                <input
+                  type="radio"
+                  name="rating"
+                  value={ratingValue}
+                  onClick={() => {
+                    setRating(ratingValue);
+                    console.log(rating, ratingValue);
+                  }}
+                />
+                <FaStar
+                  key={index}
+                  size={22}
+                  color={
+                    (hover || rating) >= ratingValue ? '#FFBA5A' : '#a9a9a9'
+                  }
+                  onMouseOver={() => setHover(ratingValue)}
+                  onMouseOut={() => setHover(undefined)}
+                />
+              </label>
+            );
+          })}
+        </div>
 
         <label>Tell Us What You Thought About {props.book}</label>
         <textarea
