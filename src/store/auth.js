@@ -60,4 +60,12 @@ export const deleteUser = (user, navigate) => {
   };
 };
 
+export const addUser = (credentials) => {
+  return async (dispatch) => {
+    const response = await axios.post('/api/auth/register', credentials);
+    setToken('token', response.data);
+    dispatch(loginWithToken());
+  };
+};
+
 export default auth;
