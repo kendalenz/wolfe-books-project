@@ -59,7 +59,7 @@ export const deleteFromCart = ({ book, quantityToRemove }) => {
   };
 };
 
-export const placeOrder = (cart, navigate) => {
+export const placeOrder = (cart) => {
   return async (dispatch) => {
     const token = getToken();
     const response = await axios.post('api/orders', cart, {
