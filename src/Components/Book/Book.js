@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Review from '../Review/Review';
 import CreateReview from '../Review/CreateReview';
 import AddToCart from '../Cart/AddToCart';
-
+import { BsArrowLeft } from 'react-icons/bs';
 const Book = () => {
   const { books, auth } = useSelector((state) => state);
   const { id } = useParams();
@@ -24,6 +24,12 @@ const Book = () => {
           <AddToCart />
         </div>
       </div>
+      <p>
+        <Link to="/books">
+          <BsArrowLeft size={30} />
+          <h4>Back</h4>
+        </Link>
+      </p>
       <div>
         <Review id={book.id} book={book.title} />
         {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}

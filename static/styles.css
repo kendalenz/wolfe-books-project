@@ -134,3 +134,8 @@ input[type='radio']{
 .stars {
   display: flex;
 }
+
+a {
+  display: flex;
+  align-items: center;
+}
