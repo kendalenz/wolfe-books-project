@@ -27,7 +27,7 @@ const Book = () => {
       <p>
         <Link to="/books">
           <BsArrowLeft size={30} />
-          <h4>Back</h4>
+          <>Back</>
         </Link>
       </p>
       <div>
