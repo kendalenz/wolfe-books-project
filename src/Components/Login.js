@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import CreateAccount from './User/CreateAccount';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const Login = () => {
         />
         <button>Login</button>
       </form>
+      <CreateAccount />
     </div>
   );
 };

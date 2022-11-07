@@ -40,9 +40,7 @@ export const attemptLogin = (credentials) => {
 
 export const editUser = (user, navigate) => {
   return async (dispatch) => {
-    console.log(user);
     const token = getToken();
-    console.log(token);
     const response = await axios.put('/api/users', user, {
       headers: { authorization: token },
     });
@@ -53,10 +51,17 @@ export const editUser = (user, navigate) => {
 
 export const deleteUser = (user, navigate) => {
   return async (dispatch) => {
-    console.log(user);
     await axios.delete(`/api/users/${user.id}`);
     dispatch(logout());
     navigate('/');
+  };
+};
+
+export const addUser = (credentials) => {
+  return async (dispatch) => {
+    const response = await axios.post('/api/auth/register', credentials);
+    setToken(response.data);
+    dispatch(loginWithToken());
   };
 };
 

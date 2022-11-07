@@ -4,6 +4,7 @@ const Book = require('./Book');
 const Order = require('./Order');
 const LineItem = require('./LineItem');
 const Review = require('./Review');
+const Checkout = require('./Checkout');
 
 Order.belongsTo(User);
 LineItem.belongsTo(Order);
@@ -13,6 +14,8 @@ Review.belongsTo(Book);
 Book.hasMany(Review);
 Review.belongsTo(User);
 User.hasMany(Review);
+Checkout.belongsTo(Order);
+Order.hasOne(Checkout);
 
 const syncAndSeed = async () => {
   await conn.sync({ force: true });
@@ -152,4 +155,5 @@ module.exports = {
   User,
   Book,
   Review,
+  Checkout,
 };

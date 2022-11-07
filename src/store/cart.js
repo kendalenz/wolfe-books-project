@@ -5,7 +5,11 @@ const cart = (state = { lineItems: [] }, action) => {
   if (action.type === 'SET_CART') {
     return action.cart;
   }
-  if (action.type === 'ADD_TO_CART' || action.type === 'REMOVE_FROM_CART') {
+  if (
+    action.type === 'ADD_TO_CART' ||
+    action.type === 'REMOVE_FROM_CART' ||
+    action.type === 'PLACE_ORDER'
+  ) {
     return { ...state, ...action.cart };
   }
   return state;
@@ -23,7 +27,7 @@ export const fetchCart = () => {
   };
 };
 
-export const putInCart = ({ book, quantity }, navigate) => {
+export const putInCart = ({ book }, quantity) => {
   return async (dispatch) => {
     const token = getToken();
     const response = await axios.post(
@@ -36,7 +40,6 @@ export const putInCart = ({ book, quantity }, navigate) => {
       }
     );
     dispatch({ type: 'ADD_TO_CART', cart: response.data });
-    navigate('/cart');
   };
 };
 
@@ -53,6 +56,18 @@ export const deleteFromCart = ({ book, quantityToRemove }) => {
       }
     );
     dispatch({ type: 'REMOVE_FROM_CART', cart: response.data });
+  };
+};
+
+export const placeOrder = (cart) => {
+  return async (dispatch) => {
+    const token = getToken();
+    const response = await axios.post('api/orders', cart, {
+      headers: {
+        authorization: token,
+      },
+    });
+    dispatch({ type: 'PLACE_ORDER', cart: response.data });
   };
 };
 
