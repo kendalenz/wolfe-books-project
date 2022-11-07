@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
-import StarRatingComponent from 'react-star-rating-component';
 import { FaStar } from 'react-icons/fa';
 
 const colors = {
@@ -14,11 +13,7 @@ const Review = (props) => {
   const { reviews, auth } = useSelector((state) => state);
   const bookID = props.id;
   const getReviews = reviews.filter((review) => review.bookId === bookID);
-  console.log(getReviews.length);
   const book = props.book;
-
-  const [starRating, setStarRating] = useState(0);
-  const [hoverVal, setHoverVal] = useState(undefined);
 
   return (
     <div>
@@ -27,7 +22,6 @@ const Review = (props) => {
         <h2>Reviews for {book}</h2>
         {getReviews.length >= 1
           ? getReviews.map((review) => {
-              console.log(review.rating);
               return (
                 <div key={review.id}>
                   <h3>{review.user.username}</h3>

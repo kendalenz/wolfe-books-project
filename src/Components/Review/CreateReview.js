@@ -25,10 +25,8 @@ const CreateReview = (props) => {
     ev.preventDefault();
     if (userId) {
       const review = { userId, bookId, rating, text };
-      console.log(review);
       try {
         await dispatch(createReview(review));
-        console.log(rating);
         setText('');
         setRating(0);
       } catch (ex) {
@@ -72,7 +70,6 @@ const CreateReview = (props) => {
                   value={ratingValue}
                   onClick={() => {
                     setRating(ratingValue);
-                    console.log(rating, ratingValue);
                   }}
                 />
                 <FaStar

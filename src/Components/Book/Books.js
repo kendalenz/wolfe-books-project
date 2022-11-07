@@ -22,8 +22,6 @@ const Books = () => {
     );
   };
 
-  console.log(genre);
-
   const genres = [];
 
   const getUniqueGenres = () => {
@@ -35,7 +33,6 @@ const Books = () => {
   };
 
   getUniqueGenres();
-  console.log(genres);
 
   return (
     <div className="content" style={{ height: '80vh' }}>
