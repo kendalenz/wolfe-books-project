@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
 import { FaStar } from 'react-icons/fa';
-
-const colors = {
-  orange: '#FFBA5A',
-  grey: '#a9a9a9',
-};
 
 const Review = (props) => {
   const dispatch = useDispatch();

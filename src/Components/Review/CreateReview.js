@@ -33,9 +33,6 @@ const CreateReview = (props) => {
         console.log(ex);
       }
     }
-    if (!auth) {
-      navigate('/login');
-    }
   };
 
   return (
