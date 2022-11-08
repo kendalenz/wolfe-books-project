@@ -40,7 +40,7 @@ const Orders = () => {
   };
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <h1>Checkout</h1>
       <form onSubmit={save}>
         <ul>
