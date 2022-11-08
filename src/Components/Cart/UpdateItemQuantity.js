@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteFromCart, putInCart } from '../../store';
 
-const RemoveFromCart = (props) => {
+const UpdateItemQuantity = (props) => {
   const { cart, books } = useSelector((state) => state);
   const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -26,7 +26,7 @@ const RemoveFromCart = (props) => {
         await dispatch(putInCart({ book }, quantityToAdd)); 
       } else {
         const quantityToRemove = item.quantity - quantity;
-        await dispatch(deleteFromCart({ book, quantityToRemove }));
+        await dispatch(deleteFromCart({ book }, quantityToRemove));
       }
     } catch (err) {
       console.log(err);
@@ -50,4 +50,4 @@ const RemoveFromCart = (props) => {
   );
 };
 
-export default RemoveFromCart;
+export default UpdateItemQuantity;

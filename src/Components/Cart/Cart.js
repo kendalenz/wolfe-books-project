@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import RemoveFromCart from './UpdateItemQuantity';
+import UpdateItemQuantity from './UpdateItemQuantity';
 import Orders from './Orders';
 
 const Cart = () => {
@@ -18,7 +18,7 @@ const Cart = () => {
                 <li key={book.id}>
                   {book.title} by {book.author} (You have {lineItem.quantity} in
                   your cart)
-                  <RemoveFromCart
+                  <UpdateItemQuantity
                     key={lineItem.id}
                     id={lineItem.id}
                     quantity={lineItem.quantity}

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { placeOrder, deleteFromCart } from '../../store';
 import dayjs from 'dayjs';
 import AddToCart from './AddToCart';
-import RemoveFromCart from './UpdateItemQuantity';
+import UpdateItemQuantity from './UpdateItemQuantity';
 
 const Orders = () => {
   const { cart, books } = useSelector((state) => state);
@@ -23,13 +23,17 @@ const Orders = () => {
     creditCardNumber: '',
   });
 
-  const save = (e) => {
+  const sendOrder = (e) => {
     e.preventDefault();
+    if (!cart.isCart) {
+      alert('You have no items in your cart to order!');
+      throw new Error('missing cart');
+    }
     dispatch(placeOrder(cart));
   };
 
   const deleteBook = (book, quantity) => {
-    dispatch(deleteFromCart({ book, quantity }));
+    dispatch(deleteFromCart({ book }, quantity));
   };
 
   const onChange = (e) => {
@@ -42,31 +46,27 @@ const Orders = () => {
   return (
     <div style={{ height: '100vh' }}>
       <h1>Checkout</h1>
-      <form onSubmit={save}>
-        <ul>
-          {cart.lineItems.length > 0 ? (
-            cart.lineItems.map((item) => {
-              const book = books.find((b) => b.id === item.bookId);
-              return (
-                <div key={book.id}>
-                  <p>
-                    {book.title} by {book.author} ({item.quantity} copies)
-                  </p>
-                  <button onClick={() => navigate('/cart')}>
-                    Edit Quantity
-                  </button>
-                  <button onClick={() => deleteBook(book, item.quantity)}>
-                    Remove Book
-                  </button>
-                </div>
-              );
-            })
-          ) : (
-            <Link to="/books">
-              Your cart is empty - Click here to add books!
-            </Link>
-          )}
-        </ul>
+      <ul>
+        {cart.lineItems.length > 0 && cart.isCart ? (
+          cart.lineItems.map((item) => {
+            const book = books.find((b) => b.id === item.bookId);
+            return (
+              <div key={book.id}>
+                <p>
+                  {book.title} by {book.author} ({item.quantity} copies)
+                </p>
+                <button onClick={() => navigate('/cart')}>Edit Quantity</button>
+                <button onClick={() => deleteBook(book, item.quantity)}>
+                  Remove Book
+                </button>
+              </div>
+            );
+          })
+        ) : (
+          <Link to="/books">Your cart is empty - Click here to add books!</Link>
+        )}
+      </ul>
+      <form onSubmit={sendOrder}>
         <div>
           <select
             value={paymentMethod}
@@ -120,7 +120,8 @@ const Orders = () => {
               const book = books.find((b) => b.id === item.bookId);
               return (
                 <li key={item.id}>
-                  {book.title} - {item.quantity} copies ordered on {dayjs(cart.createdAt).toString()}
+                  {book.title} - {item.quantity} copies ordered on{' '}
+                  {dayjs(cart.updatedAt).toString()}
                 </li>
               );
             })
