@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { placeOrder, deleteFromCart } from '../../store';
@@ -12,13 +12,14 @@ const Orders = () => {
   const navigate = useNavigate();
   const paymentMethods = ['CreditCard', 'PayPal', 'GooglePay'];
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [amountDue, setAmountDue] = useState('')
   const [checkoutDetails, setCheckoutDetails] = useState({
     userId: '',
     orderId: '',
     shippingAddress: '',
     billingAddress: '',
     couponCode: '',
-    amountDue: 0,
+    amountDue,
     paymentMethod,
     creditCardNumber: '',
   });
@@ -42,6 +43,13 @@ const Orders = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    setAmountDue(cart.lineItems.reduce((acc, curr) => {
+      acc += Number(curr.book.price);
+      return acc;
+    }, 0),)
+  }, [cart]);
 
   return (
     <div style={{ height: '100vh' }}>
@@ -110,7 +118,7 @@ const Orders = () => {
             onChange={onChange}
           />
         </div>
-        <p>Amount Due: ${checkoutDetails.amountDue}</p>
+        <p>Amount Due: ${amountDue}</p>
         <button>Place Order</button>
       </form>
       <h2>Past Orders</h2>
