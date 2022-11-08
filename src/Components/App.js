@@ -8,6 +8,7 @@ import Users from './User/Users';
 import Orders from './Cart/Orders';
 import EditUser from './User/EditUser';
 import AllUsers from './User/AllUsers';
+import EditReview from './Review/EditReview';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/users/:id" element={<Users />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/users" element={<AllUsers />} />
+            <Route path="/review/edit/:id" element={<EditReview />} />
           </Routes>
           <footer className="footer">
             <p>HOURS: 12-8PM DAILY</p>
