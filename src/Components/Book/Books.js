@@ -14,15 +14,12 @@ const Books = () => {
         <Link to={`/books/${props.id}`}>
           <strong>{props.title}</strong>
         </Link>
-        <br></br>
         <strong>{props.author}</strong>
         <br></br>
         <br></br>${props.price}
       </div>
     );
   };
-
-  console.log(genre);
 
   const genres = [];
 
@@ -35,10 +32,9 @@ const Books = () => {
   };
 
   getUniqueGenres();
-  console.log(genres);
 
   return (
-    <div className="content" style={{ height: '80vh' }}>
+    <div className="content" style={{ height: '150vh' }}>
       <form className="genre_form">
         <label form="genre">View by genre:</label>
         <select value={genre} onChange={(ev) => setGenre(ev.target.value)}>
