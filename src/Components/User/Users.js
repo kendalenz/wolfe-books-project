@@ -8,14 +8,23 @@ const Users = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  let users;
+  auth.isAdmin ? ({ users } = useSelector((state) => state)) : null;
+
   const deleteAccount = () => {
+    if (auth.isAdmin) {
+      const admins = users.filter((user) => user.isAdmin === true);
+      if (admins.length < 2) {
+        alert('Please create another admin before deleting your account.');
+      }
+    }
     if (confirm('Are you sure you want to delete your account?')) {
       dispatch(deleteUser(auth, navigate));
     }
   };
 
   return (
-    <div style={ {height:'80vh' } }>
+    <div style={{ height: '80vh' }}>
       <h1>Account Information</h1>
       <p>Username: {auth.username}</p>
       <p>

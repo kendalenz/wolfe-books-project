@@ -8,6 +8,7 @@ import Users from './User/Users';
 import Orders from './Cart/Orders';
 import EditUser from './User/EditUser';
 import AllUsers from './User/AllUsers';
+import EditBook from './Book/EditBook';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
@@ -62,6 +63,9 @@ const App = () => {
             <Route path="/users/:id" element={<Users />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/users" element={<AllUsers />} />
+            {auth.isAdmin ? (
+              <Route path="/books/:id/edit" element={<EditBook />} />
+            ) : null}
           </Routes>
           <footer className="footer">
             <p>HOURS: 12-8PM DAILY</p>
@@ -134,8 +138,24 @@ const App = () => {
 //       <Route path="/users/:id" element={<Users />} />
 //       <Route path="/users/:id/edit" element={<EditUser />} />
 //       <Route path="/login" element={<Login />} />
-//       <Route path='/users' element={<AllUsers />} />
+//       <Route path="/users" element={<AllUsers />} />
+//       {auth.isAdmin ? (
+//         <Route path="/books/:id/edit" element={<EditBook />} />
+//       ) : null}
 //     </Routes>
+//     <footer className="footer">
+//       <p>HOURS: 12-8PM DAILY</p>
+//       <p>
+//         Wolfe BOOKS
+//         <br></br>
+//         99 AVENUE A<br></br>
+//         NEW YORK, NY 10009
+//         <br></br>
+//         (646) 370-1666
+//         <br></br>
+//         INFO@WOLFEBOOKS.COM
+//       </p>
+//     </footer>
 //   </div>
 // );
 

@@ -23,33 +23,36 @@ const EditUser = () => {
   };
 
   const update = (ev) => {
-    console.log(ev);
     ev.preventDefault();
     dispatch(editUser({ id: auth.id, ...inputs }, navigate));
   };
 
   return (
-    <div style={ {height:'80vh' } }>
-    <form onSubmit={update}>
-      <h1>Edit Account Info</h1>
-      <div>
-        <label>Username</label>
-        <input name="username" value={inputs.username} onChange={onChange} />
-      </div>
-      <div>
-        <label>First Name</label>
-        <input name="firstName" value={inputs.firstName} onChange={onChange} />
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input name="lastName" value={inputs.lastName} onChange={onChange} />
-      </div>
-      <div>
-        <label>Email</label>
-        <input name="email" value={inputs.email} onChange={onChange} />
-      </div>
-      <button>Save Changes</button>
-    </form>
+    <div style={{ height: '80vh' }}>
+      <form onSubmit={update}>
+        <h1>Edit Account Info</h1>
+        <div>
+          <label>Username</label>
+          <input name="username" value={inputs.username} onChange={onChange} />
+        </div>
+        <div>
+          <label>First Name</label>
+          <input
+            name="firstName"
+            value={inputs.firstName}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input name="lastName" value={inputs.lastName} onChange={onChange} />
+        </div>
+        <div>
+          <label>Email</label>
+          <input name="email" value={inputs.email} onChange={onChange} />
+        </div>
+        <button>Save Changes</button>
+      </form>
     </div>
   );
 };
