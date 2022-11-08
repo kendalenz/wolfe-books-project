@@ -55,6 +55,7 @@ const CreateAccount = () => {
         />
         <input
           placeholder="password"
+          type="password"
           value={credentials.password}
           name="password"
           onChange={onChange}
