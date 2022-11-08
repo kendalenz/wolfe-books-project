@@ -16,6 +16,7 @@ import {
   fetchBooks,
   fetchReviews,
   fetchUsers,
+  logout
 } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
@@ -52,6 +53,7 @@ const App = () => {
             <Link to="/cart">Cart</Link>
             <Link to="/orders">Orders</Link>
             <Link to={`/users/${auth.id}`}>Account</Link>
+            <Link to="#" onClick={()=> dispatch(logout())}>Logout</Link>
             {auth.isAdmin ? <Link to="/users">All Users</Link> : null}
           </nav>
           <Routes>
