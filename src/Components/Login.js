@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import CreateAccount from './User/CreateAccount';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Login = () => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const login = (ev) => {
     ev.preventDefault();
@@ -23,7 +23,7 @@ const Login = () => {
     navigate('/');
   };
   return (
-    <div style={ {height:'80vh' } }>
+    <div style={{ height: '80vh' }}>
       <h2>Login</h2>
       <form onSubmit={login}>
         <input
@@ -34,13 +34,19 @@ const Login = () => {
         />
         <input
           placeholder="password"
+          type="password"
           name="password"
           value={credentials.password}
           onChange={onChange}
         />
         <button>Login</button>
+        <div>
+          <label>Don't have an account?</label>
+          <Link to="/createaccount">
+            <button>Create an Account!</button>
+          </Link>
+        </div>
       </form>
-      <CreateAccount />
     </div>
   );
 };

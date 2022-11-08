@@ -9,6 +9,7 @@ import Orders from './Cart/Orders';
 import EditUser from './User/EditUser';
 import AllUsers from './User/AllUsers';
 import EditBook from './Book/EditBook';
+import CreateAccount from './User/CreateAccount';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
@@ -16,7 +17,7 @@ import {
   fetchBooks,
   fetchReviews,
   fetchUsers,
-  logout
+  logout,
 } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
@@ -53,7 +54,9 @@ const App = () => {
             <Link to="/cart">Cart</Link>
             <Link to="/orders">Orders</Link>
             <Link to={`/users/${auth.id}`}>Account</Link>
-            <Link to="#" onClick={()=> dispatch(logout())}>Logout</Link>
+            <Link to="#" onClick={() => dispatch(logout())}>
+              Logout
+            </Link>
             {auth.isAdmin ? <Link to="/users">All Users</Link> : null}
           </nav>
           <Routes>
@@ -97,6 +100,7 @@ const App = () => {
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<Book />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/createaccount" element={<CreateAccount />} />
           </Routes>
           <footer className="footer">
             <p>HOURS: 12-8PM DAILY</p>
