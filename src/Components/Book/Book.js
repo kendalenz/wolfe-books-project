@@ -22,6 +22,9 @@ const Book = () => {
           <p>${book.price}</p>
           <p>{book.description}</p>
           <AddToCart />
+          {auth.isAdmin ? (
+            <Link to={`/books/${book.id}/edit`}>Edit Book Info</Link>
+          ) : null}
         </div>
       </div>
       <p>
