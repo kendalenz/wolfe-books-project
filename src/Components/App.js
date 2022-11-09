@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
 import Books from './Book/Books';
+import Search from './Book/Search';
 import Book from './Book/Book';
 import Cart from './Cart/Cart';
 import Users from './User/Users';
@@ -62,6 +63,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<Books />} />
+            <Route path='/books/search/:filter' element={<Books />} />
             <Route path="/books/:id" element={<Book />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
