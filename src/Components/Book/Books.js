@@ -8,7 +8,7 @@ const Books = () => {
   const [genre, setGenre] = useState('');
   const navigate = useNavigate();
   const {filter} = useParams();
-  const filtered = books.filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()));
+  const filtered = books.filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()) || book.author.toLowerCase().includes(filter.toLowerCase()));
 
   const Bookcard = (props) => {
     return (
@@ -39,9 +39,10 @@ const Books = () => {
 
   return (
     <div className="content" style={{ height: '150vh' }}>
-      <form className="genre_form">
+      <div className='books_forms_div'>
+      <form className="books_page_form">
         <label form="genre">View by genre:</label>
-        <select value={genre} onChange={(ev) => setGenre(ev.target.value)}>
+        <select className='select'value={genre} onChange={(ev) => setGenre(ev.target.value)}>
           <option value="">All</option>
           {genres.map((genre) => {
             return (
@@ -53,8 +54,9 @@ const Books = () => {
         </select>
         {auth.isAdmin ? <Link to="/createbook">Add a Book</Link> : null}
       </form>
-
-      <div>
+      
+      <form className="books_page_form">
+      <label>Search Books:</label>
         <input value={filter || ''} placeholder='filter' onChange={
           ev => {
             if(ev.target.value==='') {
@@ -64,6 +66,7 @@ const Books = () => {
             }
           }
           }/>
+      </form>
       </div>
 
       <div className="books_div">
