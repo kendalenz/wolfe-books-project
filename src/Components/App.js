@@ -11,6 +11,7 @@ import EditUser from './User/EditUser';
 import AllUsers from './User/AllUsers';
 import EditBook from './Book/EditBook';
 import CreateAccount from './User/CreateAccount';
+import CreateBook from './Book/CreateBook';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
@@ -72,6 +73,9 @@ const App = () => {
             <Route path="/users" element={<AllUsers />} />
             {auth.isAdmin ? (
               <Route path="/books/:id/edit" element={<EditBook />} />
+            ) : null}
+            {auth.isAdmin ? (
+              <Route path="/createbook" element={<CreateBook />} />
             ) : null}
           </Routes>
           <footer className="footer">

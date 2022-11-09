@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Books = () => {
-  const { books } = useSelector((state) => state);
+  const { books, auth } = useSelector((state) => state);
   const [genre, setGenre] = useState('');
   const navigate = useNavigate();
   const {filter} = useParams();
@@ -51,6 +51,7 @@ const Books = () => {
             );
           })}
         </select>
+        {auth.isAdmin ? <Link to="/createbook">Add a Book</Link> : null}
       </form>
 
       <div>
