@@ -27,7 +27,6 @@ const Search = ()=> {
     return (
         <div>
             <input value={filter || ''} placeholder='filter' onChange={ev => navigate(`/books/search/${ev.target.value}`)}/>
-            {/* <input value={filter || ''} placeholder='filter' onChange={ev => navigate(`/books/search/${ev.target.value}`)}/> */}
         {
             filtered.map(book => {
                 return (
