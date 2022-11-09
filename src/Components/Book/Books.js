@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Books = () => {
   const { books } = useSelector((state) => state);
   const [genre, setGenre] = useState('');
+  const navigate = useNavigate();
+  const {filter} = useParams();
+  const filtered = books.filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()));
 
   const Bookcard = (props) => {
     return (
@@ -49,6 +53,18 @@ const Books = () => {
         </select>
       </form>
 
+      <div>
+        <input value={filter || ''} placeholder='filter' onChange={
+          ev => {
+            if(ev.target.value==='') {
+              navigate('/books')
+            } else {
+              navigate(`/books/search/${ev.target.value}`)
+            }
+          }
+          }/>
+      </div>
+
       <div className="books_div">
         {genre
           ? books
@@ -63,6 +79,21 @@ const Books = () => {
                   price={book.price}
                 />
               ))
+          :
+          filter
+          ? 
+            filtered.map(book => {
+                return (
+                    <Bookcard
+                    id={book.id}
+                    key={book.id}
+                    imageUrl={book.imageUrl}
+                    title={book.title}
+                    author={book.author}
+                    price={book.price}
+                    />
+                )
+            }) 
           : books.map((book) => (
               <Bookcard
                 id={book.id}
