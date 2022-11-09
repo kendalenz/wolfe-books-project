@@ -9,6 +9,9 @@ const books = (state = [], action) => {
       book.id === action.book.id ? action.book : book
     );
   }
+  if (action.type === 'CREATE_BOOK') {
+    state = [...state, action.book];
+  }
   return state;
 };
 
@@ -23,6 +26,14 @@ export const editBook = (book, navigate) => {
   return async (dispatch) => {
     const response = await axios.put(`/api/books/${book.id}`, book);
     dispatch({ type: 'UPDATE_BOOK', book: response.data });
+    navigate(`/books/${response.data.id}`);
+  };
+};
+
+export const createBook = (book, navigate) => {
+  return async (dispatch) => {
+    const response = await axios.post('/api/books', book);
+    dispatch({ type: 'CREATE_BOOK', book: response.data });
     navigate(`/books/${response.data.id}`);
   };
 };

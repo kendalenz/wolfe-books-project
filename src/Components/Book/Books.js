@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Books = () => {
-  const { books } = useSelector((state) => state);
+  const { books, auth } = useSelector((state) => state);
   const [genre, setGenre] = useState('');
 
   const Bookcard = (props) => {
@@ -47,6 +47,7 @@ const Books = () => {
             );
           })}
         </select>
+        {auth.isAdmin ? <Link to="/createbook">Add a Book</Link> : null}
       </form>
 
       <div className="books_div">
