@@ -33,4 +33,14 @@ app.post('/', async (req, res, next) => {
   }
 });
 
+app.delete('/:id', async (req, res, next) => {
+  try {
+    const book = await Book.findByPk(req.params.id);
+    await book.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = app;

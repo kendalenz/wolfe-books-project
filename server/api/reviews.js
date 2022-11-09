@@ -30,7 +30,6 @@ app.post('/', async (req, res, next) => {
 app.delete('/:id', async (req, res, next) => {
   try {
     const review = await Review.findByPk(req.params.id);
-    console.log(review.id);
     await review.destroy();
     res.sendStatus(204);
   } catch (ex) {

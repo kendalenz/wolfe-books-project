@@ -12,6 +12,9 @@ const books = (state = [], action) => {
   if (action.type === 'CREATE_BOOK') {
     state = [...state, action.book];
   }
+  if (action.type === 'DELETE_BOOK') {
+    state = state.filter((book) => book.id !== action.book.id);
+  }
   return state;
 };
 
@@ -35,6 +38,14 @@ export const createBook = (book, navigate) => {
     const response = await axios.post('/api/books', book);
     dispatch({ type: 'CREATE_BOOK', book: response.data });
     navigate(`/books/${response.data.id}`);
+  };
+};
+
+export const deleteBook = (book, navigate) => {
+  return async (dispatch) => {
+    await axios.delete(`/api/books/${book.id}`);
+    dispatch({ type: 'DELETE_BOOK', book });
+    navigate('/books');
   };
 };
 
