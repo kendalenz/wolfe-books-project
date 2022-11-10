@@ -43,7 +43,7 @@ export const putInCart = ({ book }, quantity) => {
   };
 };
 
-export const deleteFromCart = ({ book, quantityToRemove }) => {
+export const deleteFromCart = ({ book }, quantityToRemove) => {
   return async (dispatch) => {
     const token = getToken();
     const response = await axios.put(

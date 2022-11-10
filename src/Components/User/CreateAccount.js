@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser } from '../../store';
+import { addUser, createUser } from '../../store';
 import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,13 +22,19 @@ const CreateAccount = () => {
 
   const register = (e) => {
     e.preventDefault();
-    dispatch(addUser(credentials));
-    navigate('/');
+    if (auth.isAdmin) {
+      dispatch(createUser(credentials));
+      navigate('/users');
+    } else if (!auth.id) {
+      dispatch(addUser(credentials));
+      navigate('/');
+    }
   };
 
   return (
     <div>
-      <h2>Create An Account With Us!</h2>
+      {!auth.id ? <h2>Create An Account With Us!</h2> : null}
+      {auth.isAdmin ? <h2>Create a New User Account!</h2> : null}
       <form onSubmit={register}>
         <input
           placeholder="first name"
@@ -55,11 +62,13 @@ const CreateAccount = () => {
         />
         <input
           placeholder="password"
+          type="password"
           value={credentials.password}
           name="password"
           onChange={onChange}
         />
-        <button>Create Account & Login</button>
+        {!auth.id ? <button>Create Account & Login</button> : null}
+        {auth.isAdmin ? <button>Create New User</button> : null}
       </form>
     </div>
   );
