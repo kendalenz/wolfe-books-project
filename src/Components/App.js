@@ -70,6 +70,7 @@ const App = () => {
             <Route path="/orders" element={<Orders />} />
             <Route path="/users/:id" element={<Users />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
+            <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/users" element={<AllUsers />} />
             {auth.isAdmin ? (
               <Route path="/books/:id/edit" element={<EditBook />} />
@@ -150,6 +151,7 @@ const App = () => {
 //       <Route path="/cart" element={<Cart />} />
 //       <Route path="/users/:id" element={<Users />} />
 //       <Route path="/users/:id/edit" element={<EditUser />} />
+//      <Route path="/createaccount" element={<CreateAccount />} />
 //       <Route path="/login" element={<Login />} />
 //       <Route path="/users" element={<AllUsers />} />
 //       {auth.isAdmin ? (

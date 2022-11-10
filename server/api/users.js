@@ -51,7 +51,7 @@ app.get('/:id', isLoggedIn, async (req, res, next) => {
 app.delete('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
-    user.destroy();
+    await user.destroy();
     res.sendStatus(204);
   } catch (err) {
     next(err);
