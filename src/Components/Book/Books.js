@@ -57,7 +57,7 @@ const Books = () => {
       
       <form className="books_page_form">
       <label>Search Books:</label>
-        <input value={filter || ''} placeholder='filter' onChange={
+        <input value={filter || ''} onChange={
           ev => {
             if(ev.target.value==='') {
               navigate('/books')
@@ -70,7 +70,22 @@ const Books = () => {
       </div>
 
       <div className="books_div">
-        {genre
+        { genre && filter
+          ? books
+          .filter((book) => book.genre === genre)
+          .filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()) || book.author.toLowerCase().includes(filter.toLowerCase()))
+          .map((book) => (
+            <Bookcard
+              id={book.id}
+              key={book.id}
+              imageUrl={book.imageUrl}
+              title={book.title}
+              author={book.author}
+              price={book.price}
+            />
+          ))
+        :
+        genre
           ? books
               .filter((book) => book.genre === genre)
               .map((book) => (
@@ -85,8 +100,7 @@ const Books = () => {
               ))
           :
           filter
-          ? 
-            filtered.map(book => {
+            ? filtered.map(book => {
                 return (
                     <Bookcard
                     id={book.id}
