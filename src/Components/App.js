@@ -1,4 +1,11 @@
 import React, { useEffect } from 'react';
+import { HiBookOpen, HiUsers } from 'react-icons/hi';
+import {
+  RiShoppingCart2Fill,
+  RiLogoutBoxRLine,
+  RiLoginBoxLine,
+} from 'react-icons/ri';
+import { MdReorder, MdAccountBox } from 'react-icons/md';
 import Home from './Home';
 import Login from './Login';
 import Books from './Book/Books';
@@ -53,14 +60,35 @@ const App = () => {
             <Link to="/" className="wolfe_books">
               <h2>Wolfe Books</h2>
             </Link>
-            <Link to="/books">Store</Link>
-            <Link to="/cart">Cart</Link>
-            <Link to="/orders">Orders</Link>
-            <Link to={`/users/${auth.id}`}>Account</Link>
-            <Link to="#" onClick={() => dispatch(logout())}>
-              Logout
-            </Link>
-            {auth.isAdmin ? <Link to="/users">All Users</Link> : null}
+            <div className="nav-links">
+              <Link to="/books">Store</Link>
+              <HiBookOpen size={20} />
+            </div>
+            <div className="nav-links">
+              <Link to="/cart">Cart</Link>
+              <RiShoppingCart2Fill size={15} />
+            </div>
+            <div className="nav-links">
+              <Link to="/orders">Orders</Link>
+              <MdReorder size={20} />
+            </div>
+            <div className="nav-links">
+              <Link to={`/users/${auth.id}`}>Account</Link>
+              <MdAccountBox size={18} />
+            </div>
+            <div className="nav-links">
+              <Link to="#" onClick={() => dispatch(logout())}>
+                Logout
+              </Link>
+              <RiLogoutBoxRLine size={18} />
+            </div>
+
+            {auth.isAdmin ? (
+              <div className="nav-links">
+                <Link to="/users">All Users</Link>
+                <HiUsers size={20} />
+              </div>
+            ) : null}
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -101,8 +129,14 @@ const App = () => {
             <Link to="/" className="wolfe_books">
               <h2>Wolfe Books</h2>
             </Link>
-            <Link to="/books">Store</Link>
-            <Link to="/login">Log in</Link>
+            <div className="nav-links">
+              <Link to="/books">Store</Link>
+              <HiBookOpen size={22} />
+            </div>
+            <div className="nav-links">
+              <Link to="/login">Log in</Link>
+              <RiLoginBoxLine size={20} />
+            </div>
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />

@@ -39,40 +39,44 @@ const Review = (props) => {
                   })}{' '}
                   ({review.rating} stars)
                   <p>{review.text}</p>
-                  {auth.id === review.userId ? (
-                    <div>
-                      <input
-                        type="submit"
-                        value="Edit"
-                        onClick={() => {
-                          showEditForm();
-                        }}
-                      />
-                      {showForm ? (
-                        <EditReview
-                          onClose={() => {
-                            setShowForm(false);
+                  <div id="buttons">
+                    {auth.id === review.userId ? (
+                      <div>
+                        <button
+                          type="submit"
+                          value="Edit"
+                          onClick={() => {
+                            showEditForm();
                           }}
-                          id={review.id}
-                          text={review.text}
-                          rating={review.rating}
-                          bookId={bookID}
-                          userId={review.userId}
-                        />
-                      ) : null}
-                    </div>
-                  ) : null}
-                  {auth.id === review.userId || auth.isAdmin === true ? (
-                    <div>
-                      <button
-                        onClick={() => {
-                          dispatch(deleteReview(review));
-                        }}
-                      >
-                        Delete Review
-                      </button>
-                    </div>
-                  ) : null}
+                        >
+                          Edit
+                        </button>
+                        {showForm ? (
+                          <EditReview
+                            onClose={() => {
+                              setShowForm(false);
+                            }}
+                            id={review.id}
+                            text={review.text}
+                            rating={review.rating}
+                            bookId={bookID}
+                            userId={review.userId}
+                          />
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {auth.id === review.userId || auth.isAdmin === true ? (
+                      <div>
+                        <button
+                          onClick={() => {
+                            dispatch(deleteReview(review));
+                          }}
+                        >
+                          Delete Review
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
                   <hr />
                 </div>
               );
