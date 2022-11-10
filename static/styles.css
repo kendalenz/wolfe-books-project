@@ -145,3 +145,12 @@ a {
   align-items: center;
 }
 
+#buttons {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: .2em;
+}
