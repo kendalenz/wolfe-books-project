@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
 import { FaStar } from 'react-icons/fa';
+import EditReview from './EditReview';
 
 const Review = (props) => {
   const dispatch = useDispatch();
@@ -10,6 +11,11 @@ const Review = (props) => {
   const getReviews = reviews.filter((review) => review.bookId === bookID);
   const book = props.book;
 
+  const [showForm, setShowForm] = useState(false);
+
+  const showEditForm = () => {
+    setShowForm(true);
+  };
   return (
     <div>
       <hr />
@@ -18,7 +24,7 @@ const Review = (props) => {
         {getReviews.length >= 1
           ? getReviews.map((review) => {
               return (
-                <div key={review.id}>
+                <div key={review.id} id={review.id}>
                   <h3>{review.user.username}</h3>
                   {[...Array(5)].map((_, index) => {
                     return (
@@ -34,13 +40,27 @@ const Review = (props) => {
                   ({review.rating} stars)
                   <p>{review.text}</p>
                   {auth.id === review.userId ? (
-                    <button
-                      onClick={() => {
-                        dispatch(updateReview(review));
-                      }}
-                    >
-                      Edit Review
-                    </button>
+                    <div>
+                      <input
+                        type="submit"
+                        value="Edit"
+                        onClick={() => {
+                          showEditForm();
+                        }}
+                      />
+                      {showForm ? (
+                        <EditReview
+                          onClose={() => {
+                            setShowForm(false);
+                          }}
+                          id={review.id}
+                          text={review.text}
+                          rating={review.rating}
+                          bookId={bookID}
+                          userId={review.userId}
+                        />
+                      ) : null}
+                    </div>
                   ) : null}
                   {auth.id === review.userId || auth.isAdmin === true ? (
                     <div>
@@ -53,6 +73,7 @@ const Review = (props) => {
                       </button>
                     </div>
                   ) : null}
+                  <hr />
                 </div>
               );
             })

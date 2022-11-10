@@ -27,6 +27,22 @@ app.post('/', async (req, res, next) => {
   }
 });
 
+app.put('/:id', async (req, res, next) => {
+  console.log(req.body);
+  try {
+    console.log('put route', req.body);
+    const review = await Review.findByPk(req.params.id, {
+      include: [{ model: User }, { model: Book }],
+    });
+    console.log('update', review);
+    await review.update(req.body);
+
+    res.send(review);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 app.delete('/:id', async (req, res, next) => {
   try {
     const review = await Review.findByPk(req.params.id);
