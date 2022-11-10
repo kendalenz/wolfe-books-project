@@ -4,15 +4,11 @@ import { createReview } from '../../store';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-//question: a review belongs to a user and so it has a userId...how do I get the user's id to send with the post request? pull in the token?
-
 const CreateReview = (props) => {
-  //plan to pass in the bookId via props
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { reviews } = useSelector((state) => state);
 
-  //auth obj gives me access to the user's id???
   const { auth } = useSelector((state) => state);
 
   const userId = auth.id;
@@ -25,24 +21,18 @@ const CreateReview = (props) => {
     ev.preventDefault();
     if (userId) {
       const review = { userId, bookId, rating, text };
-      console.log(review);
       try {
         await dispatch(createReview(review));
-        console.log(rating);
         setText('');
         setRating(0);
       } catch (ex) {
         console.log(ex);
       }
     }
-    if (!auth) {
-      navigate('/login');
-    }
   };
 
   return (
     <div>
-      <hr />
       <h2>Leave a Review</h2>
       <form onSubmit={submit}>
         <label>Rating</label>
@@ -72,7 +62,6 @@ const CreateReview = (props) => {
                   value={ratingValue}
                   onClick={() => {
                     setRating(ratingValue);
-                    console.log(rating, ratingValue);
                   }}
                 />
                 <FaStar

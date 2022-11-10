@@ -12,6 +12,7 @@ import AllUsers from './User/AllUsers';
 import EditBook from './Book/EditBook';
 import CreateAccount from './User/CreateAccount';
 import CreateBook from './Book/CreateBook';
+import EditReview from './Review/EditReview';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   loginWithToken,
@@ -64,7 +65,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<Books />} />
-            <Route path='/books/search/:filter' element={<Books />} />
+            <Route path="/books/search/:filter" element={<Books />} />
             <Route path="/books/:id" element={<Book />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
@@ -72,6 +73,7 @@ const App = () => {
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/users" element={<AllUsers />} />
+            <Route path="/review/edit/:id" element={<EditReview />} />
             {auth.isAdmin ? (
               <Route path="/books/:id/edit" element={<EditBook />} />
             ) : null}
@@ -105,7 +107,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<Books />} />
-            <Route path='/books/search/:filter' element={<Books />} />
+            <Route path="/books/search/:filter" element={<Books />} />
             <Route path="/books/:id" element={<Book />} />
             <Route path="/login" element={<Login />} />
             <Route path="/createaccount" element={<CreateAccount />} />
