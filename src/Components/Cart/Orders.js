@@ -3,15 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { placeOrder, deleteFromCart } from '../../store';
 import dayjs from 'dayjs';
-import PaymentModal from './PaymentModal';
+import CheckoutForm from './CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+// import PaymentModal from './PaymentModal';
+
+const stripePromise = loadStripe(
+  'pk_test_51M23fbAkBv8BefytURbFJEO79NQvz7YEMatl9GUevJODTqbr3EfP1l0vZhMudNCWrk16VjO4oejkffTZCf4N7ttu00LK3mQSV5'
+);
 
 const Orders = () => {
   const { cart, books } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [modal, setModal] = useState(false);
-  const paymentMethods = ['CreditCard', 'PayPal', 'GooglePay'];
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [clientSecret, setClientSecret] = useState('');
   const [amountDue, setAmountDue] = useState('');
   const [checkoutDetails, setCheckoutDetails] = useState({
     userId: '',
@@ -20,17 +25,35 @@ const Orders = () => {
     billingAddress: '',
     couponCode: '',
     amountDue,
-    paymentMethod,
-    creditCardNumber: '',
+    paymentSuccessful: false,
   });
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch('/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: cart.lineItems }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
+
+  const appearance = {
+    theme: 'stripe',
+  };
+
+  const options = {
+    clientSecret,
+    appearance,
+  };
 
   const sendOrder = (e) => {
     e.preventDefault();
-    if (!cart.isCart) {
+    if (!cart.isCart || cart.lineItems.length === 0) {
       alert('You have no items in your cart to order!');
       throw new Error('missing cart');
     }
-    setModal(false);
     dispatch(placeOrder(cart));
   };
 
@@ -38,16 +61,12 @@ const Orders = () => {
     dispatch(deleteFromCart({ book }, quantity));
   };
 
-  const onChange = (e) => {
-    setCheckoutDetails({
-      ...checkoutDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const showModal = (e) => {
-    setModal(true);
-  };
+  // const onChange = (e) => {
+  //   setCheckoutDetails({
+  //     ...checkoutDetails,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   useEffect(() => {
     setAmountDue(
@@ -83,11 +102,15 @@ const Orders = () => {
           <Link to="/books">Your cart is empty - Click here to add books!</Link>
         )}
       </ul>
-      {cart.isCart ? (
-        <p>Amount Due: ${amountDue}</p>
-      ) : ''}
-      <button onClick={showModal}>Enter Payment Details</button>
-      <PaymentModal show={modal}>
+      {cart.isCart ? <p>Amount Due: ${amountDue}</p> : ''}
+      {cart.lineItems.length > 0 && clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
+      <button disabled={cart.lineItems.length === 0} onClick={sendOrder}>Submit Order</button>
+      {/* <button onClick={showModal}>Enter Payment Details</button> */}
+      {/* <PaymentModal show={modal}>
         <form onSubmit={sendOrder}>
           <div>
             <select
@@ -138,7 +161,7 @@ const Orders = () => {
           </div>
           <button>Place Order</button>
         </form>
-      </PaymentModal>
+      </PaymentModal> */}
       <h2>Past Orders</h2>
       <ul>
         {!cart.isCart
