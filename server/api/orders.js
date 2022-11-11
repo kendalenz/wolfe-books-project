@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { User } = require('../db');
+const { User, Order, LineItem } = require('../db');
 const { isLoggedIn } = require('./middleware');
 
 module.exports = app;
@@ -34,5 +34,14 @@ app.put('/cart', isLoggedIn, async (req, res, next) => {
     res.send(await req.user.removeFromCart(req.body));
   } catch (ex) {
     next(ex);
+  }
+});
+
+app.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({ include: [{ LineItem }] });
+    res.send(orders);
+  } catch (err) {
+    next(err);
   }
 });
