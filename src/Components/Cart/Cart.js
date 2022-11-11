@@ -37,7 +37,7 @@ const Cart = () => {
       <br />
       <div>
         <Link to="/orders">
-          <button>Checkout!</button>
+          <button disabled={cart.lineItems.length === 0}>Checkout!</button>
         </Link>
       </div>
     </div>
