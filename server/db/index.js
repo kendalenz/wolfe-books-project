@@ -21,8 +21,10 @@ const syncAndSeed = async () => {
   await conn.sync({ force: true });
   const [
     moe,
+    may,
     lucy,
     larry,
+    cece,
     wayward,
     girlInLandscape,
     physics,
@@ -39,6 +41,14 @@ const syncAndSeed = async () => {
       isAdmin: true,
     }),
     User.create({
+      username: 'may',
+      password: '123',
+      firstName: 'marie',
+      lastName: 'smith',
+      email: 'may@fullstack.edu',
+      isAdmin: true,
+    }),
+    User.create({
       username: 'lucy',
       password: '123',
       firstName: 'lucinda',
@@ -51,6 +61,13 @@ const syncAndSeed = async () => {
       firstName: 'laurence',
       lastName: 'fishburn',
       email: 'larry@fullstack.edu',
+    }),
+    User.create({
+      username: 'cece',
+      password: '123',
+      firstName: 'grace',
+      lastName: 'amazing',
+      email: 'cece@fullstack.edu',
     }),
     Book.create({
       title: 'Wayward',
@@ -138,14 +155,18 @@ const syncAndSeed = async () => {
   return {
     users: {
       moe,
+      may,
       lucy,
       larry,
+      cece,
+      ethyl,
     },
     books: {
       wayward,
       girlInLandscape,
       physics,
       runner,
+      claysArk,
     },
   };
 };
