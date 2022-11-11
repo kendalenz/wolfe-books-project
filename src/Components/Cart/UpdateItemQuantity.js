@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { deleteFromCart, putInCart } from '../../store';
 
 const UpdateItemQuantity = (props) => {
   const { cart, books } = useSelector((state) => state);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const [quantityToRemove, setQuantityToRemove] = useState(0);
-  // const currentQuantity = props.quantity;
   const book = books.find((b) => b.id === props.bookId);
   const item = cart.lineItems.find((item) => item.id === props.id);
   const [quantity, setQuantity] = useState(item.quantity);

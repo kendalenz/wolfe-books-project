@@ -30,10 +30,6 @@ import {
   logout,
 } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = loadStripe('pk_test_51M23fbAkBv8BefytURbFJEO79NQvz7YEMatl9GUevJODTqbr3EfP1l0vZhMudNCWrk16VjO4oejkffTZCf4N7ttu00LK3mQSV5');
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -56,15 +52,8 @@ const App = () => {
     }
   }, [auth]);
 
-  // const options = {
-  //   clientSecret: '{{CLIENT_SECRET}}',
-  // };
-
   return (
     <div>
-      {/* <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
-      </Elements> */}
       {!!auth.id ? (
         <div>
           <nav>
