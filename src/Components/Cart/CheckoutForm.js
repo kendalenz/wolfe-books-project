@@ -4,7 +4,6 @@ import {
   useElements,
   PaymentElement,
 } from '@stripe/react-stripe-js';
-import { placeOrder } from '../../store';
 import { useSelector } from 'react-redux';
 
 const CheckoutForm = () => {
@@ -16,13 +15,6 @@ const CheckoutForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
 
-  // const sendOrder = () => {
-  //   if (!cart.isCart) {
-  //     alert('You have no items in your cart to order!');
-  //     throw new Error('missing cart');
-  //   }
-  //   dispatch(placeOrder(cart));
-  // };
 
   useEffect(() => {
     if (!stripe) {
@@ -79,20 +71,6 @@ const CheckoutForm = () => {
 
     setIsLoading(false);
     setPaymentSuccessful(true);
-    // sendOrder();
-
-    // const result = await stripe.confirmPayment({
-    //   elements,
-    //   confirmParams: {
-    //     return_url: '/orders',
-    //   },
-    // });
-
-    // if (result.error) {
-    //   console.log(result.error.message);
-    // } else {
-    //   // ??
-    // }
   };
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
