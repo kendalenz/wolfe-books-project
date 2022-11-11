@@ -1,3 +1,4 @@
+const { BOOLEAN } = require('sequelize');
 const conn = require('./conn');
 const { STRING, UUID, UUIDV4, DECIMAL, ENUM } = conn.Sequelize;
 
@@ -33,15 +34,9 @@ const Checkout = conn.define('checkout', {
       min: 0,
     },
   },
-  paymentMethod: {
-    type: ENUM('CreditCard', 'PayPal', 'GooglePay'),
-    allowNull: false,
-  },
-  creditCardNumber: {
-    type: STRING,
-    validate: {
-      isCreditCard: true,
-    },
+  paymentSuccessful: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 });
 

@@ -13,7 +13,7 @@ const users = (state = [], action) => {
     state = [...state, action.user];
   }
   if (action.type === 'DELETE_USER') {
-    state.filter((user) => user.id !== action.user.id);
+    state = state.filter((user) => user.id !== action.user.id);
   }
   return state;
 };
