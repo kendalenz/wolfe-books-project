@@ -6,6 +6,7 @@ import CreateReview from '../Review/CreateReview';
 import AddToCart from '../Cart/AddToCart';
 import { BsArrowLeft } from 'react-icons/bs';
 import { deleteBook } from '../../store';
+import Recs from './Recs';
 const Book = () => {
   const { books, auth } = useSelector((state) => state);
   const { id } = useParams();
@@ -51,6 +52,7 @@ const Book = () => {
         <Review id={book.id} book={book.title} />
         {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
       </div>
+      <Recs />
     </div>
   );
 };
