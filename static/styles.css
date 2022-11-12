@@ -1,3 +1,18 @@
+/* html, 
+body {
+  height: 100%;
+} */
+
+/* .site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+} */
+
+/* .site-content {
+  flex: 1;
+} */
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -10,7 +25,7 @@ body {
   background-color: white;
   /* margin-bottom: 20rem; */
   /* display: flex; */
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .hero-background {
@@ -29,7 +44,6 @@ body {
   margin-right: 15%;
   margin-top: 5%;
   margin-bottom: 5%;
-  /* flex: 1; */
 }
 
 .footer {
@@ -40,13 +54,12 @@ body {
   text-align: left;
   position:relative; 
   bottom:0;
-  /* margin-top: auto; */
   width: 100%
 }
 
-.content {
+/* .content {
  width: 100%
-}
+} */
 
 form {
   display: flex;
@@ -57,10 +70,22 @@ form > * {
   margin-top: 1rem;
 }
 
-.genre_form {
+.books_forms_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.books_page_form {
   margin-left: 3rem;
   width: 8rem;
   border-radius: 2px;
+}
+
+.add_book_form {
+  align-self: flex-end;
 }
 
 input {
@@ -76,9 +101,14 @@ button {
   font-family: optima;
 }
 
-/* .wolfe_books {
-  flex-grow: 50%;
-} */
+button:hover {
+  filter: contrast(115%);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
 a {
   color: black;
@@ -90,8 +120,12 @@ a:hover {
 }
 
 .books_page_img {
-  width:200px; /* you can use % */
+  width:200px; 
   height: auto;
+}
+
+.select {
+  border-radius: 2px;
 }
 
 .books_div {
@@ -117,7 +151,7 @@ a:hover {
   text-align: justify;
   font-size: 20px;
 }
-/*-------*/
+
 hr {
   color: rgb(255, 255, 255);
 }
@@ -138,4 +172,14 @@ input[type='radio']{
 a {
   display: flex;
   align-items: center;
+}
+
+#buttons {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: .2em;
 }

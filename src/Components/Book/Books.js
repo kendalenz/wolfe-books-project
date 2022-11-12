@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Books = () => {
   const { books, auth } = useSelector((state) => state);
   const [genre, setGenre] = useState('');
+  const navigate = useNavigate();
+  const {filter} = useParams();
+  const filtered = books.filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()) || book.author.toLowerCase().includes(filter.toLowerCase()));
 
   const Bookcard = (props) => {
     return (
@@ -34,10 +38,12 @@ const Books = () => {
   getUniqueGenres();
 
   return (
-    <div className="content" style={{ height: '150vh' }}>
-      <form className="genre_form">
+    <div className="site" style={{ height: '150vh' }}>
+      <div className="site-content">
+      <div className='books_forms_div'>
+      <form className="books_page_form">
         <label form="genre">View by genre:</label>
-        <select value={genre} onChange={(ev) => setGenre(ev.target.value)}>
+        <select className='select'value={genre} onChange={(ev) => setGenre(ev.target.value)}>
           <option value="">All</option>
           {genres.map((genre) => {
             return (
@@ -47,11 +53,47 @@ const Books = () => {
             );
           })}
         </select>
-        {auth.isAdmin ? <Link to="/createbook">Add a Book</Link> : null}
+      </form>
+     
+      <form className="books_page_form">
+      <label>Search Books:</label>
+        <input value={filter || ''} onChange={
+          ev => {
+            if(ev.target.value==='') {
+              navigate('/books')
+            } else {
+              navigate(`/books/search/${ev.target.value}`)
+            }
+          }
+          }/>
       </form>
 
+      <div className='books_page_form'>
+        <div className='add_book_form'>
+        {auth.isAdmin ? <button><Link to="/createbook">Add a Book</Link></button> : null}
+        </div>
+      </div>
+
+      </div>
+      </div>
+
       <div className="books_div">
-        {genre
+        { genre && filter
+          ? books
+          .filter((book) => book.genre === genre)
+          .filter(book => !filter || book.title.toLowerCase().includes(filter.toLowerCase()) || book.author.toLowerCase().includes(filter.toLowerCase()))
+          .map((book) => (
+            <Bookcard
+              id={book.id}
+              key={book.id}
+              imageUrl={book.imageUrl}
+              title={book.title}
+              author={book.author}
+              price={book.price}
+            />
+          ))
+        :
+        genre
           ? books
               .filter((book) => book.genre === genre)
               .map((book) => (
@@ -64,6 +106,20 @@ const Books = () => {
                   price={book.price}
                 />
               ))
+          :
+          filter
+            ? filtered.map(book => {
+                return (
+                    <Bookcard
+                    id={book.id}
+                    key={book.id}
+                    imageUrl={book.imageUrl}
+                    title={book.title}
+                    author={book.author}
+                    price={book.price}
+                    />
+                )
+            }) 
           : books.map((book) => (
               <Bookcard
                 id={book.id}

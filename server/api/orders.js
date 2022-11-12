@@ -2,6 +2,7 @@ const express = require('express');
 const app = express.Router();
 const { User, Order, LineItem } = require('../db');
 const { isLoggedIn } = require('./middleware');
+// const stripe = require('stripe')(process.env.STRIPE_CLIENT_SECRET);
 
 module.exports = app;
 
@@ -12,6 +13,23 @@ app.post('/', isLoggedIn, async (req, res, next) => {
     next(ex);
   }
 });
+
+// app.post('/create-payment-intent', async (req, res) => {
+//   const { items } = req.body;
+
+//   // Create a PaymentIntent with the order amount and currency
+//   const paymentIntent = await stripe.paymentIntents.create({
+//     amount: items.amountDue,
+//     currency: 'usd',
+//     automatic_payment_methods: {
+//       enabled: true,
+//     },
+//   });
+
+//   res.send({
+//     clientSecret: paymentIntent.client_secret,
+//   });
+// });
 
 app.get('/cart', isLoggedIn, async (req, res, next) => {
   try {

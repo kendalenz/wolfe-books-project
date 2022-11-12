@@ -3,30 +3,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { placeOrder, deleteFromCart } from '../../store';
 import dayjs from 'dayjs';
-import AddToCart from './AddToCart';
-import UpdateItemQuantity from './UpdateItemQuantity';
+import CheckoutForm from './CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  'pk_test_51M23fbAkBv8BefytURbFJEO79NQvz7YEMatl9GUevJODTqbr3EfP1l0vZhMudNCWrk16VjO4oejkffTZCf4N7ttu00LK3mQSV5'
+);
 
 const Orders = () => {
   const { cart, books } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const paymentMethods = ['CreditCard', 'PayPal', 'GooglePay'];
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [amountDue, setAmountDue] = useState('')
-  const [checkoutDetails, setCheckoutDetails] = useState({
-    userId: '',
-    orderId: '',
-    shippingAddress: '',
-    billingAddress: '',
-    couponCode: '',
-    amountDue,
-    paymentMethod,
-    creditCardNumber: '',
-  });
+  const [amountDue, setAmountDue] = useState('');
+
+  const appearance = {
+    theme: 'stripe',
+  };
+
+  const options = {
+    appearance,
+  };
 
   const sendOrder = (e) => {
     e.preventDefault();
-    if (!cart.isCart) {
+    if (!cart.isCart || cart.lineItems.length === 0) {
       alert('You have no items in your cart to order!');
       throw new Error('missing cart');
     }
@@ -37,18 +38,13 @@ const Orders = () => {
     dispatch(deleteFromCart({ book }, quantity));
   };
 
-  const onChange = (e) => {
-    setCheckoutDetails({
-      ...checkoutDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   useEffect(() => {
-    setAmountDue(cart.lineItems.reduce((acc, curr) => {
-      acc += Number(curr.book.price);
-      return acc;
-    }, 0),)
+    setAmountDue(
+      cart.lineItems.reduce((acc, curr) => {
+        acc += Number((curr.book.price * curr.quantity).toFixed(2));
+        return acc;
+      }, 0)
+    );
   }, [cart]);
 
   return (
@@ -58,10 +54,12 @@ const Orders = () => {
         {cart.lineItems.length > 0 && cart.isCart ? (
           cart.lineItems.map((item) => {
             const book = books.find((b) => b.id === item.bookId);
+            const copyText = item.quantity > 1 ? 'copies' : 'copy';
             return (
               <div key={book.id}>
                 <p>
-                  {book.title} by {book.author} ({item.quantity} copies)
+                  {book.title} by {book.author} ({item.quantity} {copyText} @ $
+                  {book.price} each)
                 </p>
                 <button onClick={() => navigate('/cart')}>Edit Quantity</button>
                 <button onClick={() => deleteBook(book, item.quantity)}>
@@ -74,53 +72,12 @@ const Orders = () => {
           <Link to="/books">Your cart is empty - Click here to add books!</Link>
         )}
       </ul>
-      <form onSubmit={sendOrder}>
-        <div>
-          <select
-            value={paymentMethod}
-            name={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
-          >
-            <option value="">--select a payment method--</option>
-            {paymentMethods.map((method) => {
-              return (
-                <option key={method} value={method}>
-                  {method}
-                </option>
-              );
-            })}
-          </select>
-          <input
-            placeholder="shipping address"
-            name="shippingAddress"
-            value={checkoutDetails.shippingAddress}
-            onChange={onChange}
-          />
-          <input
-            placeholder="billing address"
-            name="billingAddress"
-            value={checkoutDetails.billingAddress}
-            onChange={onChange}
-          />
-          <input
-            placeholder="coupon code"
-            name="couponCode"
-            value={checkoutDetails.couponCode}
-            onChange={onChange}
-          />
-          <input
-            placeholder="credit card number"
-            name="creditCardNumber"
-            hidden={
-              checkoutDetails.paymentMethod === 'CreditCard' ? false : true
-            }
-            value={checkoutDetails.creditCardNumber}
-            onChange={onChange}
-          />
-        </div>
-        <p>Amount Due: ${amountDue}</p>
-        <button>Place Order</button>
-      </form>
+      {cart.isCart ? <p>Amount Due: ${amountDue}</p> : ''}
+      {cart.lineItems.length > 0 && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
       <h2>Past Orders</h2>
       <ul>
         {!cart.isCart

@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
-import StarRatingComponent from 'react-star-rating-component';
 import { FaStar } from 'react-icons/fa';
-
-const colors = {
-  orange: '#FFBA5A',
-  grey: '#a9a9a9',
-};
+import EditReview from './EditReview';
 
 const Review = (props) => {
   const dispatch = useDispatch();
   const { reviews, auth } = useSelector((state) => state);
   const bookID = props.id;
   const getReviews = reviews.filter((review) => review.bookId === bookID);
-  console.log(getReviews.length);
   const book = props.book;
 
-  const [starRating, setStarRating] = useState(0);
-  const [hoverVal, setHoverVal] = useState(undefined);
+  const [showForm, setShowForm] = useState(false);
 
+  const showEditForm = () => {
+    setShowForm(true);
+  };
   return (
     <div>
       <hr />
@@ -27,9 +23,8 @@ const Review = (props) => {
         <h2>Reviews for {book}</h2>
         {getReviews.length >= 1
           ? getReviews.map((review) => {
-              console.log(review.rating);
               return (
-                <div key={review.id}>
+                <div key={review.id} id={review.id}>
                   <h3>{review.user.username}</h3>
                   {[...Array(5)].map((_, index) => {
                     return (
@@ -44,26 +39,45 @@ const Review = (props) => {
                   })}{' '}
                   ({review.rating} stars)
                   <p>{review.text}</p>
-                  {auth.id === review.userId ? (
-                    <button
-                      onClick={() => {
-                        dispatch(updateReview(review));
-                      }}
-                    >
-                      Edit Review
-                    </button>
-                  ) : null}
-                  {auth.id === review.userId || auth.isAdmin === true ? (
-                    <div>
-                      <button
-                        onClick={() => {
-                          dispatch(deleteReview(review));
-                        }}
-                      >
-                        Delete Review
-                      </button>
-                    </div>
-                  ) : null}
+                  <div id="buttons">
+                    {auth.id === review.userId ? (
+                      <div>
+                        <button
+                          type="submit"
+                          value="Edit"
+                          onClick={() => {
+                            showEditForm();
+                          }}
+                        >
+                          Edit
+                        </button>
+                        {showForm ? (
+                          <EditReview
+                            onClose={() => {
+                              setShowForm(false);
+                            }}
+                            id={review.id}
+                            text={review.text}
+                            rating={review.rating}
+                            bookId={bookID}
+                            userId={review.userId}
+                          />
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {auth.id === review.userId || auth.isAdmin === true ? (
+                      <div>
+                        <button
+                          onClick={() => {
+                            dispatch(deleteReview(review));
+                          }}
+                        >
+                          Delete Review
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                  <hr />
                 </div>
               );
             })
