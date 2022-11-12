@@ -25,7 +25,8 @@ const Book = () => {
   };
 
   return (
-    <div>
+    <div className='site'>
+      <div className='site-content'>
       <div className="book_page">
         <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
         <div className="book_text">
@@ -50,6 +51,7 @@ const Book = () => {
       <div>
         <Review id={book.id} book={book.title} />
         {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
+      </div>
       </div>
     </div>
   );
