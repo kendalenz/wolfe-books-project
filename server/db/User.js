@@ -15,6 +15,10 @@ const User = conn.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      len: [1, 25],
+      notNull: {
+        msg: 'Please enter a unique, and valid username between 1 and 25 characters long.',
+      },
     },
     unique: true,
   },
@@ -23,6 +27,10 @@ const User = conn.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      len: [1, 20],
+      notNull: {
+        msg: 'Please enter a password between 1 and 20 characters long.',
+      },
     },
   },
   firstName: {
@@ -30,6 +38,10 @@ const User = conn.define('user', {
     allowNull: false,
     Validate: {
       notEmpty: true,
+      len: [1, 100],
+      notNull: {
+        msg: 'Please contact us if your first name is more than 100 characters long.',
+      },
     },
   },
   lastName: {
@@ -37,6 +49,10 @@ const User = conn.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      len: [1, 100],
+      notNull: {
+        msg: 'Please contact us if your last name is more than 100 characters long.',
+      },
     },
   },
   email: {
@@ -45,11 +61,16 @@ const User = conn.define('user', {
     validate: {
       notEmpty: true,
       isEmail: true,
+      len: [1, 100],
+      notNull: {
+        msg: 'Please contact us if your email is more than 100 characters long.',
+      },
     },
   },
   isAdmin: {
     type: BOOLEAN,
     defaultValue: false,
+    allowNull: false,
   },
 });
 

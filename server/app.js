@@ -91,6 +91,10 @@ app.use('/api/books', require('./api/books'));
 app.use('/api/reviews', require('./api/reviews'));
 app.use('/api/users', require('./api/users'));
 
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send(err);
+  
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: req.body.lineItems.map((item) => {

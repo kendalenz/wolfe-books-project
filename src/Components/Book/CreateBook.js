@@ -16,14 +16,27 @@ const CreateBook = () => {
     imageUrl: '',
   });
 
+  const [error, setError] = useState({});
+
   const onChange = (ev) => {
     setBook({ ...book, [ev.target.name]: ev.target.value });
   };
 
-  const create = (ev) => {
+  const create = async (ev) => {
     ev.preventDefault();
-    dispatch(createBook(book, navigate));
+    try {
+      await dispatch(createBook(book, navigate));
+    } catch (err) {
+      setError(err.response.data);
+    }
   };
+
+  let messages = [];
+  if (error.errors) {
+    messages = error.errors.map((e) => e.message);
+  } else if (error.status) {
+    messages.push(error.status);
+  }
 
   return (
     <div>
@@ -81,6 +94,11 @@ const CreateBook = () => {
             onChange={onChange}
           ></textarea>
         </div>
+        <ul>
+          {messages.map((message) => {
+            return <li key={message}>{message}</li>;
+          })}
+        </ul>
         <button>Add Book to Store!</button>
       </form>
     </div>
