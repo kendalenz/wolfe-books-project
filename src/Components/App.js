@@ -14,6 +14,7 @@ import Book from './Book/Book';
 import Cart from './Cart/Cart';
 import Users from './User/Users';
 import Orders from './Cart/Orders';
+import OrderSuccess from './Cart/OrderSuccess';
 import EditUser from './User/EditUser';
 import AllUsers from './User/AllUsers';
 import EditBook from './Book/EditBook';
@@ -97,6 +98,7 @@ const App = () => {
             <Route path="/books/:id" element={<Book />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/order-success" element={<OrderSuccess />} />
             <Route path="/users/:id" element={<Users />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/createaccount" element={<CreateAccount />} />

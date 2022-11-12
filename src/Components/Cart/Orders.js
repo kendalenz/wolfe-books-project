@@ -15,26 +15,13 @@ const Orders = () => {
   const { cart, books } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [clientSecret, setClientSecret] = useState('');
   const [amountDue, setAmountDue] = useState('');
-
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch('/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: cart.lineItems }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
 
   const appearance = {
     theme: 'stripe',
   };
 
   const options = {
-    clientSecret,
     appearance,
   };
 
@@ -86,12 +73,11 @@ const Orders = () => {
         )}
       </ul>
       {cart.isCart ? <p>Amount Due: ${amountDue}</p> : ''}
-      {cart.lineItems.length > 0 && clientSecret && (
+      {cart.lineItems.length > 0 && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
       )}
-      <button disabled={cart.lineItems.length === 0} onClick={sendOrder}>Submit Order</button>
       <h2>Past Orders</h2>
       <ul>
         {!cart.isCart
