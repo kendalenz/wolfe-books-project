@@ -53,7 +53,7 @@ const Book = () => {
           <Review id={book.id} book={book.title} />
           {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
         </div>
-        <Recs />
+        <Recs book={book.id} genre={book.genre} />
       </div>
     </div>
   );

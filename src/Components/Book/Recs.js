@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -22,22 +23,45 @@ const responsive = {
   },
 };
 
-const Recs = () => {
+const Recs = (props) => {
+  const id = props.book;
+  const genre = props.genre;
+  const { books } = useSelector((state) => state);
+  const booksByGenre = books.filter(
+    (book) => book.genre === genre && book.id !== id
+  );
+  console.log('books by genre array', booksByGenre);
   return (
     <>
+      <hr />
+      <h2>You Might Also Enjoy...</h2>
       <Carousel
         responsive={responsive}
-        infinite={true}
+        infinite={false}
         showDots={true}
         centerMode={true}
       >
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div>
+        {booksByGenre.map((book) => (
+          <Item book={book} />
+        ))}
       </Carousel>
     </>
   );
 };
 
+const Item = (props) => {
+  console.log(props.book.id);
+  return (
+    <>
+      <h3>{props.book.title}</h3>
+      <a href={`/#/books/${props.book.id}`}>
+        <img
+          style={{ height: '10em' }}
+          src={props.book.imageUrl}
+          alt={props.book.title}
+        />
+      </a>
+    </>
+  );
+};
 export default Recs;
