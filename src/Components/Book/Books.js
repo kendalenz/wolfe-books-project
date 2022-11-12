@@ -12,7 +12,8 @@ const Books = () => {
 
   const Bookcard = (props) => {
     return (
-      <div style={{ padding: '2rem', margin: '1rem' }}>
+      <div className='book_card'>
+      {/* // style={{ padding: '2rem', margin: '1rem' }}> */}
         <img src={props.imageUrl} className="books_page_img" alt="Book cover" />
         <br></br>
         <Link to={`/books/${props.id}`}>
@@ -38,7 +39,7 @@ const Books = () => {
   getUniqueGenres();
 
   return (
-    <div className="page_content" style={{ height: '150vh' }}>
+    <div style={{ height: '300vh' }}>
       <div className="books_forms_div">
         <div className='genre_search_forms'>
           <div className="books_page_form">
