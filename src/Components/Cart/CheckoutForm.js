@@ -123,6 +123,7 @@ const Message = ({message}) => {
 
 const CheckoutForm = () => {
   const [message, setMessage] = useState('');
+  const { cart } = useSelector((state) => state);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -139,7 +140,7 @@ const CheckoutForm = () => {
     }
   }, []);
 
-  return message ? <Message message={message} /> : <ProductDisplay />;
+  return message ? <Message message={message} /> : cart.isCart ? <ProductDisplay /> : '';
 };
 
 export default CheckoutForm;

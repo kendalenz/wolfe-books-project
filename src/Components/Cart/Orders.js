@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { placeOrder, deleteFromCart } from '../../store';
+import { deleteFromCart } from '../../store';
 import dayjs from 'dayjs';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
@@ -23,15 +23,6 @@ const Orders = () => {
 
   const options = {
     appearance,
-  };
-
-  const sendOrder = (e) => {
-    e.preventDefault();
-    if (!cart.isCart || cart.lineItems.length === 0) {
-      alert('You have no items in your cart to order!');
-      throw new Error('missing cart');
-    }
-    dispatch(placeOrder(cart));
   };
 
   const deleteBook = (book, quantity) => {

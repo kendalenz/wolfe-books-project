@@ -14,7 +14,7 @@ const OrderSuccess = () => {
 
   return (
     <div>
-      <p>Now, those are some solid book choices!</p>
+      <h4>Now, those are some solid book choices!</h4>
       <Link to='/orders'>View Orders</Link>
     </div>
   );
