@@ -38,7 +38,8 @@ const Books = () => {
   getUniqueGenres();
 
   return (
-    <div className="content" style={{ height: '150vh' }}>
+    <div className="site" style={{ height: '150vh' }}>
+      <div className="site-content">
       <div className='books_forms_div'>
       <form className="books_page_form">
         <label form="genre">View by genre:</label>
@@ -52,9 +53,8 @@ const Books = () => {
             );
           })}
         </select>
-        {auth.isAdmin ? <Link to="/createbook">Add a Book</Link> : null}
       </form>
-      
+     
       <form className="books_page_form">
       <label>Search Books:</label>
         <input value={filter || ''} onChange={
@@ -67,6 +67,14 @@ const Books = () => {
           }
           }/>
       </form>
+
+      <div className='books_page_form'>
+        <div className='add_book_form'>
+        {auth.isAdmin ? <button><Link to="/createbook">Add a Book</Link></button> : null}
+        </div>
+      </div>
+
+      </div>
       </div>
 
       <div className="books_div">

@@ -1,3 +1,18 @@
+/* html, 
+body {
+  height: 100%;
+} */
+
+/* .site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+} */
+
+/* .site-content {
+  flex: 1;
+} */
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -10,7 +25,7 @@ body {
   background-color: white;
   /* margin-bottom: 20rem; */
   /* display: flex; */
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .hero-background {
@@ -42,9 +57,9 @@ body {
   width: 100%
 }
 
-.content {
+/* .content {
  width: 100%
-}
+} */
 
 form {
   display: flex;
@@ -55,10 +70,22 @@ form > * {
   margin-top: 1rem;
 }
 
+.books_forms_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .books_page_form {
   margin-left: 3rem;
   width: 8rem;
   border-radius: 2px;
+}
+
+.add_book_form {
+  align-self: flex-end;
 }
 
 input {
@@ -95,13 +122,6 @@ a:hover {
 .books_page_img {
   width:200px; 
   height: auto;
-}
-
-.books_forms_div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
 .select {
