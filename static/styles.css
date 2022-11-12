@@ -123,6 +123,14 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.book_card {
+  max-width: 12rem;
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .book_page {
   display: flex;
   flex-direction: row;
