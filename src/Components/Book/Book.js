@@ -26,33 +26,35 @@ const Book = () => {
   };
 
   return (
-    <div>
-      <div className="book_page">
-        <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
-        <div className="book_text">
-          <h4>{book.title}</h4>
-          <p>${book.price}</p>
-          <p>{book.description}</p>
-          <AddToCart />
-          {auth.isAdmin ? (
-            <Link to={`/books/${book.id}/edit`}>Edit Book Info</Link>
-          ) : null}
-          {auth.isAdmin ? (
-            <button onClick={() => destroyBook()}>Delete Book</button>
-          ) : null}
+    <div className="site">
+      <div className="site-content">
+        <div className="book_page">
+          <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
+          <div className="book_text">
+            <h4>{book.title}</h4>
+            <p>${book.price}</p>
+            <p>{book.description}</p>
+            <AddToCart />
+            {auth.isAdmin ? (
+              <Link to={`/books/${book.id}/edit`}>Edit Book Info</Link>
+            ) : null}
+            {auth.isAdmin ? (
+              <button onClick={() => destroyBook()}>Delete Book</button>
+            ) : null}
+          </div>
         </div>
+        <p>
+          <Link to="/books">
+            <BsArrowLeft size={30} />
+            <>Back</>
+          </Link>
+        </p>
+        <div>
+          <Review id={book.id} book={book.title} />
+          {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
+        </div>
+        <Recs />
       </div>
-      <p>
-        <Link to="/books">
-          <BsArrowLeft size={30} />
-          <>Back</>
-        </Link>
-      </p>
-      <div>
-        <Review id={book.id} book={book.title} />
-        {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
-      </div>
-      <Recs />
     </div>
   );
 };

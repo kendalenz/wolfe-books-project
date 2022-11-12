@@ -16,25 +16,45 @@ const CreateAccount = () => {
     email: '',
   });
 
+  const [error, setError] = useState({});
+
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault();
-    if (auth.isAdmin) {
-      dispatch(createUser(credentials));
-      navigate('/users');
-    } else if (!auth.id) {
-      dispatch(addUser(credentials));
-      navigate('/');
+    try {
+      if (auth.isAdmin) {
+        await dispatch(createUser(credentials));
+        navigate('/users');
+      } else if (!auth.id) {
+        await dispatch(addUser(credentials));
+        navigate('/');
+      }
+    } catch (err) {
+      setError(err.response.data);
     }
   };
+
+  let messages = [];
+  if (error.errors) {
+    messages = error.errors.map((e) => e.message);
+  } else if (error.status) {
+    if (error.status === 401) {
+      messages.push('invalid credentials');
+    } else messages.push(error.status);
+  }
 
   return (
     <div>
       {!auth.id ? <h2>Create An Account With Us!</h2> : null}
       {auth.isAdmin ? <h2>Create a New User Account!</h2> : null}
+      <ul>
+        {messages.map((message) => {
+          return <li key={message}>{message}</li>;
+        })}
+      </ul>
       <form onSubmit={register}>
         <input
           placeholder="first name"
