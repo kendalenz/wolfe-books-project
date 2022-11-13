@@ -28,15 +28,15 @@ const EditUser = () => {
   };
 
   return (
-    <div style={{ height: '80vh' }}>
+    <div id='edit_account_page' style={{ height: '80vh' }}>
       <form onSubmit={update}>
         <h1>Edit Account Info</h1>
         <div>
-          <label>Username</label>
+          <label><strong>Username: </strong></label>
           <input name="username" value={inputs.username} onChange={onChange} />
         </div>
         <div>
-          <label>First Name</label>
+          <label><strong>First Name: </strong></label>
           <input
             name="firstName"
             value={inputs.firstName}
@@ -44,13 +44,14 @@ const EditUser = () => {
           />
         </div>
         <div>
-          <label>Last Name</label>
+          <label><strong>Last Name: </strong></label>
           <input name="lastName" value={inputs.lastName} onChange={onChange} />
         </div>
         <div>
-          <label>Email</label>
+          <label><strong>Email: </strong></label>
           <input name="email" value={inputs.email} onChange={onChange} />
         </div>
+        <br></br>
         <button>Save Changes</button>
       </form>
     </div>
