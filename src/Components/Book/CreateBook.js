@@ -39,10 +39,11 @@ const CreateBook = () => {
   }
 
   return (
-    <div>
+    <div id='add_book_page' style={{ height: '80vh' }}>
+      <h1>Add Book to Store</h1>
       <form onSubmit={create}>
         <div>
-          <label>Title</label>
+          <label><strong>Title: </strong></label>
           <input
             placeholder="title"
             name="title"
@@ -51,7 +52,7 @@ const CreateBook = () => {
           />
         </div>
         <div>
-          <label>Author</label>
+          <label><strong>Author: </strong></label>
           <input
             placeholder="author"
             name="author"
@@ -60,7 +61,7 @@ const CreateBook = () => {
           />
         </div>
         <div>
-          <label>Genre</label>
+          <label><strong>Genre: </strong></label>
           <input
             placeholder="genre"
             name="genre"
@@ -69,7 +70,7 @@ const CreateBook = () => {
           />
         </div>
         <div>
-          <label>Price</label>
+          <label><strong>Price: </strong></label>
           <input
             placeholder="$$"
             name="price"
@@ -78,7 +79,7 @@ const CreateBook = () => {
           />
         </div>
         <div>
-          <label>Image URL</label>
+          <label><strong>Image URL: </strong></label>
           <input
             placeholder="image link"
             name="imageUrl"
@@ -87,7 +88,7 @@ const CreateBook = () => {
           />
         </div>
         <div>
-          <label>Description</label>
+          <label><strong>Description: </strong></label>
           <textarea
             name="description"
             value={book.description}
@@ -99,7 +100,7 @@ const CreateBook = () => {
             return <li key={message}>{message}</li>;
           })}
         </ul>
-        <button>Add Book to Store!</button>
+        <button>Add to Store</button>
       </form>
     </div>
   );

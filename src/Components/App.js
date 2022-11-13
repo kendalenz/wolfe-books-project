@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HiBookOpen, HiUsers } from 'react-icons/hi';
 import {
   RiShoppingCart2Fill,
@@ -9,7 +9,6 @@ import { MdReorder, MdAccountBox } from 'react-icons/md';
 import Home from './Home';
 import Login from './Login';
 import Books from './Book/Books';
-import Search from './Book/Search';
 import Book from './Book/Book';
 import Cart from './Cart/Cart';
 import Users from './User/Users';
@@ -31,6 +30,7 @@ import {
   logout,
 } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
+import OrderCancelled from './Cart/OrderCancelled';
 
 const App = () => {
   const { auth } = useSelector((state) => state);
@@ -99,6 +99,7 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order-success" element={<OrderSuccess />} />
+            <Route path='/order-cancelled' element={<OrderCancelled />} />
             <Route path="/users/:id" element={<Users />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
             <Route path="/createaccount" element={<CreateAccount />} />
