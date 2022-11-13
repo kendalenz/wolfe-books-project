@@ -26,9 +26,8 @@ const Book = () => {
   };
 
   return (
-    <div className="site">
-      <div className="site-content">
-        <div className="book_page">
+      <div style={{ height: '250vh' }}>
+        <div className="book_info">
           <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
           <div className="book_text">
             <h4>{book.title}</h4>
@@ -38,24 +37,26 @@ const Book = () => {
             {auth.isAdmin ? (
               <Link to={`/books/${book.id}/edit`}>Edit Book Info</Link>
             ) : null}
+            <br></br>
             {auth.isAdmin ? (
               <button onClick={() => destroyBook()}>Delete Book</button>
             ) : null}
           </div>
         </div>
-        <p>
+        <div className='arrow'>
           <Link to="/books">
             <BsArrowLeft size={30} />
             <>Back</>
           </Link>
-        </p>
-        <div>
+        </div>
+        <div className='book_reviews'>
           <Review id={book.id} book={book.title} />
           {auth.id ? <CreateReview id={book.id} book={book.title} /> : null}
         </div>
+        <div className='book_recs'>
         <Recs book={book.id} genre={book.genre} />
+        </div>
       </div>
-    </div>
   );
 };
 

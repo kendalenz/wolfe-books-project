@@ -13,7 +13,6 @@ const Books = () => {
   const Bookcard = (props) => {
     return (
       <div className='book_card'>
-      {/* // style={{ padding: '2rem', margin: '1rem' }}> */}
         <img src={props.imageUrl} className="books_page_img" alt="Book cover" />
         <br></br>
         <Link to={`/books/${props.id}`}>
@@ -44,7 +43,7 @@ const Books = () => {
         <div className='genre_search_forms'>
           <div className="books_page_form">
           <form>
-            <label form="genre">View by genre:</label>
+            <label form="genre">View by genre</label>
             <select className='select'value={genre} onChange={(ev) => setGenre(ev.target.value)}>
             <option value="">All</option>
               {genres.map((genre) => {
@@ -60,7 +59,7 @@ const Books = () => {
      
           <div className="books_page_form">
           <form>
-            <label>Search Books:</label>
+            <label>Search Books</label>
             <input value={filter || ''} onChange={
               ev => {
                 if(ev.target.value==='') {
@@ -75,7 +74,7 @@ const Books = () => {
         </div>
         
         <div className='add_book_button'>
-          {auth.isAdmin ? <button><Link to="/createbook">Add a Book</Link></button> : null}
+          {auth.isAdmin ? <span className='center_text'><Link to="/createbook">Add a Book</Link></span> : null}
         </div>
     </div>
 
