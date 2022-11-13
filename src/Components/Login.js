@@ -39,8 +39,8 @@ const Login = () => {
   }
 
   return (
-    <div style={{ height: '80vh' }}>
-      <h2>Login</h2>
+    <div id='login_page' style={{ height: '80vh' }}>
+      <h2>Log In</h2>
       <ul>
         {messages.map((message) => {
           return <li key={message}>{message}</li>;
@@ -62,9 +62,9 @@ const Login = () => {
         />
         <button>Login</button>
         <div>
-          <label>Don't have an account?</label>
+          <label><h3>Don't have an account?</h3></label>
           <Link to="/createaccount">
-            <button>Create an Account!</button>
+            <button id='create_account_button'>Create an Account!</button>
           </Link>
         </div>
       </form>

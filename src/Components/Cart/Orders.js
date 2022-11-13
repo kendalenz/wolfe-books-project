@@ -39,7 +39,7 @@ const Orders = () => {
   }, [cart]);
 
   return (
-    <div id='checkout_page'style={{ height: '200vh' }}>
+    <div id="checkout_page" style={{ height: '200vh' }}>
       <h1>Checkout</h1>
       <div>
         {cart.lineItems.length > 0 && cart.isCart ? (
@@ -48,32 +48,36 @@ const Orders = () => {
             const copyText = item.quantity > 1 ? 'copies' : 'copy';
             return (
               <div key={book.id}>
-                <div id='checkout_info'>
-                  <img id='checkout_page_img' src={book.imageUrl}/> 
-                  <div id='checkout_text'>
-                  {book.title} by {book.author} ({item.quantity} {copyText} @ $
-                  {book.price} each)
-                  <br></br>
-                  {cart.isCart ? <strong>Amount Due: ${amountDue}</strong> : ''}
-                  <br></br>
-                  <br></br>
-                  <div id='checkout_buttons'>
-                  <div id='edit_quantity_button'>
-                    <button onClick={() => navigate('/cart')}>Edit Quantity</button>
-                  </div>
-                  <button onClick={() => deleteBook(book, item.quantity)}>
-                    Remove Book
-                  </button>
-                </div>
+                <div id="checkout_info">
+                  <img id="checkout_page_img" src={book.imageUrl} />
+                  <div id="checkout_text">
+                    {book.title} by {book.author} ({item.quantity} {copyText} @
+                    ${book.price} each)
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div id="checkout_buttons">
+                      <div id="edit_quantity_button">
+                        <button onClick={() => navigate('/cart')}>
+                          Edit Quantity
+                        </button>
+                      </div>
+                      <button onClick={() => deleteBook(book, item.quantity)}>
+                        Remove Book
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })
         ) : (
-          <Link to="/books">Your cart is empty - Click here to add books!</Link>
+          <Link to="/books">
+            <h4>Your cart is empty - Click here to add books!</h4>
+          </Link>
         )}
         <br></br>
+        {cart.isCart ? <strong>Amount Due: ${amountDue}</strong> : ''}
       </div>
       {cart.lineItems.length > 0 && (
         <Elements options={options} stripe={stripePromise}>
@@ -81,21 +85,22 @@ const Orders = () => {
         </Elements>
       )}
       <div>
-      <h2>Past Orders</h2>
-      <ul>
-        {!cart.isCart
-          ? cart.lineItems.map((item) => {
-              const book = books.find((b) => b.id === item.bookId);
-              return (
-                <li key={item.id}>
-                  {book.title} - {item.quantity} copies ordered on{' '}
-                  {dayjs(cart.updatedAt).toString()}
-                </li>
-              );
-            })
-          : ''}
-      </ul>
-    </div>
+        <h2>Past Orders</h2>
+        <ul>
+          {!cart.isCart
+            ? cart.lineItems.map((item) => {
+                const book = books.find((b) => b.id === item.bookId);
+                const copyText = item.quantity > 1 ? 'copies' : 'copy';
+                return (
+                  <li key={item.id}>
+                    {book.title} - {item.quantity} {copyText} ordered on{' '}
+                    {dayjs(cart.updatedAt).format('MM/DD/YYYY').toString()}
+                  </li>
+                );
+              })
+            : ''}
+        </ul>
+      </div>
     </div>
   );
 };
