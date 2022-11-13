@@ -251,4 +251,44 @@ a {
   width:100px; 
   height: auto;
   margin-right: 4rem;
+  margin-bottom: 2rem;
+}
+
+#account_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#edit_account_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#add_book_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#users_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#delete_user_button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#create_user_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#login_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#create_account_button {
+  margin-top: 1rem;
 }

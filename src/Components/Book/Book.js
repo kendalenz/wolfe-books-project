@@ -26,7 +26,7 @@ const Book = () => {
   };
 
   return (
-      <div style={{ height: '250vh' }}>
+      <div style={{ height: '300vh' }}>
         <div className="book_info">
           <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
           <div className="book_text">
