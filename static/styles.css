@@ -252,3 +252,12 @@ a {
   height: auto;
   margin-right: 4rem;
 }
+
+#edit_book_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#update_book_button {
+  margin-top: 2rem;
+}
