@@ -52,7 +52,7 @@ const Recs = (props) => {
 const Item = (props) => {
   console.log(props.book.id);
   return (
-    <>
+    <div className='book_rec_info'>
       <h3>{props.book.title}</h3>
       <a href={`/#/books/${props.book.id}`}>
         <img
@@ -61,7 +61,7 @@ const Item = (props) => {
           alt={props.book.title}
         />
       </a>
-    </>
+    </div>
   );
 };
 export default Recs;

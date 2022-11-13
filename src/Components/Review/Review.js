@@ -30,16 +30,17 @@ const Review = (props) => {
                     return (
                       <FaStar
                         key={index}
-                        size={25}
+                        size={15}
                         color={
-                          review.rating >= index + 1 ? '#FFBA5A' : '#a9a9a9'
+                          review.rating >= index + 1 ? '#B0C4DE' : '#B0C4DE'
                         }
                       />
                     );
                   })}{' '}
-                  ({review.rating} stars)
+                  ({review.rating} star(s))
                   <p>{review.text}</p>
                   <div id="buttons">
+                    <div id='edit_book'>
                     {auth.id === review.userId ? (
                       <div>
                         <button
@@ -65,6 +66,7 @@ const Review = (props) => {
                         ) : null}
                       </div>
                     ) : null}
+                    </div>
                     {auth.id === review.userId || auth.isAdmin === true ? (
                       <div>
                         <button
@@ -81,7 +83,7 @@ const Review = (props) => {
                 </div>
               );
             })
-          : 'no reviews yet...be the first one to write a review!'}
+          : 'Be the first to write a review!'}
       </div>
     </div>
   );

@@ -74,6 +74,11 @@ form > * {
   margin-right: 8rem;
   width: 8rem;
   border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+}
+#edit_book {
+  margin-right: 2rem;
 }
 
 input {
@@ -87,6 +92,11 @@ button {
   border-radius: 2px;
   background-color: white;
   font-family: optima;
+}
+
+button:hover {
+  background-color: B0C4DE;
+  transition: 0.7s;
 }
 
 button:hover {
@@ -112,8 +122,9 @@ a:hover {
   height: auto;
 }
 
-.select {
+select {
   border-radius: 2px;
+  width: 8rem;
 }
 
 .books_div {
@@ -131,11 +142,11 @@ a:hover {
   margin-right: 1rem;
 }
 
-.book_page {
+.book_info {
   display: flex;
   flex-direction: row;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .book_page_img {
   width:400px; 
@@ -146,6 +157,31 @@ a:hover {
 .book_text {
   text-align: justify;
   font-size: 20px;
+}
+
+.arrow {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%
+}
+
+.book_reviews {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.book_recs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.book_rec_info {
+  max-width: 10rem;
 }
 
 hr {
@@ -172,6 +208,8 @@ a {
 
 #buttons {
   display: flex;
+  justify-content: flex-start;
+  margin-right: 5rem;
 }
 
 .nav-links {
