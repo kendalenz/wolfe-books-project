@@ -116,7 +116,7 @@ app.post('/create-checkout-session', async (req, res) => {
     }/#/order-success`,
     cancel_url: `${req.protocol}://${req.hostname}:${
       process.env.PORT || 3000
-    }?canceled=true`,
+    }/#/order-cancelled`,
   });
 
   res.send(session.url);
