@@ -11,6 +11,11 @@ body {
   background-color: white;
 }
 
+pre {
+  font-family: inherit;
+  font-style: italic;
+}
+
 .hero-background {
   background-color: #F8F8F8;
   display: flex;
@@ -35,9 +40,10 @@ body {
   background-color: #F8F8F8;
   color: black;
   text-align: left;
-  position:relative; 
-  bottom:0;
-  width: 100%
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
 }
 
 form {
@@ -118,6 +124,10 @@ a:hover {
   text-decoration: underline;
 }
 
+h4 {
+  text-align: center;
+}
+
 .books_page_img {
   width:200px; 
   height: auto;
@@ -186,6 +196,11 @@ select {
   max-width: 10rem;
 }
 
+.cart-book-img {
+  max-width: 5rem;
+  margin: 1rem;
+}
+
 hr {
   color: rgb(255, 255, 255);
 }
@@ -221,6 +236,7 @@ a {
 }
 
 #cart_page_content {
+  display: flex;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -251,6 +267,7 @@ a {
   width:100px; 
   height: auto;
   margin-right: 4rem;
+
   margin-bottom: 2rem;
 }
 
@@ -291,4 +308,40 @@ a {
 
 #create_account_button {
   margin-top: 1rem;
+}
+
+#cart-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.buy_btn, .checkout_btn {
+  justify-content: center;
+  margin: 2rem;
+  padding: 2rem;
+  font-weight: bold;
+  border-radius: 5%;
+  border: solid 5px black;
+}
+
+#cart-book-list {
+  margin-right: 15rem;
+}
+
+#order_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#order_success img {
+  max-width: 50rem;
+  margin: 1rem;
+  border: 5px solid purple;
+  border-radius: 5%;
+}
+
+#view_orders_btn {
+  margin: 2rem;
+
 }
