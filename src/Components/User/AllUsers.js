@@ -24,24 +24,27 @@ const AllUsers = () => {
   };
 
   return (
-    <div>
+    <div id='users_page' style={{ height: '200vh' }}>
+      <h1>Users</h1>
       {users.map((user) => (
         <div key={user.id}>
           <h3>{user.username}</h3>
           <div>
-            <label>Admin:</label>
+            <label><strong>Admin: </strong></label>
             <select value={user.isAdmin} onChange={(ev) => setAdmin(ev, user)}>
-              <option value={true}>true</option>
-              <option value={false}>false</option>
+              <option value={true}>True</option>
+              <option value={false}>False</option>
             </select>
-            <br />
+            <br></br>
+            <div id='delete_user_button'>
             {auth.id !== user.id ? (
               <button onClick={() => destroy(user)}>Delete User</button>
             ) : null}
+            </div>
           </div>
         </div>
       ))}
-      <Link to="/createaccount">Create a New User</Link>
+      <h3><Link to="/createaccount">Create a New User</Link></h3>
     </div>
   );
 };

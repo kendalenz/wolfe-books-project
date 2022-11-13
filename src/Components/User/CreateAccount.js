@@ -47,9 +47,9 @@ const CreateAccount = () => {
   }
 
   return (
-    <div>
+    <div id='create_user_page' style={{ height: '80vh' }}>
       {!auth.id ? <h2>Create An Account With Us!</h2> : null}
-      {auth.isAdmin ? <h2>Create a New User Account!</h2> : null}
+      {auth.isAdmin ? <h2>Create a New User Account</h2> : null}
       <ul>
         {messages.map((message) => {
           return <li key={message}>{message}</li>;
