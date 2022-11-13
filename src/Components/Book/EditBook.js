@@ -35,6 +35,7 @@ const EditBook = () => {
 
   return (
     <div>
+      <h1>Edit Book Information</h1>
       <form onSubmit={update}>
         <div>
           <label>Title</label>
