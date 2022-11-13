@@ -30,9 +30,9 @@ const Review = (props) => {
                     return (
                       <FaStar
                         key={index}
-                        size={15}
+                        size={25}
                         color={
-                          review.rating >= index + 1 ? '#B0C4DE' : '#B0C4DE'
+                          review.rating >= index + 1 ? '#FFBA5A' : '#a9a9a9'
                         }
                       />
                     );

@@ -96,20 +96,24 @@ const ProductDisplay = () => {
 
   return (
     <section>
-      {cart.lineItems.map((item) => {
+      {/* {cart.lineItems.map((item) => {
         return (
           <div key={item.id} className="product">
             <img src={item.book.imageUrl} />
             <div className="description">
               <h3>{item.book.title}</h3>
-              <h4>{item.book.description}</h4>
-              <h5>{item.book.price}</h5>
+              
+              ${item.book.price}
+              <br></br>
+              <br></br>
+              {item.book.description}
             </div>
           </div>
         );
-      })}
+      })} */}
       <button onClick={checkout}>Checkout</button>
     </section>
+    
   );
 };
 
@@ -135,7 +139,7 @@ const CheckoutForm = () => {
 
     if (query.get('canceled')) {
       setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+        "Order canceled. Continue to shop and checkout when you're ready."
       );
     }
   }, []);

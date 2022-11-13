@@ -39,36 +39,48 @@ const Orders = () => {
   }, [cart]);
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div id='checkout_page'style={{ height: '200vh' }}>
       <h1>Checkout</h1>
-      <ul>
+      <div>
         {cart.lineItems.length > 0 && cart.isCart ? (
           cart.lineItems.map((item) => {
             const book = books.find((b) => b.id === item.bookId);
             const copyText = item.quantity > 1 ? 'copies' : 'copy';
             return (
               <div key={book.id}>
-                <p>
+                <div id='checkout_info'>
+                  <img id='checkout_page_img' src={book.imageUrl}/> 
+                  <div id='checkout_text'>
                   {book.title} by {book.author} ({item.quantity} {copyText} @ $
                   {book.price} each)
-                </p>
-                <button onClick={() => navigate('/cart')}>Edit Quantity</button>
-                <button onClick={() => deleteBook(book, item.quantity)}>
-                  Remove Book
-                </button>
+                  <br></br>
+                  {cart.isCart ? <strong>Amount Due: ${amountDue}</strong> : ''}
+                  <br></br>
+                  <br></br>
+                  <div id='checkout_buttons'>
+                  <div id='edit_quantity_button'>
+                    <button onClick={() => navigate('/cart')}>Edit Quantity</button>
+                  </div>
+                  <button onClick={() => deleteBook(book, item.quantity)}>
+                    Remove Book
+                  </button>
+                </div>
+                  </div>
+                </div>
               </div>
             );
           })
         ) : (
           <Link to="/books">Your cart is empty - Click here to add books!</Link>
         )}
-      </ul>
-      {cart.isCart ? <p>Amount Due: ${amountDue}</p> : ''}
+        <br></br>
+      </div>
       {cart.lineItems.length > 0 && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
       )}
+      <div>
       <h2>Past Orders</h2>
       <ul>
         {!cart.isCart
@@ -83,6 +95,7 @@ const Orders = () => {
             })
           : ''}
       </ul>
+    </div>
     </div>
   );
 };

@@ -77,6 +77,7 @@ form > * {
   justify-content: center;
   align-items: center;
 }
+
 #edit_book {
   margin-right: 2rem;
 }
@@ -148,6 +149,7 @@ select {
   margin-left: 5%;
   margin-right: 5%;
 }
+
 .book_page_img {
   width:400px; 
   height: auto;
@@ -216,4 +218,37 @@ a {
   display: flex;
   justify-content: space-between;
   gap: .2em;
+}
+
+#cart_page_content {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#checkout_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#checkout_buttons {
+  display: flex;
+}
+
+#edit_quantity_button {
+  margin-right: 5rem;
+}
+
+#checkout_info {
+  display: flex;
+  flex-direction: row;
+}
+
+#checkout_text {
+  text-align: justify;
+}
+
+#checkout_page_img {
+  width:100px; 
+  height: auto;
+  margin-right: 4rem;
 }

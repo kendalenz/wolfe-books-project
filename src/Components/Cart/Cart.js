@@ -7,14 +7,14 @@ const Cart = () => {
   const { cart, books } = useSelector((state) => state);
 
   return (
-    <div style={{ height: '400vh' }}>
+    <div id='cart_page_content' style={{ height: '400vh' }}>
       <h1>Cart</h1>
-      <ul>
+      <div>
         {cart.lineItems.length > 0
           ? cart.lineItems.map((lineItem) => {
               const book = books.find((book) => book.id === lineItem.bookId);
               return (
-                <li key={book.id}>
+                <div key={book.id}>
                   {book.title} by {book.author} - ${book.price} (You have {lineItem.quantity} in
                   your cart)
                   <UpdateItemQuantity
@@ -23,11 +23,11 @@ const Cart = () => {
                     quantity={lineItem.quantity}
                     bookId={book.id}
                   />
-                </li>
+                </div>
               );
             })
           : 'Oops, your cart is empty!'}
-      </ul>
+      </div>
       <div>
         <Link to="/books">
           <button>Buy Some Books!</button>
