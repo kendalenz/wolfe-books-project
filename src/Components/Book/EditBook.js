@@ -34,14 +34,15 @@ const EditBook = () => {
   };
 
   return (
-    <div>
+    <div id='edit_book_page' style={{ height: '80vh' }}>
+      <h1>Edit Book Information</h1>
       <form onSubmit={update}>
         <div>
-          <label>Title</label>
+          <label><strong>Title: </strong></label>
           <input name="title" value={inputs.title} onChange={onChange}></input>
         </div>
         <div>
-          <label>Author</label>
+          <label><strong>Author: </strong></label>
           <input
             name="author"
             value={inputs.author}
@@ -49,15 +50,15 @@ const EditBook = () => {
           ></input>
         </div>
         <div>
-          <label>Genre</label>
+          <label><strong>Genre: </strong></label>
           <input name="genre" value={inputs.genre} onChange={onChange}></input>
         </div>
         <div>
-          <label>Price</label>
+          <label><strong>Price: </strong></label>
           <input name="price" value={inputs.price} onChange={onChange}></input>
         </div>
         <div>
-          <label>Image</label>
+          <label><strong>Image: </strong></label>
           <input
             name="imageUrl"
             type="url"
@@ -66,14 +67,14 @@ const EditBook = () => {
           ></input>
         </div>
         <div>
-          <label>Description</label>
+          <label><strong>Description: </strong></label>
           <textarea
             name="description"
             value={inputs.description}
             onChange={onChange}
           ></textarea>
         </div>
-        <button>Update</button>
+        <button id='update_book_button'>Update</button>
       </form>
     </div>
   );

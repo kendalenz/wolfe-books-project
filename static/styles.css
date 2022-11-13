@@ -267,7 +267,10 @@ a {
   width:100px; 
   height: auto;
   margin-right: 4rem;
+  
+}
 
+#edit_book_page {
   margin-bottom: 2rem;
 }
 
@@ -304,6 +307,10 @@ a {
 #login_page {
   margin-left: 5%;
   margin-right: 5%;
+}
+
+#update_book_button {
+  margin-top: 2rem;
 }
 
 #create_account_button {
@@ -343,5 +350,4 @@ a {
 
 #view_orders_btn {
   margin: 2rem;
-
 }
