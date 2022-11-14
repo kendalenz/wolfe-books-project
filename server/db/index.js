@@ -6,9 +6,10 @@ const LineItem = require('./LineItem');
 const Review = require('./Review');
 const Checkout = require('./Checkout');
 
+User.hasMany(Order, { hooks: true, onDelete: 'CASCADE' });
 Order.belongsTo(User);
 LineItem.belongsTo(Order);
-Order.hasMany(LineItem);
+Order.hasMany(LineItem, { hooks: true, onDelete: 'CASCADE' });
 LineItem.belongsTo(Book);
 Review.belongsTo(Book);
 Book.hasMany(Review);

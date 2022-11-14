@@ -8,6 +8,7 @@ app.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll({
       include: [{ model: User }, { model: Book }],
+      paranoid: false,
     });
     res.send(reviews);
   } catch (ex) {
@@ -20,6 +21,7 @@ app.post('/', async (req, res, next) => {
     const review = await Review.create(req.body);
     const reviewPlus = await Review.findByPk(review.id, {
       include: [{ model: User }, { model: Book }],
+      paranoid: false,
     });
     res.send(reviewPlus);
   } catch (ex) {
@@ -33,6 +35,7 @@ app.put('/:id', async (req, res, next) => {
     console.log('put route', req.body);
     const review = await Review.findByPk(req.params.id, {
       include: [{ model: User }, { model: Book }],
+      paranoid: false,
     });
     console.log('update', review);
     await review.update(req.body);
@@ -45,7 +48,7 @@ app.put('/:id', async (req, res, next) => {
 
 app.delete('/:id', async (req, res, next) => {
   try {
-    const review = await Review.findByPk(req.params.id);
+    const review = await Review.findByPk(req.params.id, { paranoid: false });
     await review.destroy();
     res.sendStatus(204);
   } catch (ex) {
