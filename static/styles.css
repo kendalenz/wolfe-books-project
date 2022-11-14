@@ -46,6 +46,21 @@ pre {
   margin-top: auto;
 }
 
+.checkout_form {
+  border: 1px solid black;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+.address_form {
+  width: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
 form {
   display: flex;
   flex-direction: column;
