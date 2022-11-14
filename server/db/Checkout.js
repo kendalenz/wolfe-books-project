@@ -1,6 +1,5 @@
-const { BOOLEAN } = require('sequelize');
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, DECIMAL, ENUM } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, DECIMAL, BOOLEAN } = conn.Sequelize;
 
 const Checkout = conn.define('checkout', {
   id: {
@@ -16,15 +15,41 @@ const Checkout = conn.define('checkout', {
     type: UUID,
     allowNull: false,
   },
-  shippingAddress: {
+  shippingAddressStreet1: {
     type: STRING,
     allowNull: false,
   },
-  billingAddress: {
+  shippingAddressStreet2: {
+    type: STRING,
+  },
+  shippingAddressCity: {
     type: STRING,
     allowNull: false,
   },
-  couponCode: {
+  shippingAddressState: {
+    type: STRING,
+    allowNull: false,
+  },
+  shippingAddressZip: {
+    type: STRING,
+    allowNull: false,
+  },
+  billingSameAsShipping: {
+    type: BOOLEAN,
+  },
+  billingAddressStreet1: {
+    type: STRING,
+  },
+  billingAddressStreet2: {
+    type: STRING,
+  },
+  billingAddressCity: {
+    type: STRING,
+  },
+  billingAddressState: {
+    type: STRING,
+  },
+  billingAddressZip: {
     type: STRING,
   },
   amountDue: {
@@ -33,10 +58,6 @@ const Checkout = conn.define('checkout', {
     validate: {
       min: 0,
     },
-  },
-  paymentSuccessful: {
-    type: BOOLEAN,
-    defaultValue: false,
   },
 });
 
