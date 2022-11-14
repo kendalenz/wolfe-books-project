@@ -264,10 +264,10 @@ a {
 }
 
 #checkout_page_img {
-  width:100px; 
+  max-width: 5rem;
   height: auto;
   margin-right: 4rem;
-  
+  margin-bottom: 1rem;
 }
 
 #edit_book_page {
@@ -324,13 +324,23 @@ a {
   flex-direction: column;
 }
 
-.buy_btn, .checkout_btn {
+.buy_btn {
   justify-content: center;
-  margin: 2rem;
-  padding: 2rem;
+  margin: 1rem;
+  padding: 1rem;
   font-weight: bold;
-  border-radius: 5%;
-  border: solid 5px black;
+  border-radius: 2px;
+}
+
+.checkout_btn {
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 1rem;
+  /* margin-top: 1rem;
+  margin-bottom: 1rem; */
+  margin: 1rem;
+
 }
 
 #cart-book-list {
@@ -352,4 +362,9 @@ a {
 
 #view_orders_btn {
   margin: 2rem;
+}
+
+#cart_page {
+  margin-left: 5%;
+  margin-right: 5%;
 }
