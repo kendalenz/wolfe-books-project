@@ -35,7 +35,6 @@ const EditBook = () => {
 
   return (
     <div id='edit_book_page' style={{ height: '80vh' }}>
-
       <h1>Edit Book Information</h1>
       <form onSubmit={update}>
         <div>

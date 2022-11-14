@@ -7,7 +7,7 @@ const Cart = () => {
   const { cart, books } = useSelector((state) => state);
 
   return (
-    <div>
+    <div id='cart_page'>
       <h1>Cart</h1>
       <div id="cart_page_content" style={{ height: '400vh' }}>
         <div id="cart-book-list">
@@ -29,6 +29,7 @@ const Cart = () => {
                     quantity={lineItem.quantity}
                     bookId={book.id}
                   />
+                  <br></br>
                 </div>
               );
             })
@@ -39,7 +40,7 @@ const Cart = () => {
         <div id="cart-actions">
           <div>
             <Link to="/books">
-              <button className="buy_btn">Buy Some Books!</button>
+              <button className="buy_btn">Buy Some Books</button>
             </Link>
           </div>
           <br />
@@ -49,7 +50,7 @@ const Cart = () => {
                 className="checkout_btn"
                 disabled={cart.lineItems.length === 0}
               >
-                Checkout!
+                Checkout
               </button>
             </Link>
           </div>
