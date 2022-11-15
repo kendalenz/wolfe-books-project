@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteReview } from '../../store';
 import { FaStar } from 'react-icons/fa';
 import EditReview from './EditReview';
+import dayjs from 'dayjs';
 
 const Review = (props) => {
   const dispatch = useDispatch();
@@ -23,9 +24,14 @@ const Review = (props) => {
         <h2>Reviews for {book}</h2>
         {getReviews.length >= 1
           ? getReviews.map((review) => {
+              console.log(review);
               return (
                 <div key={review.id} id={review.id}>
                   <h3>{review.user.username}</h3>
+                  <h4>
+                    Reviewed on{' '}
+                    {dayjs(review.createdAt).format('MMMM, DD YYYY').toString()}
+                  </h4>
                   {[...Array(5)].map((_, index) => {
                     return (
                       <FaStar
@@ -40,32 +46,32 @@ const Review = (props) => {
                   ({review.rating} star(s))
                   <p>{review.text}</p>
                   <div id="buttons">
-                    <div id='edit_book'>
-                    {auth.id === review.userId ? (
-                      <div>
-                        <button
-                          type="submit"
-                          value="Edit"
-                          onClick={() => {
-                            showEditForm();
-                          }}
-                        >
-                          Edit
-                        </button>
-                        {showForm ? (
-                          <EditReview
-                            onClose={() => {
-                              setShowForm(false);
+                    <div id="edit_book">
+                      {auth.id === review.userId ? (
+                        <div>
+                          <button
+                            type="submit"
+                            value="Edit"
+                            onClick={() => {
+                              showEditForm();
                             }}
-                            id={review.id}
-                            text={review.text}
-                            rating={review.rating}
-                            bookId={bookID}
-                            userId={review.userId}
-                          />
-                        ) : null}
-                      </div>
-                    ) : null}
+                          >
+                            Edit
+                          </button>
+                          {showForm ? (
+                            <EditReview
+                              onClose={() => {
+                                setShowForm(false);
+                              }}
+                              id={review.id}
+                              text={review.text}
+                              rating={review.rating}
+                              bookId={bookID}
+                              userId={review.userId}
+                            />
+                          ) : null}
+                        </div>
+                      ) : null}
                     </div>
                     {auth.id === review.userId || auth.isAdmin === true ? (
                       <div>

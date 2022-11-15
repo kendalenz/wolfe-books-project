@@ -30,7 +30,6 @@ const Recs = (props) => {
   const booksByGenre = books.filter(
     (book) => book.genre === genre && book.id !== id
   );
-  console.log('books by genre array', booksByGenre);
   return (
     <>
       <hr />
@@ -50,13 +49,12 @@ const Recs = (props) => {
 };
 
 const Item = (props) => {
-  console.log(props.book.id);
   return (
     <div className="book_rec_info">
       <h3>{props.book.title}</h3>
       <a href={`/#/books/${props.book.id}`}>
         <img
-          style={{ height: '10em' }}
+          style={{ height: '20em', width: 'auto' }}
           src={props.book.imageUrl}
           alt={props.book.title}
         />

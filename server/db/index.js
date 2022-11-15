@@ -247,14 +247,81 @@ const syncAndSeed = async () => {
       'https://d2p7wwv96gt4xt.cloudfront.net/G/FF7D817F/EAN-9780061336461',
   });
   await Book.create({
-    title: 'The Language Instinct',
-    author: 'Steven Pinker',
-    genre: 'Cognitive Science',
+    title: 'The City We Became',
+    author: 'N.K. Jemisin',
+    genre: 'Science Fiction',
     description:
       "\"A glorious fantasy.\"--Neil Gaiman Three-time Hugo Award-winning and New York Times bestselling author N.K. Jemisin crafts her most incredible novel yet, a story of culture, identity, magic, and myths in contemporary New York City.     In Manhattan, a young grad student gets off the train and realizes he doesn't remember who he is, where he's from, or even his own name. But he can sense the beating heart of the city, see its history, and feel its power.</br>In the Bronx, a Lenape gallery director discovers strange graffiti scattered throughout the city, so beautiful and powerful it's as if the paint is literally calling to her.     In Brooklyn, a politician and mother finds she can hear the songs of her city, pulsing to the beat of her Louboutin heels.And they're not the only ones.",
     price: '17.99',
     imageUrl:
       'https://d2p7wwv96gt4xt.cloudfront.net/G/CCAAED4D/EAN-9780316509848',
+  });
+  await Book.create({
+    title: 'Bobby Fischer Teaches Chess',
+    author: 'Bobby Fischer',
+    genre: 'Educational',
+    description:
+      'Learn how to play chess the Bobby Fischer way with the fastest, most efficient, most enjoyable method ever devised. Whether you’re just learning the game or looking for more complex strategies, these practice problems and exercises will help you master the art of the checkmate. ',
+    price: '8.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/C7905B8C/EAN-9780553263152',
+  });
+  await Book.create({
+    title: 'Dreams',
+    author: 'C.G. Jung',
+    genre: 'Psychology',
+    description:
+      'Dream analysis is a distinctive and foundational part of analytical psychology, the school of psychology founded by C. G. Jung and his successors. This volume collects Jung\'s most insightful contributions to the study of dreams and their meaning. The essays in this volume, written by Jung between 1909 and 1945, reveal Jung\'s most essential views about dreaming--especially regarding the relationship between language and dream. Through these studies, Jung grew to understand that dreams are themselves a language, a language through which the soul communicates with the body. The essays included are "The Analysis of Dreams," "On the Significance of Number Dreams," "General Aspects of Dream Psychology," "On the Nature of Dreams," "The Practical Use of Dream Analysis," and "Individual Dream Symbolism in Relation to Alchemy" (complete with illustrations). ',
+    price: '16.95',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/2C4EBC05/EAN-9780691150482',
+  });
+  await Book.create({
+    title:
+      'Modern Full-Stack Development: Using Typescript, React, Node.Js, Webpack, and Docker',
+    author: 'Frank Zammetti',
+    genre: 'Software Development',
+    description:
+      "Explore what React, Node, TypeScript, Webpack, and Docker have to offer individually, and how they all fit together in modern app development.React is one of the most popular web development tools available today, and Node.js is extremely popular for server-side development. The fact that both utilize JavaScript is a big selling point, but as developers use the language more, they begin to recognize the shortcomings, and that's where TypeScript comes in and why it's gaining in popularity quickly. Add Webpack and Docker to the mix, and you've got a potent full development stack on which to build applications.You'll begin by building a solid foundation of knowledge and quickly expand it by constructing two different real-world apps. These aren't just simple, contrived examples but real apps that you can choose to install on your servers and use for real. By the end, you will have a solid grasp of building apps with React, Node.js, and TypeScript and a good grasp on how Webpack can be used to optimize and organize your code for deployment. You'll also understand how Docker can be used to run the apps you build in a clear and well-defined way, all of which will be able to springboard you into creating more advanced apps on your own.",
+    price: '44.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/04D67517/EAN-9781484257371',
+  });
+  await Book.create({
+    title: 'The Lathe of Heaven',
+    author: 'Ursula K. Le Guin',
+    genre: 'Science Fiction',
+    description:
+      'In a future world racked by violence and environmental catastrophes, George Orr wakes up one day to discover that his dreams have the ability to alter reality. He seeks help from Dr. William Haber, a psychiatrist who immediately grasps the power George wields. Soon George must preserve reality itself as Dr. Haber becomes adept at manipulating George’s dreams for his own purposes. 184p.',
+    price: '17.00',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/F67B8622/EAN-9781416556961',
+  });
+  await Book.create({
+    title: 'Annihilation (Southern Reach Trilogy: Book 1)',
+    author: 'Jeff Vandermeer',
+    genre: 'Science Fiction',
+    description:
+      "Area X has been cut off from the rest of the continent for decades. Nature has reclaimed the last vestiges of human civilization. The first expedition returned with reports of a pristine, Edenic landscape; the second expedition ended in mass suicide; the third expedition in a hail of gunfire as its members turned on one another. The members of the eleventh expedition returned as shadows of their former selves, and within weeks, all had died of cancer. In Annihilation, the first volume of Jeff VanderMeer's Southern Reach trilogy, we join the twelfth expedition.The group is made up of four women: an anthropologist; a surveyor; a psychologist, the de facto leader; and our narrator, a biologist. Their mission is to map the terrain, record all observations of their surroundings and of one another, and, above all, avoid being contaminated by Area X itself.They arrive expecting the unexpected, and Area X delivers--they discover a massive topographic anomaly and life forms that surpass understanding--but it's the surprises that came across the border with them and the secrets the expedition members are keeping from one another that change everything.",
+    price: '16.00',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/5F3DCDDD/EAN-9780374104092',
+  });
+  await Book.create({
+    title: 'Wicked: The Life and Times of the Wicked Witch of the West',
+    author: 'Gregory Maguire',
+    genre: 'Fiction',
+    description:
+      "When Dorothy triumphed over the Wicked Witch of the West in L. Frank Baum's classic tale, we heard only her side of the story. But what about her arch-nemesis, the mysterious witch? Where did she come from? How did she become so wicked? And what is the true nature of evil? Gregory Maguire creates a fantasy world so rich and vivid that we will never look at Oz the same way again. Wicked is about a land where animals talk and strive to be treated like first-class citizens, Munchkinlanders seek the comfort of middle-class stability and the Tin Man becomes a victim of domestic violence. And then there is the little green-skinned girl named Elphaba, who will grow up to be the infamous Wicked Witch of the West, a smart, prickly and misunderstood creature who challenges all our preconceived notions about the nature of good and evil. ",
+    price: '8.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/773149A4/EAN-9780061350962',
+  });
+  await Review.create({
+    userId: cece.id,
+    bookId: runner.id,
+    rating: 5,
+    text: 'This book changed my life for the better',
   });
   const cart = await ethyl.getCart();
   await ethyl.addToCart({ book: wayward, quantity: 3 });
