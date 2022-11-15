@@ -234,6 +234,12 @@ const syncAndSeed = async () => {
       physics,
       runner,
       claysArk,
+      stranger,
+      automateWithPython,
+      heartbreaking,
+      geekLove,
+      eloquentJavascript,
+      underworld,
     },
   };
 };

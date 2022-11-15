@@ -73,7 +73,7 @@ const Orders = () => {
           })
         ) : (
           <Link to="/books">
-            <p>Your cart is empty—click here to shop.</p>
+            <p>Your cart is empty — Click here to shop.</p>
           </Link>
         )}
         <br></br>
