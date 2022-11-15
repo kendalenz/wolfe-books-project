@@ -135,6 +135,14 @@ a:hover {
   text-decoration: underline;
 }
 
+div.nav-links:hover {
+  color: orange;
+}
+
+.nav-links > a:hover {
+  color: orange;
+}
+
 .books_page_img {
   width:200px; 
   height: auto;
@@ -177,6 +185,11 @@ select {
   text-align: justify;
   font-size: 20px;
 }
+/* edit review modal */
+.edit-review {
+  padding: 1em;
+  border: 2px solid rgb(132, 132, 132);
+}
 
 .arrow {
   margin-left: 5%;
@@ -200,7 +213,11 @@ select {
 }
 
 .book_rec_info {
-  max-width: 10rem;
+  max-width: 20rem;
+}
+
+button .react-multiple-carousel__arrow, .react-multiple-carousel__arrow--left, .react-multiple-carousel__arrow--right {
+  width: 2em;
 }
 
 .cart-book-img {

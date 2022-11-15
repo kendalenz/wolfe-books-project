@@ -32,8 +32,7 @@ const EditReview = (props) => {
   };
   return (
     <Dialog open={true} onClose={props.onClose}>
-      <div>
-        <hr />
+      <div className="edit-review">
         <h2>Edit Your Review</h2>
         <form onSubmit={submit}>
           <label>Rating</label>
@@ -90,65 +89,6 @@ const EditReview = (props) => {
         </form>
       </div>
     </Dialog>
-  );
-  return (
-    <div>
-      <hr />
-      <h2>Edit Your Review</h2>
-      <form onSubmit={submit}>
-        <label>Rating</label>
-        <select
-          value={rating}
-          onChange={(ev) => {
-            setRating(ev.target.value);
-          }}
-        >
-          <option default value={undefined}>
-            -- select a rating --
-          </option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-        <div className="stars">
-          {[...Array(5)].map((_, index) => {
-            const ratingValue = index + 1;
-            return (
-              <label key={index}>
-                <input
-                  type="radio"
-                  name="rating"
-                  value={ratingValue}
-                  onClick={() => {
-                    setRating(ratingValue);
-                  }}
-                />
-                <FaStar
-                  key={index}
-                  size={22}
-                  color={
-                    (hover || rating) >= ratingValue ? '#FFBA5A' : '#a9a9a9'
-                  }
-                  onMouseOver={() => setHover(ratingValue)}
-                  onMouseOut={() => setHover(undefined)}
-                />
-              </label>
-            );
-          })}
-        </div>
-
-        <label>Tell Us What You Thought About {}</label>
-        <textarea
-          rows="5"
-          cols="33"
-          onChange={(ev) => setText(ev.target.value)}
-          value={text}
-        ></textarea>
-        <button>Submit</button>
-      </form>
-    </div>
   );
 };
 
