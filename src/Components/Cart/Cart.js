@@ -33,7 +33,7 @@ const Cart = () => {
               );
             })
           ) : (
-            <h4>Oops, your cart is empty!</h4>
+            <p>Your cart is empty.</p>
           )}
         </div>
         <div id="cart-actions">

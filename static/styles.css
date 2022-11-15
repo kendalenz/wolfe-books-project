@@ -121,12 +121,8 @@ button:hover {
   transition: 0.7s;
 }
 
-button:hover {
-  filter: contrast(115%);
-}
-
 button:disabled {
-  opacity: 0.5;
+  opacity: .9;
   cursor: default;
 }
 
@@ -137,10 +133,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-h4 {
-  text-align: center;
 }
 
 .books_page_img {
@@ -213,7 +205,6 @@ select {
 
 .cart-book-img {
   max-width: 5rem;
-  margin: 1rem;
 }
 
 hr {
@@ -252,8 +243,6 @@ a {
 
 #cart_page_content {
   display: flex;
-  margin-left: 5%;
-  margin-right: 5%;
 }
 
 #checkout_page {
@@ -291,22 +280,8 @@ a {
   margin-right: 5%;
 }
 
-#account_page {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-#edit_account_page {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-#add_book_page {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-#users_page {
+/* Will change these ids to one class if no other CSS is applied to the individual pages */
+#account_page, #edit_account_page, #add_book_page, #users_page, #create_user_page, #login_page, #cart_page {
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -314,16 +289,6 @@ a {
 #delete_user_button {
   margin-top: 1rem;
   margin-bottom: 2rem;
-}
-
-#create_user_page {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-#login_page {
-  margin-left: 5%;
-  margin-right: 5%;
 }
 
 #update_book_button {
@@ -349,7 +314,7 @@ a {
 }
 
 #cart-book-list {
-  margin-right: 15rem;
+  margin-right: 12rem;
 }
 
 #order_success {
@@ -369,7 +334,6 @@ a {
   margin: 2rem;
 }
 
-#cart_page {
-  margin-left: 5%;
-  margin-right: 5%;
+#past_orders_div {
+  margin-top: 2rem;
 }
