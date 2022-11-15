@@ -73,33 +73,33 @@ const Orders = () => {
           })
         ) : (
           <Link to="/books">
-            <h4>Your cart is empty - Click here to add books!</h4>
+            <p>Your cart is empty—click here to shop.</p>
           </Link>
         )}
         <br></br>
-        {cart.isCart ? <strong>Amount Due: ${amountDue}</strong> : ''}
+        {cart.isCart ? <><strong>Amount Due:</strong> ${amountDue}</> : ''}
       </div>
       {cart.lineItems.length > 0 && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
       )}
-      <div>
+      <div id='past_orders_div'>
         <h2>Past Orders</h2>
-        <ul>
+        <div>
           {!cart.isCart
             ? cart.lineItems.map((item) => {
                 const book = books.find((b) => b.id === item.bookId);
                 const copyText = item.quantity > 1 ? 'copies' : 'copy';
                 return (
-                  <li key={item.id}>
+                  <div key={item.id}>
                     {book.title} - {item.quantity} {copyText} ordered on{' '}
                     {dayjs(cart.updatedAt).format('MM/DD/YYYY').toString()}
-                  </li>
+                  </div>
                 );
               })
-            : ''}
-        </ul>
+            : 'You have no past orders.'}
+        </div>
       </div>
     </div>
   );

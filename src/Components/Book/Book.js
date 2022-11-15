@@ -30,7 +30,10 @@ const Book = () => {
         <div className="book_info">
           <img src={book.imageUrl} className="book_page_img" alt="Book cover" />
           <div className="book_text">
-            <h4>{book.title}</h4>
+            <h4>{book.title}
+            <br></br>
+            {book.author}
+            </h4>
             <p>${book.price}</p>
             <p>{book.description}</p>
             <AddToCart />
