@@ -215,6 +215,46 @@ const syncAndSeed = async () => {
     rating: 5,
     text: 'greeaaaat!!',
   });
+  await Book.create({
+    title: 'The Candy House',
+    author: 'Jennifer Egan',
+    genre: 'Fiction',
+    description:
+      "The Candy House opens with the staggeringly brilliant Bix Bouton, whose company, Mandala, is so successful that he is “one of those tech demi-gods with whom we're all on a first name basis.” Bix is forty, with four kids, restless, and desperate for a new idea, when he stumbles into a conversation group, mostly Columbia professors, one of whom is experimenting with downloading or “externalizing” memory. Within a decade, Bix's new technology, “Own Your Unconscious”—which allows you access to every memory you’ve ever had, and to share your memories in exchange for access to the memories of others—has seduced multitudes.In the world of Egan's spectacular imagination, there are “counters” who track and exploit desires and there are “eluders,” those who understand the price of taking a bite of the Candy House. Egan introduces these characters in an astonishing array of narrative styles—from omniscient to first person plural to a duet of voices, an epistolary chapter, and a chapter of tweets. Intellectually dazzling, The Candy House is also a moving testament to the tenacity and transcendence of human longing for connection, family, privacy, and love.",
+    price: '28.00',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/6E90DD8A/EAN-9781476716763',
+  });
+  await Book.create({
+    title: 'Words and Rules: The Ingredients of Language',
+    author: 'Steven Pinker',
+    genre: 'Cognitive Science',
+    description:
+      "In Words and Rules, Steven Pinker explores profound mysteries of language by picking a deceptively simple phenomenon--regular and irregular verbs--and examining it from every angle. With humor and verve, he covers an astonishing array of topics in the sciences and humanities, from the history of languages to how to simulate languages on computers to major ideas in the history of Western philosophy.   Through it all, Pinker presents a single, powerful idea: that language comprises a mental dictionary of memorized words and a mental grammar of creative rules. The idea extends beyond language and offers insight into the very nature of the human mind.   This is a sparkling, eye-opening, and utterly original book by one of the world's leading cognitive scientists.",
+    price: '18.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/18FCE24C/EAN-9780465072705',
+  });
+  await Book.create({
+    title: 'The Language Instinct',
+    author: 'Steven Pinker',
+    genre: 'Cognitive Science',
+    description:
+      "In this classic, the world's expert on language and mind lucidly explains everything you always wanted to know about language: how it works, how children learn it, how it changes, how the brain computes it, and how it evolved. With deft use of examples of humor and wordplay, Steven Pinker weaves our vast knowledge of language into a compelling story: language is a human instinct, wired into our brains by evolution. The Language Instinct received the William James Book Prize from the American Psychological Association and the Public Interest Award from the Linguistics Society of America. This edition includes an update on advances in the science of language since The Language Instinct was first published.",
+    price: '17.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/FF7D817F/EAN-9780061336461',
+  });
+  await Book.create({
+    title: 'The Language Instinct',
+    author: 'Steven Pinker',
+    genre: 'Cognitive Science',
+    description:
+      "\"A glorious fantasy.\"--Neil Gaiman Three-time Hugo Award-winning and New York Times bestselling author N.K. Jemisin crafts her most incredible novel yet, a story of culture, identity, magic, and myths in contemporary New York City.     In Manhattan, a young grad student gets off the train and realizes he doesn't remember who he is, where he's from, or even his own name. But he can sense the beating heart of the city, see its history, and feel its power.</br>In the Bronx, a Lenape gallery director discovers strange graffiti scattered throughout the city, so beautiful and powerful it's as if the paint is literally calling to her.     In Brooklyn, a politician and mother finds she can hear the songs of her city, pulsing to the beat of her Louboutin heels.And they're not the only ones.",
+    price: '17.99',
+    imageUrl:
+      'https://d2p7wwv96gt4xt.cloudfront.net/G/CCAAED4D/EAN-9780316509848',
+  });
   const cart = await ethyl.getCart();
   await ethyl.addToCart({ book: wayward, quantity: 3 });
   await ethyl.addToCart({ book: girlInLandscape, quantity: 2 });
