@@ -32,7 +32,7 @@ const Orders = () => {
   useEffect(() => {
     setAmountDue(
       cart.lineItems.reduce((acc, curr) => {
-        acc += Number((curr.book.price * curr.quantity).toFixed(2));
+        acc += curr.book.price * curr.quantity;
         return acc;
       }, 0)
     );
@@ -77,7 +77,7 @@ const Orders = () => {
           </Link>
         )}
         <br></br>
-        {cart.isCart ? <><strong>Amount Due:</strong> ${amountDue}</> : ''}
+        {cart.isCart ? <><strong>Amount Due:</strong> ${Math.round(parseFloat((amountDue * Math.pow(10, 2)).toFixed(2))) / Math.pow(10, 2)}</> : ''}
       </div>
       {cart.lineItems.length > 0 && (
         <Elements options={options} stripe={stripePromise}>
