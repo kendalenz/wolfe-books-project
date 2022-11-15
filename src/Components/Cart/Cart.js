@@ -29,7 +29,6 @@ const Cart = () => {
                     quantity={lineItem.quantity}
                     bookId={book.id}
                   />
-                  <br></br>
                 </div>
               );
             })
