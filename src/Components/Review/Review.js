@@ -37,9 +37,10 @@ const Review = (props) => {
                       />
                     );
                   })}{' '}
-                  ({review.rating} stars)
+                  ({review.rating} star(s))
                   <p>{review.text}</p>
                   <div id="buttons">
+                    <div id='edit_book'>
                     {auth.id === review.userId ? (
                       <div>
                         <button
@@ -65,6 +66,7 @@ const Review = (props) => {
                         ) : null}
                       </div>
                     ) : null}
+                    </div>
                     {auth.id === review.userId || auth.isAdmin === true ? (
                       <div>
                         <button
@@ -81,7 +83,7 @@ const Review = (props) => {
                 </div>
               );
             })
-          : 'no reviews yet...be the first one to write a review!'}
+          : 'Be the first to write a review!'}
       </div>
     </div>
   );

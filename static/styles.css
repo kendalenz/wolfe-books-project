@@ -1,17 +1,3 @@
-/* html, 
-body {
-  height: 100%;
-} */
-
-/* .site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-} */
-
-/* .site-content {
-  flex: 1;
-} */
 
 nav {
   display: flex;
@@ -23,9 +9,11 @@ nav {
 body {
   font-family: optima;
   background-color: white;
-  /* margin-bottom: 20rem; */
-  /* display: flex; */
-  /* width: 100vw; */
+}
+
+pre {
+  font-family: inherit;
+  font-style: italic;
 }
 
 .hero-background {
@@ -52,14 +40,26 @@ body {
   background-color: #F8F8F8;
   color: black;
   text-align: left;
-  position:relative; 
-  bottom:0;
-  width: 100%
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
 }
 
-/* .content {
- width: 100%
-} */
+.checkout_form {
+  border: 1px solid black;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+.address_form {
+  width: 50%;
+}
+
+.hidden {
+  display: none;
+}
 
 form {
   display: flex;
@@ -72,8 +72,13 @@ form > * {
 
 .books_forms_div {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.genre_search_forms {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -84,8 +89,18 @@ form > * {
   border-radius: 2px;
 }
 
-.add_book_form {
-  align-self: flex-end;
+.add_book_button {
+  flex-wrap: wrap;
+  align-self: center;
+  margin-right: 8rem;
+  width: 8rem;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+#edit_book {
+  margin-right: 2rem;
 }
 
 input {
@@ -102,11 +117,12 @@ button {
 }
 
 button:hover {
-  filter: contrast(115%);
+  background-color: B0C4DE;
+  transition: 0.7s;
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: .9;
   cursor: default;
 }
 
@@ -124,8 +140,9 @@ a:hover {
   height: auto;
 }
 
-.select {
+select {
   border-radius: 2px;
+  width: 8rem;
 }
 
 .books_div {
@@ -135,12 +152,21 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.book_page {
+.book_card {
+  max-width: 12rem;
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.book_info {
   display: flex;
   flex-direction: row;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 5%;
+  margin-right: 5%;
 }
+
 .book_page_img {
   width:400px; 
   height: auto;
@@ -150,6 +176,35 @@ a:hover {
 .book_text {
   text-align: justify;
   font-size: 20px;
+}
+
+.arrow {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%
+}
+
+.book_reviews {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.book_recs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.book_rec_info {
+  max-width: 10rem;
+}
+
+.cart-book-img {
+  max-width: 5rem;
 }
 
 hr {
@@ -176,10 +231,109 @@ a {
 
 #buttons {
   display: flex;
+  justify-content: flex-start;
+  margin-right: 5rem;
 }
 
 .nav-links {
   display: flex;
   justify-content: space-between;
   gap: .2em;
+}
+
+#cart_page_content {
+  display: flex;
+}
+
+#checkout_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#checkout_buttons {
+  display: flex;
+}
+
+#edit_quantity_button {
+  margin-right: 5rem;
+}
+
+#checkout_info {
+  display: flex;
+  flex-direction: row;
+}
+
+#checkout_text {
+  text-align: justify;
+}
+
+#checkout_page_img {
+  max-width: 5rem;
+  height: auto;
+  margin-right: 4rem;
+  margin-bottom: 1rem;
+}
+
+#edit_book_page {
+  margin-bottom: 2rem;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* Will change these ids to one class if no other CSS is applied to the individual pages */
+#account_page, #edit_account_page, #add_book_page, #users_page, #create_user_page, #login_page, #cart_page {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#delete_user_button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#update_book_button {
+  margin-top: 2rem;
+}
+
+#create_account_button {
+  margin-top: 1rem;
+}
+
+#cart-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.buy_btn, .checkout_btn {
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+#cart-book-list {
+  margin-right: 12rem;
+}
+
+#order_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#order_success img {
+  max-width: 50rem;
+  margin: 1rem;
+  border: 5px solid purple;
+  border-radius: 5%;
+}
+
+#view_orders_btn {
+  margin: 2rem;
+}
+
+#past_orders_div {
+  margin-top: 2rem;
 }

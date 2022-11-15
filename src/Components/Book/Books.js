@@ -12,7 +12,7 @@ const Books = () => {
 
   const Bookcard = (props) => {
     return (
-      <div style={{ padding: '2rem', margin: '1rem' }}>
+      <div className='book_card'>
         <img src={props.imageUrl} className="books_page_img" alt="Book cover" />
         <br></br>
         <Link to={`/books/${props.id}`}>
@@ -38,44 +38,45 @@ const Books = () => {
   getUniqueGenres();
 
   return (
-    <div className="site" style={{ height: '150vh' }}>
-      <div className="site-content">
-      <div className='books_forms_div'>
-      <form className="books_page_form">
-        <label form="genre">View by genre:</label>
-        <select className='select'value={genre} onChange={(ev) => setGenre(ev.target.value)}>
-          <option value="">All</option>
-          {genres.map((genre) => {
-            return (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            );
-          })}
-        </select>
-      </form>
+    <div style={{ height: '300vh' }}>
+      <div className="books_forms_div">
+        <div className='genre_search_forms'>
+          <div className="books_page_form">
+          <form>
+            <label form="genre">View by genre</label>
+            <select className='select'value={genre} onChange={(ev) => setGenre(ev.target.value)}>
+            <option value="">All</option>
+              {genres.map((genre) => {
+                return (
+                  <option key={genre} value={genre}>
+                    {genre}
+                  </option>
+                );
+              })}
+            </select>
+          </form>
+          </div>
      
-      <form className="books_page_form">
-      <label>Search Books:</label>
-        <input value={filter || ''} onChange={
-          ev => {
-            if(ev.target.value==='') {
-              navigate('/books')
-            } else {
-              navigate(`/books/search/${ev.target.value}`)
-            }
-          }
-          }/>
-      </form>
-
-      <div className='books_page_form'>
-        <div className='add_book_form'>
-        {auth.isAdmin ? <button><Link to="/createbook">Add a Book</Link></button> : null}
+          <div className="books_page_form">
+          <form>
+            <label>Search Books</label>
+            <input value={filter || ''} onChange={
+              ev => {
+                if(ev.target.value==='') {
+                  navigate('/books')
+                } else {
+                  navigate(`/books/search/${ev.target.value}`)
+                }
+              }
+            }/>
+          </form>
+          </div>
         </div>
-      </div>
-
-      </div>
-      </div>
+        
+        <div className='add_book_button'>
+          {auth.isAdmin ? <span className='center_text'><Link to="/createbook">Add a Book</Link></span> : null}
+        </div>
+    </div>
 
       <div className="books_div">
         { genre && filter

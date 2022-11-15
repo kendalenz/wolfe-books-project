@@ -35,7 +35,7 @@ const CreateReview = (props) => {
     <div>
       <h2>Leave a Review</h2>
       <form onSubmit={submit}>
-        <label>Rating</label>
+        <label>Select a Rating</label>
         <select
           value={rating}
           onChange={(ev) => {
@@ -43,7 +43,7 @@ const CreateReview = (props) => {
           }}
         >
           <option default value={undefined}>
-            -- select a rating --
+            -- -- 
           </option>
           <option value={1}>1</option>
           <option value={2}>2</option>
@@ -78,7 +78,7 @@ const CreateReview = (props) => {
           })}
         </div>
 
-        <label>Tell Us What You Thought About {props.book}</label>
+        <label>Tell us what you thought about {props.book}</label>
         <textarea
           rows="5"
           cols="33"

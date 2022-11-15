@@ -24,14 +24,19 @@ const Users = () => {
   };
 
   return (
-    <div style={{ height: '80vh' }}>
+    <div id='account_page' style={{ height: '80vh' }}>
       <h1>Account Information</h1>
-      <p>Username: {auth.username}</p>
       <p>
-        Name: {auth.firstName} {auth.lastName}
+        <strong>Username:</strong> {auth.username}
       </p>
-      <p>Email: {auth.email}</p>
-      <Link to={`/users/${auth.id}/edit`}>Edit Account Info</Link>
+      <p>
+        <strong>Name:</strong> {auth.firstName} {auth.lastName}
+      </p>
+      <p>
+        <strong>Email:</strong> {auth.email}
+      </p>
+      <h3><Link to={`/users/${auth.id}/edit`}>Edit Account Info</Link></h3>
+      <br></br>
       <button onClick={() => deleteAccount()}>Delete Account</button>
     </div>
   );

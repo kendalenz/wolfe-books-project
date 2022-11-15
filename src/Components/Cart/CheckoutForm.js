@@ -1,91 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import cart from '../../store/cart';
-import Orders from './Orders';
+import { useNavigate } from 'react-router-dom';
 
-// const CheckoutForm = () => {
-//   const { cart } = useSelector((state) => state);
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const [message, setMessage] = useState(null);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
-
-//   useEffect(() => {
-//     if (!stripe) {
-//       return;
-//     }
-
-//     const clientSecret = new URLSearchParams(window.location.search).get(
-//       'payment_intent_client_secret'
-//     );
-
-//     if (!clientSecret) {
-//       return;
-//     }
-
-//     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-//       switch (paymentIntent.status) {
-//         case 'succeeded':
-//           setMessage('Payment succeeded!');
-//           break;
-//         case 'processing':
-//           setMessage('Your payment is processing.');
-//           break;
-//         case 'requires_payment_method':
-//           setMessage('Your payment was not successful, please try again.');
-//           break;
-//         default:
-//           setMessage('Something went wrong.');
-//           break;
-//       }
-//     });
-//   }, [stripe]);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!stripe || !elements) {
-//       return;
-//     }
-
-//     setIsLoading(true);
-
-//     const { error } = await stripe.confirmPayment({
-//       elements,
-//       confirmParams: {
-//         return_url: 'http://localhost:3000/#/orders',
-//       },
-//     });
-
-//     if (error.type === 'card_error' || error.type === 'validation_error') {
-//       setMessage(error.message);
-//     } else {
-//       setMessage('An unexpected error occurred.');
-//     }
-
-//     setIsLoading(false);
-//     setPaymentSuccessful(true);
-//   };
-//   return (
-//     <form id="payment-form" onSubmit={handleSubmit}>
-//       <PaymentElement id="payment-element" />
-//       <button disabled={isLoading || !stripe || !elements} id="submit">
-//         <span id="button-text">
-//           {isLoading ? <div className="spinner" id="spinner"></div> : 'Pay now'}
-//         </span>
-//       </button>
-//       {message && <div id="payment-message">{message}</div>}
-//     </form>
-//   );
-// };
-
-const ProductDisplay = () => {
+const CheckoutDetails = () => {
   const { cart } = useSelector((state) => state);
+  const [addressDetails, setAddressDetails] = useState({
+    shippingAddressStreet1: '',
+    shippingAddressStreet2: '',
+    shippingAddressCity: '',
+    shippingAddressState: '',
+    shippingAddressZip: '',
+    billingSameAsShipping: false,
+    billingAddressStreet1: '',
+    billingAddressStreet2: '',
+    billingAddressCity: '',
+    billingAddressState: '',
+    billingAddressZip: '',
+  });
 
-  const checkout = async () => {
+  const onChange = (e) => {
+    setAddressDetails({
+      ...addressDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const setBillingSameAsShipping = (e) => {
+    const currentSetting = addressDetails.billingSameAsShipping;
+    setAddressDetails({
+      ...addressDetails,
+      billingSameAsShipping: !currentSetting,
+      billingAddressStreet1: currentSetting ? '' : addressDetails.shippingAddressStreet1,
+      billingAddressStreet2: currentSetting ? '' : addressDetails.shippingAddressStreet2,
+      billingAddressCity: currentSetting ? '' : addressDetails.shippingAddressCity,
+      billingAddressState: currentSetting ? '' : addressDetails.shippingAddressState,
+      billingAddressZip: currentSetting ? '' : addressDetails.shippingAddressZip,
+    });
+  };
+
+  const checkout = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post('/create-checkout-session', cart);
       window.open(response.data);
@@ -95,25 +50,99 @@ const ProductDisplay = () => {
   };
 
   return (
-    <section>
-      {cart.lineItems.map((item) => {
-        return (
-          <div key={item.id} className="product">
-            <img src={item.book.imageUrl} />
-            <div className="description">
-              <h3>{item.book.title}</h3>
-              <h4>{item.book.description}</h4>
-              <h5>{item.book.price}</h5>
-            </div>
-          </div>
-        );
-      })}
-      <button onClick={checkout}>Checkout</button>
-    </section>
+    <form className="checkout_form" onSubmit={checkout}>
+      <h3>Shipping Address</h3>
+      <input
+        className="address_form"
+        name="shippingAddressStreet1"
+        placeholder="Street"
+        required
+        value={addressDetails.shippingAddressStreet1}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="shippingAddressStreet2"
+        placeholder="Unit/Apt/Floor (optional)"
+        value={addressDetails.shippingAddressStreet2}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="shippingAddressCity"
+        placeholder="City"
+        required
+        value={addressDetails.shippingAddressCity}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="shippingAddressState"
+        placeholder="State"
+        required
+        value={addressDetails.shippingAddressState}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="shippingAddressZip"
+        placeholder="Zip Code"
+        required
+        value={addressDetails.shippingAddressZip}
+        onChange={onChange}
+      />
+      <h3>Billing Address</h3>
+      <div>
+        <label htmlFor="same-as-shipping">Same as Shipping Address?</label>
+        <input
+          type="checkbox"
+          id="same-as-shipping"
+          name="same-as-shipping"
+          value={addressDetails.billingSameAsShipping}
+          onChange={setBillingSameAsShipping}
+        />
+      </div>
+      <input
+        className="address_form"
+        name="billingAddressStreet1"
+        placeholder="Street"
+        value={addressDetails.billingAddressStreet1}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="billingAddressStreet2"
+        placeholder="Unit/Apt/Floor (optional)"
+        value={addressDetails.billingAddressStreet2}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="billingAddressCity"
+        placeholder="City"
+        value={addressDetails.billingAddressCity}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="billingAddressState"
+        placeholder="Street"
+        value={addressDetails.billingAddressState}
+        onChange={onChange}
+      />
+      <input
+        className="address_form"
+        name="billingAddressZip"
+        placeholder="Street"
+        value={addressDetails.billingAddressZip}
+        onChange={onChange}
+      />
+      <button className="checkout_btn">Checkout</button>
+    </form>
   );
 };
 
-const Message = ({message}) => {
+const Message = ({ message }) => {
   return (
     <section>
       <p>{message}</p>
@@ -124,6 +153,7 @@ const Message = ({message}) => {
 const CheckoutForm = () => {
   const [message, setMessage] = useState('');
   const { cart } = useSelector((state) => state);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -135,12 +165,19 @@ const CheckoutForm = () => {
 
     if (query.get('canceled')) {
       setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+        "Order cancelled. Continue to shop and checkout when you're ready."
       );
+      navigate('/order-cancelled');
     }
   }, []);
 
-  return message ? <Message message={message} /> : cart.isCart ? <ProductDisplay /> : '';
+  return message ? (
+    <Message message={message} />
+  ) : cart.isCart ? (
+    <CheckoutDetails />
+  ) : (
+    ''
+  );
 };
 
 export default CheckoutForm;

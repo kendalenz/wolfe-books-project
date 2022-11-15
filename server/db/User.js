@@ -4,75 +4,81 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
 
-const User = conn.define('user', {
-  id: {
-    type: UUID,
-    primaryKey: true,
-    defaultValue: UUIDV4,
-  },
-  username: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 25],
-      notNull: {
-        msg: 'Please enter a unique, and valid username between 1 and 25 characters long.',
+const User = conn.define(
+  'user',
+  {
+    id: {
+      type: UUID,
+      primaryKey: true,
+      defaultValue: UUIDV4,
+    },
+    username: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [1, 25],
+        notNull: {
+          msg: 'Please enter a unique, and valid username between 1 and 25 characters long.',
+        },
+      },
+      unique: true,
+    },
+    password: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [1, 20],
+        notNull: {
+          msg: 'Please enter a password between 1 and 20 characters long.',
+        },
       },
     },
-    unique: true,
-  },
-  password: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 20],
-      notNull: {
-        msg: 'Please enter a password between 1 and 20 characters long.',
+    firstName: {
+      type: STRING,
+      allowNull: false,
+      Validate: {
+        notEmpty: true,
+        len: [1, 100],
+        notNull: {
+          msg: 'Please contact us if your first name is more than 100 characters long.',
+        },
       },
     },
-  },
-  firstName: {
-    type: STRING,
-    allowNull: false,
-    Validate: {
-      notEmpty: true,
-      len: [1, 100],
-      notNull: {
-        msg: 'Please contact us if your first name is more than 100 characters long.',
+    lastName: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [1, 100],
+        notNull: {
+          msg: 'Please contact us if your last name is more than 100 characters long.',
+        },
       },
     },
-  },
-  lastName: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: [1, 100],
-      notNull: {
-        msg: 'Please contact us if your last name is more than 100 characters long.',
+    email: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isEmail: true,
+        len: [1, 100],
+        notNull: {
+          msg: 'Please contact us if your email is more than 100 characters long.',
+        },
       },
     },
-  },
-  email: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      isEmail: true,
-      len: [1, 100],
-      notNull: {
-        msg: 'Please contact us if your email is more than 100 characters long.',
-      },
+    isAdmin: {
+      type: BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
     },
   },
-  isAdmin: {
-    type: BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-  },
-});
+  {
+    paranoid: true,
+  }
+);
 
 User.prototype.createOrder = async function () {
   const cart = await this.getCart();
